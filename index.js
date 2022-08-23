@@ -12,7 +12,7 @@ const router = new Router(eventEmitter, config.routerConfig.eventName);
 const appsDirectories = fs.readdirSync(config.appsDirectoriesPath);
 
 for (let appDir of appsDirectories) {
-  const app = require(`./${config.appsDirectoriesPath}/${appDir}`);
+  const app = require(`./${config.appsDirectoriesPath}/${appDir}`);    
   app.routes.forEach((route) => {
     router.addRoute(`/${appDir}/${route.url}`, route.controller, route.method);
   });

@@ -1,6 +1,7 @@
 const ProfileRepository = require("../repositories/profile.repository");
 const profileRepository = new ProfileRepository();
 
+
 const getAllProfiles = async (req, res) => {
   try {
     const profiles = await profileRepository.fetchAll();
