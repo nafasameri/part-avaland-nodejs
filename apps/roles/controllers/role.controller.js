@@ -3,27 +3,61 @@ const logger = require('log4js').getLogger();
 logger.level = 'debug';
 
 const roleRepository = new RoleRepository();
-const resHandler = require('../../../modules/handler/response.handler');
+const sendResponse = require('../../../modules/handler/response.handler');
 
 const getAllRoles = async (req, res) => {
     try {
-        const roles = await roleRepository.fetchAll();
-        resHandler(res, [200, { "Content-Type": "application/json" }], roles);
+        const id = req.querystring?.id;
+        if (id) {
+            const role = await roleRepository.fetchRole(id);
+            sendResponse(res, 200, {
+                "Content-Type": "application/json"
+            }, JSON.stringify(role, null, 2));
+        } else {
+            const roles = await roleRepository.fetchAll();
+            sendResponse(res, 200, {
+                "Content-Type": "application/json"
+            }, JSON.stringify(roles, null, 2));
+        }
     } catch (error) {
         logger.error(error);
         throw error;
     }
 };
 
-const createRole = async (req, res, data) => {
+const createRole = async (req, res) => {
     try {
-        const productId = await Role.add(data);
-        if (!productId) {
-            resHandler(res, [404, { "Content-Type": "application/json" }], { message: 'Could Not Create' });
-        } else {
-            resHandler(res, [200, { "Content-Type": "application/json" }], productId);
-        }
+
+        let data = '';
+        req.on('data', (chunk) => {
+            data += chunk.toString();
+        });
+        req.on('end', async () => {
+            data = JSON.parse(data);
+            const productId = await roleRepository.add(data);
+
+            if (!productId) {
+                sendResponse(res, 404, {
+                    "Content-Type": "application/json"
+                }, JSON.stringify({
+                    message: 'Could Not Create'
+                }, null, 2));
+            } else {
+                sendResponse(res, 200, {
+                    "Content-Type": "application/json"
+                }, JSON.stringify({
+                    productId: productId
+                }));
+            }
+        });
     } catch (error) {
+        logger.error(error);
+        throw error;
+    }
+};
+
+const updateRole = async (req, res, data) => {
+    try {} catch (error) {
         logger.error(error);
         throw error;
     }
@@ -34,7 +68,7 @@ const createRole = async (req, res, data) => {
 //         const id = req.params ?.id;
 //         if (id) await getRole(req, res, id);
 //         else {
-//             let products = await Role.findAll();
+//             let products = await roleRepository.findAll();
 //             res.writeHead(200, { 'Content-Type': 'application/json' });
 //             res.end(JSON.stringify(products));
 //         }
@@ -61,5 +95,6 @@ const createRole = async (req, res, data) => {
 
 module.exports = {
     getAllRoles,
-    createRole
+    createRole,
+    updateRole
 };

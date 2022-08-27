@@ -12,6 +12,12 @@ const routerConfig = {
 
 const appsDirectoriesPath = "./apps";
 
+const dbConfig = {
+  dbName: '',
+  username: '',
+  password: ''
+};
+
 module.exports = {
   serverConfig,
   routerConfig,

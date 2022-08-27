@@ -1,4 +1,4 @@
-module.exports = (res, header, content) => {
-    res.writeHead(header[0], header[1]);
-    res.end(JSON.stringify(content));
+module.exports = (res, status, header, content) => {
+    res.writeHead(status, header);
+    res.end(content);
 };

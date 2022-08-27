@@ -1,0 +1,17 @@
+[
+    {
+        "RoleID": 1,
+        "RoleName": "Admin",
+        "RoleDesc": "ادمین"
+    },
+    {
+        "RoleID": 2,
+        "RoleName": "Guest",
+        "RoleDesc": "مهمان"
+    },
+    {
+        "RoleID": 3,
+        "RoleName": "Producer",
+        "RoleDesc": "تولید کننده"
+    }
+]

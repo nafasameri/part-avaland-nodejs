@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript">
+        function onLoad() {
+            var sec = parseInt(document.location.search.substr(1));
+            console.log(sec);
+
+            if (!isNaN(sec)) {
+                mainPlayer.currentTime = sec;
+                document.getElementById('sec').innerHTML(sec);
+            }
+        }
+    </script>
+    <title>Partial Content Demonstration</title>
+</head>
+
+<body>
+    <h3>Partial Content Demonstration</h3>
+    <hr />
+    <video id="mainPlayer" width="640" height="360" autoplay="autoplay" controls="controls" onloadedmetadata="onLoad()">
+        <source src="../uploads/2022-7-5 20210406_000439.mp4" />
+    </video>
+    <p id="sec"></p>
+</body>
+
+</html>

@@ -1,6 +1,7 @@
-const { fetchQueryStringFromURL, getPostData } = require("./parser");
+const { fetchQueryStringFromURL, getPostData, getHeaders } = require("./parser");
 
 module.exports = {
   fetchQueryStringFromURL,
   getPostData,
+  getHeaders
 };

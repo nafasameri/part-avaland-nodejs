@@ -1,4 +1,6 @@
 const http = require("http");
+const logger = require('log4js').getLogger();
+logger.level = 'debug';
 
 class Server {
   constructor(config) {
@@ -13,7 +15,7 @@ class Server {
         eventEmitter.emit(this.eventName, req, res);
       })
       .listen(this.port, this.hostname, () => {
-        console.log(`Server is running at: ${this.hostname}:${this.port} `);
+        logger.info(`Server is running at: ${this.hostname}:${this.port} `);
       });
   }
 }
