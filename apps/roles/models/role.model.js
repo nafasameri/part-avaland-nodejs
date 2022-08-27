@@ -2,32 +2,22 @@ class Role {
     RoleID;
     RoleName;
     RoleDesc;
+    Creator;
+    CreateTime;
+    Modifier;
+    ModifiTime;
+    IsDelete;
 
-    constructor(RoleID, RoleName, RoleDesc) {
+    constructor(RoleID, RoleName, RoleDesc, Creator, CreateTime, Modifier, ModifiTime, IsDelete) {
         this.RoleID = RoleID;
         this.RoleName = RoleName;
         this.RoleDesc = RoleDesc;
+        this.Creator = Creator;
+        this.CreateTime = CreateTime;
+        this.Modifier = Modifier;
+        this.ModifiTime = ModifiTime;
+        this.IsDelete = IsDelete;
     }
-
-    // findAll(req, res) {
-    //     return new Promise((resolve, reject) => {
-    //         resolve(roles);
-    //     });
-    // }
-
-    // findById(id) {
-    //     return new Promise((resolve, reject) => {
-    //         const role = roles.find((r) => r.RoleID === id);
-    //         resolve(role);
-    //     });
-    // }
-
-    // add(role) {
-    //     return new Promise((resolve, reject) => {
-    //         roles.push(role);
-    //         resolve(role ?.RoleID);
-    //     });
-    // }
 }
 
 module.exports = Role;
