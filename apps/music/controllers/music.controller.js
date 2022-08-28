@@ -1,11 +1,11 @@
-const MusicRepository = require("../repositories/music.repository");
-const sendResponse = require('../../../modules/handler/response.handler');
-const { date } = require('../../../modules/utility');
-const logger = require('log4js').getLogger();
 const formidable = require('formidable')
-// const musicRepository = new MusicRepository();
-
+const logger = require('log4js').getLogger();
 const fs = require('fs');
+
+const sendResponse = require('../../../modules/handler/response.handler');
+const MusicRepository = require("../repositories/music.repository");
+const musicRepository = new MusicRepository();
+const { date } = require('../../../modules/utility');
 
 
 logger.level = 'debug';

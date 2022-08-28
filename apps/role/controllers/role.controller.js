@@ -1,9 +1,9 @@
-const RoleRepository = require("../repositories/role.repository");
 const logger = require('log4js').getLogger();
 logger.level = 'debug';
 
-const roleRepository = new RoleRepository();
 const sendResponse = require('../../../modules/handler/response.handler');
+const RoleRepository = require("../repositories/role.repository");
+const roleRepository = new RoleRepository();
 
 
 class RoleController {

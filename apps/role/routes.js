@@ -9,19 +9,19 @@ const routes = [
     middlewares: [fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "roles",
+    url: "role",
     method: "POST",
     controller: roleController.createRole,
     middlewares: [fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "roles",
+    url: "role",
     method: "PUT",
     controller: roleController.updateRole,
     middlewares: [fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "roles",
+    url: "role",
     method: "DELETE",
     controller: roleController.deleteRole,
     middlewares: [fetchQueryStringFromURL, getHeaders],
