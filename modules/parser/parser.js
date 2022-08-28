@@ -65,24 +65,18 @@ async function getPostData(req, res, next) {
 async function getHeaders(req, res, next) {
   try {
     const contentType = req.headers['content-type'];
+    const data = await getPostData(req, res, next);
 
-    let data = '';
-    req.on('data', (chunk) => {
-      data += chunk.toString();
-    });
-
-    req.on('end', () => {
-      switch (contentType) {
-        case 'application/x-www-form-urlencoded':
-          req.params = data;
-          logger.warn('params: ' + req.params);
-          break;
-        case 'application/json':
-          req.body = data;
-          logger.warn('body: ' + req.body);
-          break;
-      }
-    });
+    switch (contentType) {
+      case 'application/x-www-form-urlencoded':
+        req.params = data;
+        logger.warn('params: ' + req.params);
+        break;
+      case 'application/json':
+        req.body = data;
+        logger.warn('body: ' + req.body);
+        break;
+    }
     return req;
   } catch (e) {
     sendResponse(res, 500, {

@@ -3,21 +3,27 @@ const { fetchQueryStringFromURL, getPostData, getHeaders } = require('./middlewa
 
 const routes = [
   {
-    url: "role",
+    url: "roles",
     method: "GET",
-    controller: roleController.getAllRoles,
+    controller: roleController.getRoles,
     middlewares: [fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "role",
+    url: "roles",
     method: "POST",
     controller: roleController.createRole,
     middlewares: [fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "role",
+    url: "roles",
     method: "PUT",
     controller: roleController.updateRole,
+    middlewares: [fetchQueryStringFromURL, getHeaders],
+  },
+  {
+    url: "roles",
+    method: "DELETE",
+    controller: roleController.deleteRole,
     middlewares: [fetchQueryStringFromURL, getHeaders],
   }
 ];
