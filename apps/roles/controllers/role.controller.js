@@ -12,12 +12,12 @@ const getAllRoles = async (req, res) => {
             const role = await roleRepository.fetchRole(id);
             sendResponse(res, 200, {
                 "Content-Type": "application/json"
-            }, JSON.stringify(role, null, 2));
+            }, JSON.stringify(role.rows, null, 2));
         } else {
             const roles = await roleRepository.fetchAll();
             sendResponse(res, 200, {
                 "Content-Type": "application/json"
-            }, JSON.stringify(roles, null, 2));
+            }, JSON.stringify(roles.rows, null, 2));
         }
     } catch (error) {
         logger.error(error);
