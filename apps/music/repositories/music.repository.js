@@ -1,43 +1,60 @@
-const Role = require("../models/role.model");
+const Music = require("../models/music.model");
 const db = require('../../../modules/database');
 const datetime = require('../../../modules/utility').datetime;
 
 
-class RoleRepository {
+class MusicRepository {
     async fetchAll() {
-        return db.selcet('Role', '*');
+        return db.selcet('Music', '*');
     }
 
     async fetchById(id) {
-        return db.selcet('Role', '*', `"RoleID"=${id}`);
+        return db.selcet('Music', '*', `"MusicID"=${id}`);
     }
 
-    async add(role) {
-        let roleModel = new Role(
+    async add(music) {
+        let musicModel = new Music(
             0,
-            role.RoleName,
-            role.RoleDesc,
+            music.ArtistID ?? null,
+            music.AlbumID ?? null,
+            music.CategoryID ?? null,
+            music.MusicName ?? null,
+            music.MusicTitle ?? null,
+            music.MusicPoster ?? null,
+            music.MusicURL ?? null,
+            music.MusicDuration ?? null,
+            music.MusicLyrics ?? null,
+            music.MusicTags ?? null,
+            music.MusicArtists ?? null,
+            music.MusicReleaseTime ?? null,
             1,
             datetime(),
             1,
             datetime(),
             0
         );
-        const roleRow = db.insert('Role', '"RoleName", "RoleDesc", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
-            `'${roleModel.RoleName}', '${roleModel.RoleDesc}', ${roleModel.Creator}, '${roleModel.CreateTime}', ${roleModel.Modifier}, '${roleModel.ModifiTime}', ${roleModel.IsDelete}`);
-        return roleRow;
+
+        const musicRow = db.insert('Music', `"AlbumID", "ArtistID", "CategoryID", "MusicName", "MusicTitle", "MusicPoster", "MusicURL", 
+            "MusicDuration", "MusicLyrics", "MusicTags", "MusicArtists", "MusicReleaseTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"`,
+            `${musicModel.AlbumID}, ${musicModel.ArtistID}, ${musicModel.CategoryID},'${musicModel.MusicName}','${musicModel.MusicTitle}','${musicModel.MusicPoster}',
+            '${musicModel.MusicURL}','${musicModel.MusicDuration}','${musicModel.MusicLyrics}','${musicModel.MusicTags}','${musicModel.MusicArtists}',
+            '${musicModel.MusicReleaseTime}',${musicModel.Creator}, '${musicModel.CreateTime}', ${musicModel.Modifier}, '${musicModel.ModifiTime}', ${musicModel.IsDelete}`);
+        return musicRow;
     }
 
-    async update(role) {
-        role.Modifier = 1;
-        role.ModifiTime = datetime();
+    async update(music) {
+        music.Modifier = 1;
+        music.ModifiTime = datetime();
 
-        return db.update('Role', `"RoleName"='${role.RoleName}', "RoleDesc"='${role.RoleDesc}', "Modifier"=${role.Modifier}, "ModifiTime"='${role.ModifiTime}'`, `"RoleID"=${role.RoleID}`);
+        return db.update('Music', `"AlbumID"=${music.AlbumID}, "ArtistID"=${music.ArtistID},"CategoryID"=${music.CategoryID}, "MusicName"='${music.MusicName}',
+            "MusicTitle"='${music.MusicTitle}', "MusicPoster"='${music.MusicPoster}',"MusicURL"='${music.MusicURL}', "MusicDuration"='${music.MusicDuration}',
+            "MusicLyrics"='${music.MusicLyrics}', "MusicTags"='${music.MusicTags}',"MusicArtists"='${music.MusicArtists}', "MusicReleaseTime"='${music.MusicReleaseTime}',
+            "Modifier"=${music.Modifier}, "ModifiTime"='${music.ModifiTime}'`, `"MusicID"=${music.MusicID}`);
     }
 
     async delete(id) {
-        return db.update('Role', `"IsDelete" = 1`, `"RoleID"=${id}`);
+        return db.update('Music', `"IsDelete" = 1`, `"MusicID"=${id}`);
     }
 }
 
-module.exports = RoleRepository;
+module.exports = MusicRepository;

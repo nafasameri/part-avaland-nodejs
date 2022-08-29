@@ -36,25 +36,25 @@ logger.level = 'debug';
 
 
 /// GET roles
-http.request({
-    hostname: config.serverConfig.hostname,
-    port: config.serverConfig.port,
-    path: '/role/roles',
-    method: 'GET'
-}, (res) => {
-    let buffer = '';
-    res.on('data', (chunk) => {
-        buffer += chunk;
-    });
+// http.request({
+//     hostname: config.serverConfig.hostname,
+//     port: config.serverConfig.port,
+//     path: '/role/roles',
+//     method: 'GET'
+// }, (res) => {
+//     let buffer = '';
+//     res.on('data', (chunk) => {
+//         buffer += chunk;
+//     });
 
-    res.on('end', () => {
-        if (res.statusCode == 200)
-            logger.info(buffer.toString());
-        // logger.info(JSON.parse(buffer.toString()));
-        else
-            logger.error(JSON.parse(buffer.toString()));
-    });
-}).end();
+//     res.on('end', () => {
+//         if (res.statusCode == 200)
+//             logger.info(buffer.toString());
+//         // logger.info(JSON.parse(buffer.toString()));
+//         else
+//             logger.error(JSON.parse(buffer.toString()));
+//     });
+// }).end();
 
 
 /// delete roles
@@ -84,7 +84,7 @@ http.request({
 // let req = http.request({
 //     hostname: config.serverConfig.hostname,
 //     port: config.serverConfig.port,
-//     path: '/roles/role?id=3',
+//     path: '/role/role?id=1',
 //     headers: {
 //         'content-type': 'application/json'
 //     },
@@ -102,8 +102,46 @@ http.request({
 //     });
 // });
 // req.write(JSON.stringify({
-//     RoleName: "Producer",
-//     RoleDesc: "تولیدکننده"
+//     RoleName: "Admin",
+//     RoleDesc: "ادمین"
 // }));
 // req.end();
 //#endregion
+
+
+const req = http.request({
+    hostname: config.serverConfig.hostname,
+    port: config.serverConfig.port,
+    path: '/music/saveInfo',
+    headers: {
+        'content-type': 'application/json'
+    },
+    method: 'PUT'
+}, (res) => {
+    let buffer = '';
+    res.on('data', (chunk) => {
+        buffer += chunk;
+    });
+    res.on('end', () => {
+        if (res.statusCode == 200)
+            logger.info(buffer.toString());
+        else
+            logger.error(JSON.parse(buffer.toString()));
+    });
+});
+req.write(JSON.stringify({
+    MusicID: 10,
+    AlbumID: null,
+    ArtistID: null,
+    CategoryID: null,
+    MusicName: "In The Morning",
+    MusicTitle: "In The Morning",
+    MusicPoster: "null",
+    MusicURL: "1401-6-3 Itzy - In The Morning [ KohanMusic ] 720.mp4",
+    MusicDuration: "null",
+    MusicLyrics: "null",
+    MusicTags: "null",
+    MusicArtists: "Itzy",
+    MusicReleaseTime: "1401-6-3"
+  }));
+req.end();

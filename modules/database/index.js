@@ -36,14 +36,12 @@ class DataBase {
     }
 
     update (table, columns, conditions) {
-        const sql = `UPDATE "${this.schema}"."${table}" SET ${columns} WHERE ${conditions} RETURNING *`;
+        const sql = `UPDATE "${this.schema}"."${table}" SET ${columns} WHERE ${conditions} RETURNING *`;        
         return this.query(sql);
     }
 
     delete (table, conditions) {
         const sql = `DELETE FROM "${this.schema}"."${table}" WHERE ${conditions}`;
-        console.log(sql);
-
         return this.query(sql);
     }
 }

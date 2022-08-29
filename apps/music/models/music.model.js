@@ -10,6 +10,7 @@ class Music {
     MusicDuration;
     MusicLyrics;
     MusicTags;
+    MusicMimeType;
     MusicArtists;
     MusicReleaseTime;
     Creator;
@@ -30,6 +31,7 @@ class Music {
         this.MusicDuration = MusicDuration;
         this.MusicLyrics = MusicLyrics;
         this.MusicTags = MusicTags;
+        // this.MusicMimeType = MusicMimeType;
         this.MusicArtists = MusicArtists;
         this.MusicReleaseTime = MusicReleaseTime;
         this.Creator = Creator;
