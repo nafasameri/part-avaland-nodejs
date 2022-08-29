@@ -1,0 +1,19 @@
+{
+  "name": "project-structure",
+  "version": "0.0.1",
+  "description": "Project Structure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Nafas Ameri",
+  "license": "ISC",
+  "dependencies": {
+    "formidable": "^2.0.1",
+    "log4js": "^6.6.1",
+    "nodemon": "^2.0.19",
+    "persian-date": "^1.1.0",
+    "pg": "^8.8.0"
+  }
+}
