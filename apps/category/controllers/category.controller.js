@@ -12,14 +12,10 @@ class CategoryController {
             const { id } = req.querystring;
             if (id) {
                 const category = await categoryRepository.fetchById(id);
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(category.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(category.rows, null, 2));
             } else {
                 const categorys = await categoryRepository.fetchAll();
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(categorys.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(categorys.rows, null, 2));
             }
         } catch (error) {
             logger.error('getAllCategorys: ', error);
@@ -32,17 +28,10 @@ class CategoryController {
             const { body } = req;
             const category = await categoryRepository.add(body, req.UserID);
 
-            if (!category) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Create'
-                }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(category.rows));
-            }
+            if (!category)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Create' }, null, 2));
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(category.rows));
         } catch (error) {
             logger.error('createCategory: ', error);
             throw error;
@@ -55,21 +44,14 @@ class CategoryController {
             const { body } = req;
             const row = await categoryRepository.fetchById(id);
             const categoryOld = row.rows[0];
-            categoryOld.CategoryName = body.CategoryName;
-            categoryOld.CategoryImg = body.CategoryImg;
+            categoryOld.CategoryName = body.CategoryName ?? categoryOld.CategoryName;
+            categoryOld.CategoryImg = body.CategoryImg ?? categoryOld.CategoryImg;
 
             const category = await categoryRepository.update(categoryOld, req.UserID);
-            if (!category) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Update!'
-                }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(category.rows));
-            }
+            if (!category)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Update!' }, null, 2));
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(category.rows));
         } catch (error) {
             logger.error('updateCategory: ', error);
             throw error;
@@ -80,17 +62,10 @@ class CategoryController {
         try {
             const { id } = req.querystring;
             const category = await categoryRepository.delete(id, req.UserID);
-            if (!category) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Delete!'
-                }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(category.rows));
-            }
+            if (!category)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Delete!' }, null, 2));
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(category.rows));
         } catch (error) {
             logger.error('deleteCategory: ', error);
             throw error;

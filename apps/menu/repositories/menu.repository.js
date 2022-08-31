@@ -27,7 +27,7 @@ class MenuRepository {
             0
         );
         const menuRow = db.insert('Menu', '"MenuName", "MenuDesc", "MenuIcon", "MenuLink", "MenuOrder", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
-            `'${menuModel.MenuName}', '${menuModel.MenuDesc}', '${menuModel.MenuIcon}', '${menuModel.MenuLink}', '${menuModel.MenuOrder}', ${menuModel.Creator}, '${menuModel.CreateTime}', ${menuModel.Modifier}, '${menuModel.ModifiTime}', ${menuModel.IsDelete}`);
+            `'${menuModel.MenuName}', '${menuModel.MenuDesc}', '${menuModel.MenuIcon}', '${menuModel.MenuLink}', ${menuModel.MenuOrder}, ${menuModel.Creator}, '${menuModel.CreateTime}', ${menuModel.Modifier}, '${menuModel.ModifiTime}', ${menuModel.IsDelete}`);
         return menuRow;
     }
 
@@ -35,7 +35,7 @@ class MenuRepository {
         menu.Modifier = userID;
         menu.ModifiTime = datetime();
 
-        return db.update('Menu', `"MenuName"='${menu.MenuName}', "MenuDesc"='${menu.MenuDesc}', "MenuLink"='${menu.MenuLink}', "MenuIcon"='${menu.MenuIcon}', "MenuOrder"='${menu.MenuOrder}', "Modifier"=${menu.Modifier}, "ModifiTime"='${menu.ModifiTime}'`, 
+        return db.update('Menu', `"MenuName"='${menu.MenuName}', "MenuDesc"='${menu.MenuDesc}', "MenuLink"='${menu.MenuLink}', "MenuIcon"='${menu.MenuIcon}', "MenuOrder"=${menu.MenuOrder}, "Modifier"=${menu.Modifier}, "ModifiTime"='${menu.ModifiTime}'`, 
             `"MenuID"=${menu.MenuID}`);
     }
 

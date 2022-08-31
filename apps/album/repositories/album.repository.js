@@ -30,6 +30,8 @@ class AlbumRepository {
     }
 
     async update(album, userID) {
+        console.log(album);
+        
         album.Modifier = userID;
         album.ModifiTime = datetime();
 

@@ -12,14 +12,10 @@ class AlbumController {
             const { id } = req.querystring;
             if (id) {
                 const album = await albumRepository.fetchById(id);
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(album.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(album.rows, null, 2));
             } else {
                 const albums = await albumRepository.fetchAll();
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(albums.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(albums.rows, null, 2));
             }
         } catch (error) {
             logger.error('getAllAlbums: ', error);
@@ -32,15 +28,10 @@ class AlbumController {
             const { body } = req;
             const album = await albumRepository.add(body, req.UserID);
 
-            if (!album) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({ message: 'Could Not Create' }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(album.rows));
-            }
+            if (!album)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Create' }, null, 2));
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(album.rows));
         } catch (error) {
             logger.error('createAlbum: ', error);
             throw error;
@@ -53,19 +44,15 @@ class AlbumController {
             const { body } = req;
             const row = await albumRepository.fetchById(id);
             const albumOld = row.rows[0];
-            albumOld.AlbumName = body.AlbumName;
-            albumOld.AlbumImg = body.AlbumImg;
+            albumOld.AlbumName = body.AlbumName ?? albumOld.AlbumName;
+            albumOld.AlbumImg = body.AlbumImg ?? albumOld.AlbumImg;
+            albumOld.AlbumReleaseTime = body.AlbumReleaseTime ?? albumOld.AlbumReleaseTime;
 
             const album = await albumRepository.update(albumOld, req.UserID);
-            if (!album) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({ message: 'Could Not Update!' }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(album.rows));
-            }
+            if (!album)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Update!' }, null, 2));
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(album.rows));
         } catch (error) {
             logger.error('updateAlbum: ', error);
             throw error;
@@ -74,21 +61,12 @@ class AlbumController {
 
     deleteAlbum = async (req, res) => {
         try {
-            const {
-                id
-            } = req.querystring;
+            const { id } = req.querystring;
             const album = await albumRepository.delete(id, req.UserID);
-            if (!album) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Delete!'
-                }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(album.rows));
-            }
+            if (!album)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Delete!' }, null, 2));
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(album.rows));
         } catch (error) {
             logger.error('updateAlbum: ', error);
             throw error;
