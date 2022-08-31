@@ -24,9 +24,9 @@ class DataBase {
     }
 
     selcet (table, columns, conditions) {
-        let sql = `SELECT ${columns} FROM "${this.schema}"."${table}" WHERE ${conditions}`;
+        let sql = `SELECT ${columns} FROM "${this.schema}"."${table}" WHERE ${conditions} and "IsDelete"=0`;
         if (conditions == undefined)
-            sql = `SELECT ${columns} FROM "${this.schema}"."${table}"`;
+            sql = `SELECT ${columns} FROM "${this.schema}"."${table}" WHERE "IsDelete"=0`;            
         return this.query(sql);
     }
 

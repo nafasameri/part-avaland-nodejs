@@ -2,7 +2,8 @@ const musicController = require("./controllers/music.controller");
 const {
   fetchQueryStringFromURL,
   getPostData,
-  getHeaders
+  getHeaders,
+  authentication
 } = require('./middlewares');
 
 const routes = [
@@ -10,37 +11,37 @@ const routes = [
     url: "musics",
     method: "GET",
     controller: musicController.getMusics,
-    middlewares: [fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
     url: "",
     method: "GET",
     controller: musicController.root,
-    middlewares: [fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
     url: "upload",
     method: "POST",
     controller: musicController.upload,
-    middlewares: [fetchQueryStringFromURL],
+    middlewares: [authentication, fetchQueryStringFromURL],
   },
   {
     url: "saveInfo",
     method: "PUT",
     controller: musicController.updateMusic,
-    middlewares: [fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
     url: "load",
     method: "GET",
     controller: musicController.load,
-    middlewares: [fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
     url: "range",
     method: "POST",
     controller: musicController.range,
-    middlewares: [fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
 ];
 

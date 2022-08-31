@@ -9,19 +9,13 @@ const roleRepository = new RoleRepository();
 class RoleController {
     getRoles = async (req, res) => {
         try {
-            const {
-                id
-            } = req.querystring;
+            const { id } = req.querystring;
             if (id) {
                 const role = await roleRepository.fetchById(id);
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(role.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(role.rows, null, 2));
             } else {
                 const roles = await roleRepository.fetchAll();
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(roles.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(roles.rows, null, 2));
             }
         } catch (error) {
             logger.error('getAllRoles: ', error);
@@ -32,18 +26,12 @@ class RoleController {
     createRole = async (req, res) => {
         try {
             const { body } = req;
-            const role = await roleRepository.add(body);
+            const role = await roleRepository.add(body, req.UserID);
 
             if (!role) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Create'
-                }, null, 2));
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Create' }, null, 2));
             } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(role.rows));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(role.rows));
             }
         } catch (error) {
             logger.error('createRole: ', error);
@@ -60,7 +48,7 @@ class RoleController {
             roleOld.RoleName = body.RoleName;
             roleOld.RoleDesc = body.RoleDesc;
 
-            const role = await roleRepository.update(roleOld);
+            const role = await roleRepository.update(roleOld, req.UserID);
             if (!role) {
                 sendResponse(res, 404, {
                     "Content-Type": "application/json"
@@ -81,12 +69,12 @@ class RoleController {
     deleteRole = async (req, res) => {
         try {
             const { id } = req.querystring;
-            const role = await roleRepository.delete(id);
+            const role = await roleRepository.delete(id, req.UserID);
             if (!role) {
                 sendResponse(res, 404, {
                     "Content-Type": "application/json"
                 }, JSON.stringify({
-                    message: 'Could Not Update!'
+                    message: 'Could Not Delete!'
                 }, null, 2));
             } else {
                 sendResponse(res, 200, {
@@ -94,7 +82,7 @@ class RoleController {
                 }, JSON.stringify(role.rows));
             }
         } catch (error) {
-            logger.error('updateRole: ', error);
+            logger.error('deleteRole: ', error);
             throw error;
         }
     };

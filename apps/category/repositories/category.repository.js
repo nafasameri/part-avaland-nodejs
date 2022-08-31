@@ -12,14 +12,14 @@ class CategoryRepository {
         return db.selcet('Category', '*', `"CategoryID"=${id}`);
     }
 
-    async add(category) {
+    async add(category, userID) {
         let roleModel = new Category(
             0,
             category.CategoryName,
             category.CategoryImg,
-            1,
+            userID,
             datetime(),
-            1,
+            userID,
             datetime(),
             0
         );
@@ -28,15 +28,15 @@ class CategoryRepository {
         return roleRow;
     }
 
-    async update(category) {
-        category.Modifier = 1;
+    async update(category, userID) {
+        category.Modifier = userID;
         category.ModifiTime = datetime();
 
         return db.update('Category', `"CategoryName"='${category.CategoryName}', "CategoryImg"='${category.CategoryImg}', "Modifier"=${category.Modifier}, "ModifiTime"='${category.ModifiTime}'`, `"CategoryID"=${category.CategoryID}`);
     }
 
-    async delete(id) {
-        return db.update('Category', `"IsDelete" = 1`, `"CategoryID"=${id}`);
+    async delete(id, userID) {
+        return db.update('Category', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"CategoryID"=${id}`);
     }
 }
 

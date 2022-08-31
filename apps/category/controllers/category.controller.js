@@ -30,7 +30,7 @@ class CategoryController {
     createCategory = async (req, res) => {
         try {
             const { body } = req;
-            const category = await categoryRepository.add(body);
+            const category = await categoryRepository.add(body, req.UserID);
 
             if (!category) {
                 sendResponse(res, 404, {
@@ -58,7 +58,7 @@ class CategoryController {
             categoryOld.CategoryName = body.CategoryName;
             categoryOld.CategoryImg = body.CategoryImg;
 
-            const category = await categoryRepository.update(categoryOld);
+            const category = await categoryRepository.update(categoryOld, req.UserID);
             if (!category) {
                 sendResponse(res, 404, {
                     "Content-Type": "application/json"
@@ -79,7 +79,7 @@ class CategoryController {
     deleteCategory = async (req, res) => {
         try {
             const { id } = req.querystring;
-            const category = await categoryRepository.delete(id);
+            const category = await categoryRepository.delete(id, req.UserID);
             if (!category) {
                 sendResponse(res, 404, {
                     "Content-Type": "application/json"

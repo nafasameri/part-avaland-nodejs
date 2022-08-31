@@ -12,7 +12,7 @@ class MusicRepository {
         return db.selcet('Music', '*', `"MusicID"=${id}`);
     }
 
-    async add(music) {
+    async add(music, userID) {
         let musicModel = new Music(
             0,
             music.ArtistID ?? null,
@@ -27,9 +27,9 @@ class MusicRepository {
             music.MusicTags ?? null,
             music.MusicArtists ?? null,
             music.MusicReleaseTime ?? null,
-            1,
+            userID,
             datetime(),
-            1,
+            userID,
             datetime(),
             0
         );
@@ -42,8 +42,8 @@ class MusicRepository {
         return musicRow;
     }
 
-    async update(music) {
-        music.Modifier = 1;
+    async update(music, userID) {
+        music.Modifier = userID;
         music.ModifiTime = datetime();
 
         return db.update('Music', `"AlbumID"=${music.AlbumID}, "ArtistID"=${music.ArtistID},"CategoryID"=${music.CategoryID}, "MusicName"='${music.MusicName}',
@@ -52,8 +52,8 @@ class MusicRepository {
             "Modifier"=${music.Modifier}, "ModifiTime"='${music.ModifiTime}'`, `"MusicID"=${music.MusicID}`);
     }
 
-    async delete(id) {
-        return db.update('Music', `"IsDelete" = 1`, `"MusicID"=${id}`);
+    async delete(id, userID) {
+        return db.update('Music', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"MusicID"=${id}`);
     }
 }
 

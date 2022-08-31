@@ -82,13 +82,13 @@ class MusicController {
             MusicURL: newFilename
             // MusicMimeType: mimetype
         };        
-        const music = await musicRepository.add(newMusic);
+        const music = await musicRepository.add(newMusic, req.UserID);
         sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify(music.rows[0], null, 2));
     };
 
     updateMusic = async (req, res) => {
         const { body } = req;
-        const music = await musicRepository.update(body);
+        const music = await musicRepository.update(body, req.UserID);
         sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify(music.rows[0], null, 2));
     };
 

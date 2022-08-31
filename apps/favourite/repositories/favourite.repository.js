@@ -12,15 +12,15 @@ class FavouriteRepository {
         return db.selcet('Favourite', '*', `"FavouriteID"=${id}`);
     }
 
-    async add(favourite) {
+    async add(favourite, userID) {
         let favouriteModel = new Favourite(
             0,
             favourite.UserID,
             favourite.MusicID,
             datetime(),
-            1,
+            userID,
             datetime(),
-            1,
+            userID,
             datetime(),
             0
         );
@@ -29,15 +29,15 @@ class FavouriteRepository {
         return favouriteRow;
     }
 
-    async update(favourite) {
-        favourite.Modifier = 1;
+    async update(favourite, userID) {
+        favourite.Modifier = userID;
         favourite.ModifiTime = datetime();
 
         return db.update('Favourite', `"UserID"='${favourite.UserID}', "MusicID"='${favourite.MusicID}', "LikedTime"='${favourite.LikedTime}', "Modifier"=${favourite.Modifier}, "ModifiTime"='${favourite.ModifiTime}'`, `"FavouriteID"=${favourite.FavouriteID}`);
     }
 
-    async delete(id) {
-        return db.update('Favourite', `"IsDelete" = 1`, `"FavouriteID"=${id}`);
+    async delete(id, userID) {
+        return db.update('Favourite', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"FavouriteID"=${id}`);
     }
 }
 

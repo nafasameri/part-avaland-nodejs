@@ -32,7 +32,7 @@ class FavouriteController {
     createFavourite = async (req, res) => {
         try {
             const { body } = req;
-            const favourite = await favouriteRepository.add(body);
+            const favourite = await favouriteRepository.add(body, req.UserID);
 
             if (!favourite) {
                 sendResponse(res, 404, {
@@ -60,7 +60,7 @@ class FavouriteController {
             favouriteOld.FavouriteName = body.FavouriteName;
             favouriteOld.FavouriteDesc = body.FavouriteDesc;
 
-            const favourite = await favouriteRepository.update(favouriteOld);
+            const favourite = await favouriteRepository.update(favouriteOld, req.UserID);
             if (!favourite) {
                 sendResponse(res, 404, {
                     "Content-Type": "application/json"
@@ -81,7 +81,7 @@ class FavouriteController {
     deleteFavourite = async (req, res) => {
         try {
             const { id } = req.querystring;
-            const favourite = await favouriteRepository.delete(id);
+            const favourite = await favouriteRepository.delete(id, req.UserID);
             if (!favourite) {
                 sendResponse(res, 404, {
                     "Content-Type": "application/json"
