@@ -12,31 +12,31 @@ class CategoryRepository {
         return db.selcet('Category', '*', `"CategoryID"=${id}`);
     }
 
-    async add(category) {
-        let roleModel = new Category(
+    async add(category, userID) {
+        let categoryModel = new Category(
             0,
             category.CategoryName,
             category.CategoryImg,
-            1,
+            userID,
             datetime(),
-            1,
+            userID,
             datetime(),
             0
         );
-        const roleRow = db.insert('Category', '"CategoryName", "CategoryImg", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
-            `'${roleModel.CategoryName}', '${roleModel.CategoryImg}', ${roleModel.Creator}, '${roleModel.CreateTime}', ${roleModel.Modifier}, '${roleModel.ModifiTime}', ${roleModel.IsDelete}`);
-        return roleRow;
+        const categoryRow = db.insert('Category', '"CategoryName", "CategoryImg", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
+            `'${categoryModel.CategoryName}', '${categoryModel.CategoryImg}', ${categoryModel.Creator}, '${categoryModel.CreateTime}', ${categoryModel.Modifier}, '${categoryModel.ModifiTime}', ${categoryModel.IsDelete}`);
+        return categoryRow;
     }
 
-    async update(category) {
-        category.Modifier = 1;
+    async update(category, userID) {
+        category.Modifier = userID;
         category.ModifiTime = datetime();
 
         return db.update('Category', `"CategoryName"='${category.CategoryName}', "CategoryImg"='${category.CategoryImg}', "Modifier"=${category.Modifier}, "ModifiTime"='${category.ModifiTime}'`, `"CategoryID"=${category.CategoryID}`);
     }
 
-    async delete(id) {
-        return db.update('Category', `"IsDelete" = 1`, `"CategoryID"=${id}`);
+    async delete(id, userID) {
+        return db.update('Category', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"CategoryID"=${id}`);
     }
 }
 

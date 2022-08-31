@@ -12,14 +12,14 @@ class RoleRepository {
         return db.selcet('Role', '*', `"RoleID"=${id}`);
     }
 
-    async add(role) {
-        let roleModel = new Role(
+    async add(role, userID) {
+        const roleModel = new Role(
             0,
             role.RoleName,
             role.RoleDesc,
-            1,
+            userID,
             datetime(),
-            1,
+            userID,
             datetime(),
             0
         );
@@ -28,15 +28,16 @@ class RoleRepository {
         return roleRow;
     }
 
-    async update(role) {
-        role.Modifier = 1;
+    async update(role, userID) {
+        role.Modifier = userID;
         role.ModifiTime = datetime();
 
-        return db.update('Role', `"RoleName"='${role.RoleName}', "RoleDesc"='${role.RoleDesc}', "Modifier"=${role.Modifier}, "ModifiTime"='${role.ModifiTime}'`, `"RoleID"=${role.RoleID}`);
+        return db.update('Role', `"RoleName"='${role.RoleName}', "RoleDesc"='${role.RoleDesc}', "Modifier"=${role.Modifier}, "ModifiTime"='${role.ModifiTime}'`, 
+            `"RoleID"=${role.RoleID}`);
     }
 
-    async delete(id) {
-        return db.update('Role', `"IsDelete" = 1`, `"RoleID"=${id}`);
+    async delete(id, userID) {
+        return db.update('Role', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"RoleID"=${id}`);
     }
 }
 

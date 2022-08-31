@@ -43,9 +43,9 @@ class Router {
     );
     if (runMiddlewareForRoute) await handler(req, res);
   } catch (e) {
-    sendResponse(res, res ?.statusCode ?? 500, JSON.stringify({
+    sendResponse(res, res?.statusCode ?? 500, JSON.stringify({
       message: "Something Went Wrong!",
-      additionalInfo: e ?.message,
+      additionalInfo: e?.message,
     }));
   }
 }
