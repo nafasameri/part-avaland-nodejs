@@ -2,39 +2,37 @@ const logger = require('log4js').getLogger();
 logger.level = 'debug';
 
 const sendResponse = require('../../../modules/handler/response.handler');
-const FavouriteRepository = require("../repositories/favourite.repository");
-const favouriteRepository = new FavouriteRepository();
+const ArtistRepository = require("../repositories/artist.repository");
+const artistRepository = new ArtistRepository();
 
 
-class FavouriteController {
-    getFavourites = async (req, res) => {
+class ArtistController {
+    getArtists = async (req, res) => {
         try {
-            const {
-                id
-            } = req.querystring;
+            const { id } = req.querystring;
             if (id) {
-                const favourite = await favouriteRepository.fetchById(id);
+                const artist = await artistRepository.fetchById(id);
                 sendResponse(res, 200, {
                     "Content-Type": "application/json"
-                }, JSON.stringify(favourite.rows, null, 2));
+                }, JSON.stringify(artist.rows, null, 2));
             } else {
-                const favourites = await favouriteRepository.fetchAll();
+                const artists = await artistRepository.fetchAll();
                 sendResponse(res, 200, {
                     "Content-Type": "application/json"
-                }, JSON.stringify(favourites.rows, null, 2));
+                }, JSON.stringify(artists.rows, null, 2));
             }
         } catch (error) {
-            logger.error('getAllFavourites: ', error);
+            logger.error('getAllArtists: ', error);
             throw error;
         }
     };
 
-    createFavourite = async (req, res) => {
+    createArtist = async (req, res) => {
         try {
             const { body } = req;
-            const favourite = await favouriteRepository.add(body, req.UserID);
+            const artist = await artistRepository.add(body, req.UserID);
 
-            if (!favourite) {
+            if (!artist) {
                 sendResponse(res, 404, {
                     "Content-Type": "application/json"
                 }, JSON.stringify({
@@ -43,25 +41,25 @@ class FavouriteController {
             } else {
                 sendResponse(res, 200, {
                     "Content-Type": "application/json"
-                }, JSON.stringify(favourite.rows));
+                }, JSON.stringify(artist.rows));
             }
         } catch (error) {
-            logger.error('createFavourite: ', error);
+            logger.error('createArtist: ', error);
             throw error;
         }
     };
 
-    updateFavourite = async (req, res) => {
+    updateArtist = async (req, res) => {
         try {
             const { id } = req.querystring;
             const { body } = req;
-            const row = await favouriteRepository.fetchById(id);
-            const favouriteOld = row.rows[0];
-            favouriteOld.FavouriteName = body.FavouriteName;
-            favouriteOld.FavouriteDesc = body.FavouriteDesc;
+            const row = await artistRepository.fetchById(id);
+            const artistOld = row.rows[0];
+            artistOld.ArtistName = body.ArtistName;
+            artistOld.ArtistImg = body.ArtistImg;
 
-            const favourite = await favouriteRepository.update(favouriteOld, req.UserID);
-            if (!favourite) {
+            const artist = await artistRepository.update(artistOld, req.UserID);
+            if (!artist) {
                 sendResponse(res, 404, {
                     "Content-Type": "application/json"
                 }, JSON.stringify({
@@ -70,19 +68,19 @@ class FavouriteController {
             } else {
                 sendResponse(res, 200, {
                     "Content-Type": "application/json"
-                }, JSON.stringify(favourite.rows));
+                }, JSON.stringify(artist.rows));
             }
         } catch (error) {
-            logger.error('updateFavourite: ', error);
+            logger.error('updateArtist: ', error);
             throw error;
         }
     };
 
-    deleteFavourite = async (req, res) => {
+    deleteArtist = async (req, res) => {
         try {
             const { id } = req.querystring;
-            const favourite = await favouriteRepository.delete(id, req.UserID);
-            if (!favourite) {
+            const artist = await artistRepository.delete(id, req.UserID);
+            if (!artist) {
                 sendResponse(res, 404, {
                     "Content-Type": "application/json"
                 }, JSON.stringify({
@@ -91,14 +89,14 @@ class FavouriteController {
             } else {
                 sendResponse(res, 200, {
                     "Content-Type": "application/json"
-                }, JSON.stringify(favourite.rows));
+                }, JSON.stringify(artist.rows));
             }
         } catch (error) {
-            logger.error('deleteFavourite: ', error);
+            logger.error('deleteArtist: ', error);
             throw error;
         }
     };
 }
 
 
-module.exports = new FavouriteController();
+module.exports = new ArtistController();

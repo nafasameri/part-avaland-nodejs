@@ -13,7 +13,7 @@ class CategoryRepository {
     }
 
     async add(category, userID) {
-        let roleModel = new Category(
+        let categoryModel = new Category(
             0,
             category.CategoryName,
             category.CategoryImg,
@@ -23,9 +23,9 @@ class CategoryRepository {
             datetime(),
             0
         );
-        const roleRow = db.insert('Category', '"CategoryName", "CategoryImg", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
-            `'${roleModel.CategoryName}', '${roleModel.CategoryImg}', ${roleModel.Creator}, '${roleModel.CreateTime}', ${roleModel.Modifier}, '${roleModel.ModifiTime}', ${roleModel.IsDelete}`);
-        return roleRow;
+        const categoryRow = db.insert('Category', '"CategoryName", "CategoryImg", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
+            `'${categoryModel.CategoryName}', '${categoryModel.CategoryImg}', ${categoryModel.Creator}, '${categoryModel.CreateTime}', ${categoryModel.Modifier}, '${categoryModel.ModifiTime}', ${categoryModel.IsDelete}`);
+        return categoryRow;
     }
 
     async update(category, userID) {

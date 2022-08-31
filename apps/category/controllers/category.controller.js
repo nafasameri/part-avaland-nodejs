@@ -84,7 +84,7 @@ class CategoryController {
                 sendResponse(res, 404, {
                     "Content-Type": "application/json"
                 }, JSON.stringify({
-                    message: 'Could Not Update!'
+                    message: 'Could Not Delete!'
                 }, null, 2));
             } else {
                 sendResponse(res, 200, {
@@ -92,7 +92,7 @@ class CategoryController {
                 }, JSON.stringify(category.rows));
             }
         } catch (error) {
-            logger.error('updateCategory: ', error);
+            logger.error('deleteCategory: ', error);
             throw error;
         }
     };

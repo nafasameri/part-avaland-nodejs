@@ -1,29 +1,29 @@
-const categoryController = require("./controllers/category.controller");
+const artistController = require("./controllers/artist.controller");
 const { fetchQueryStringFromURL, getPostData, getHeaders, authentication } = require('./middlewares');
 
 const routes = [
   {
-    url: "categories",
+    url: "artists",
     method: "GET",
-    controller: categoryController.getCategories,
+    controller: artistController.getArtists,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "artist",
     method: "POST",
-    controller: categoryController.createCategory,
+    controller: artistController.createArtist,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "artist",
     method: "PUT",
-    controller: categoryController.updateCategory,
+    controller: artistController.updateArtist,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "artist",
     method: "DELETE",
-    controller: categoryController.deleteCategory,
+    controller: artistController.deleteArtist,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   }
 ];

@@ -1,29 +1,29 @@
-const categoryController = require("./controllers/category.controller");
+const userController = require("./controllers/user.controller");
 const { fetchQueryStringFromURL, getPostData, getHeaders, authentication } = require('./middlewares');
 
 const routes = [
   {
-    url: "categories",
+    url: "users",
     method: "GET",
-    controller: categoryController.getCategories,
+    controller: userController.getUsers,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "user",
     method: "POST",
-    controller: categoryController.createCategory,
+    controller: userController.createUser,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "user",
     method: "PUT",
-    controller: categoryController.updateCategory,
+    controller: userController.updateUser,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "user",
     method: "DELETE",
-    controller: categoryController.deleteCategory,
+    controller: userController.deleteUser,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   }
 ];

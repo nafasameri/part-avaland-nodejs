@@ -1,29 +1,29 @@
-const categoryController = require("./controllers/category.controller");
+const menuController = require("./controllers/menu.controller");
 const { fetchQueryStringFromURL, getPostData, getHeaders, authentication } = require('./middlewares');
 
 const routes = [
   {
-    url: "categories",
+    url: "menus",
     method: "GET",
-    controller: categoryController.getCategories,
+    controller: menuController.getMenus,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "menu",
     method: "POST",
-    controller: categoryController.createCategory,
+    controller: menuController.createMenu,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "menu",
     method: "PUT",
-    controller: categoryController.updateCategory,
+    controller: menuController.updateMenu,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "menu",
     method: "DELETE",
-    controller: categoryController.deleteCategory,
+    controller: menuController.deleteMenu,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   }
 ];

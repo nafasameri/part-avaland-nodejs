@@ -1,29 +1,29 @@
-const categoryController = require("./controllers/category.controller");
+const albumController = require("./controllers/album.controller");
 const { fetchQueryStringFromURL, getPostData, getHeaders, authentication } = require('./middlewares');
 
 const routes = [
   {
-    url: "categories",
+    url: "albums",
     method: "GET",
-    controller: categoryController.getCategories,
+    controller: albumController.getAlbums,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "album",
     method: "POST",
-    controller: categoryController.createCategory,
+    controller: albumController.createAlbum,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "album",
     method: "PUT",
-    controller: categoryController.updateCategory,
+    controller: albumController.updateAlbum,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "album",
     method: "DELETE",
-    controller: categoryController.deleteCategory,
+    controller: albumController.deleteAlbum,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   }
 ];
