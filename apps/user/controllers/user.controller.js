@@ -28,11 +28,10 @@ class UserController {
             const { body } = req;
             const user = await userRepository.add(body, req.UserID);
 
-            if (!user) {
+            if (!user)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Create' }, null, 2));
-            } else {
+            else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user.rows));
-            }
         } catch (error) {
             logger.error('createUser: ', error);
             throw error;
@@ -45,21 +44,16 @@ class UserController {
             const { body } = req;
             const row = await userRepository.fetchById(id);
             const userOld = row.rows[0];
-            userOld.UserName = body.UserName;
-            userOld.UserDesc = body.UserDesc;
+            userOld.UserName = body.UserName ?? userOld.UserName;
+            userOld.UserPhone = body.UserPhone ?? userOld.UserPhone;
+            userOld.UserEmail = body.UserEmail ?? userOld.UserEmail;
+            userOld.RoleID = body.RoleID ?? userOld.RoleID;
 
             const user = await userRepository.update(userOld, req.UserID);
-            if (!user) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Update!'
-                }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(user.rows));
-            }
+            if (!user)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Update!' }, null, 2));
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user.rows));
         } catch (error) {
             logger.error('updateUser: ', error);
             throw error;
@@ -70,17 +64,10 @@ class UserController {
         try {
             const { id } = req.querystring;
             const user = await userRepository.delete(id, req.UserID);
-            if (!user) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Delete!'
-                }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(user.rows));
-            }
+            if (!user)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Delete!' }, null, 2));
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user.rows));
         } catch (error) {
             logger.error('deleteUser: ', error);
             throw error;

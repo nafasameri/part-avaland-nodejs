@@ -45,21 +45,14 @@ class RoleController {
             const { body } = req;
             const row = await roleRepository.fetchById(id);
             const roleOld = row.rows[0];
-            roleOld.RoleName = body.RoleName;
-            roleOld.RoleDesc = body.RoleDesc;
+            roleOld.RoleName = body.RoleName ?? roleOld.RoleName;
+            roleOld.RoleDesc = body.RoleDesc ?? roleOld.RoleDesc;
 
             const role = await roleRepository.update(roleOld, req.UserID);
-            if (!role) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Update!'
-                }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(role.rows));
-            }
+            if (!role)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Update!' }, null, 2));
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(role.rows));
         } catch (error) {
             logger.error('updateRole: ', error);
             throw error;
@@ -71,15 +64,9 @@ class RoleController {
             const { id } = req.querystring;
             const role = await roleRepository.delete(id, req.UserID);
             if (!role) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Delete!'
-                }, null, 2));
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Delete!' }, null, 2));
             } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(role.rows));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(role.rows));
             }
         } catch (error) {
             logger.error('deleteRole: ', error);

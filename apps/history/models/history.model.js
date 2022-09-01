@@ -2,7 +2,6 @@ class History {
     HistoryID;
     UserID;
     MusicID;
-    HistoryImg;
     Creator;
     CreateTime;
     Modifier;

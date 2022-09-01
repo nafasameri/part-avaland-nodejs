@@ -12,6 +12,18 @@ class FavouriteRepository {
         return db.selcet('Favourite', '*', `"FavouriteID"=${id}`);
     }
 
+    async fetchByUser(id) {
+        return db.selcet('Favourite', '*', `"UserID"=${id}`, 1);
+    }
+
+    async fetchByMusic(id) {
+        return db.selcet('Favourite', '*', `"MusicID"=${id}`);
+    }
+
+    async fetchByUserMusic(musicId, userId) {
+        return db.selcet('Favourite', '*', `"MusicID"=${musicId} AND "UserID"=${userId}`, 1);
+    }
+
     async add(favourite, userID) {
         let favouriteModel = new Favourite(
             0,
@@ -24,8 +36,8 @@ class FavouriteRepository {
             datetime(),
             0
         );
-        const favouriteRow = db.insert('Favourite', '"UserID", "MusicID", "LikedTime", Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
-            `'${favouriteModel.UserID}', '${favouriteModel.MusicID}', '${favouriteModel.LikedTime}', ${favouriteModel.Creator}, '${favouriteModel.CreateTime}', ${favouriteModel.Modifier}, '${favouriteModel.ModifiTime}', ${favouriteModel.IsDelete}`);
+        const favouriteRow = db.insert('Favourite', '"UserID", "MusicID", "LikedTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
+            `${favouriteModel.UserID}, ${favouriteModel.MusicID}, '${favouriteModel.LikedTime}', ${favouriteModel.Creator}, '${favouriteModel.CreateTime}', ${favouriteModel.Modifier}, '${favouriteModel.ModifiTime}', ${favouriteModel.IsDelete}`);
         return favouriteRow;
     }
 
@@ -33,7 +45,8 @@ class FavouriteRepository {
         favourite.Modifier = userID;
         favourite.ModifiTime = datetime();
 
-        return db.update('Favourite', `"UserID"='${favourite.UserID}', "MusicID"='${favourite.MusicID}', "LikedTime"='${favourite.LikedTime}', "Modifier"=${favourite.Modifier}, "ModifiTime"='${favourite.ModifiTime}'`, `"FavouriteID"=${favourite.FavouriteID}`);
+        return db.update('Favourite', `"UserID"='${favourite.UserID}', "MusicID"='${favourite.MusicID}', "LikedTime"='${favourite.LikedTime}', 
+            "Modifier"=${favourite.Modifier}, "ModifiTime"='${favourite.ModifiTime}', "IsDelete" = ${favourite.IsDelete}`, `"FavouriteID"=${favourite.FavouriteID}`);
     }
 
     async delete(id, userID) {
