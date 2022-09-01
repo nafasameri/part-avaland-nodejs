@@ -21,10 +21,18 @@ const appsDirectoriesPath = "./apps";
 //   schema: '404'
 // };
 
+// const databaseConfig = {
+//   host: '127.0.0.1',
+//   user: 'postgres',
+//   password: '1997Nafas',
+//   port: '5432',
+//   schema: 'public'
+// };
+
 const databaseConfig = {
   host: '127.0.0.1',
   user: 'postgres',
-  password: '1997Nafas',
+  password: 'ars64334',
   port: '5432',
   schema: 'public'
 };

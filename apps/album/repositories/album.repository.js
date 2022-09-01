@@ -24,6 +24,7 @@ class AlbumRepository {
             datetime(),
             0
         );
+        console.log(albumModel);
         const albumRow = db.insert('Album', '"AlbumName", "AlbumImg", "AlbumReleaseTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `'${albumModel.AlbumName}', '${albumModel.AlbumImg}', '${albumModel.AlbumReleaseTime}', ${albumModel.Creator}, '${albumModel.CreateTime}', ${albumModel.Modifier}, '${albumModel.ModifiTime}', ${albumModel.IsDelete}`);
         return albumRow;
