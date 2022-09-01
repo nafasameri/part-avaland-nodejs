@@ -45,21 +45,17 @@ class MenuController {
             const { body } = req;
             const row = await menuRepository.fetchById(id);
             const menuOld = row.rows[0];
-            menuOld.MenuName = body.MenuName;
-            menuOld.MenuDesc = body.MenuDesc;
+            menuOld.MenuName = body.MenuName ?? menuOld.MenuName;
+            menuOld.MenuDesc = body.MenuDesc ?? menuOld.MenuDesc;
+            menuOld.MenuIcon = body.MenuIcon ?? menuOld.MenuIcon;
+            menuOld.MenuLink = body.MenuLink ?? menuOld.MenuLink;
+            menuOld.MenuOrder = body.MenuOrder ?? menuOld.MenuOrder;
 
             const menu = await menuRepository.update(menuOld, req.UserID);
-            if (!menu) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Update!'
-                }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(menu.rows));
-            }
+            if (!menu)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Update!' }, null, 2));
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(menu.rows));
         } catch (error) {
             logger.error('updateMenu: ', error);
             throw error;
@@ -70,17 +66,10 @@ class MenuController {
         try {
             const { id } = req.querystring;
             const menu = await menuRepository.delete(id, req.UserID);
-            if (!menu) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Delete!'
-                }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(menu.rows));
-            }
+            if (!menu)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Delete!' }, null, 2));
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(menu.rows));
         } catch (error) {
             logger.error('deleteMenu: ', error);
             throw error;

@@ -18,14 +18,10 @@ class MusicController {
             } = req.querystring;
             if (id) {
                 const music = await musicRepository.fetchById(id);
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(music.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(music.rows, null, 2));
             } else {
                 const musics = await musicRepository.fetchAll();
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(musics.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(musics.rows, null, 2));
             }
         } catch (error) {
             logger.error('getMusics: ', error);
@@ -34,9 +30,7 @@ class MusicController {
     };
 
     root = async (req, res) => {
-        sendResponse(res, 200, {
-            'Content-Type': 'text/html'
-        }, `<html><body>
+        sendResponse(res, 200, { 'Content-Type': 'text/html' }, `<html><body>
             <h2>With Node.js <code>"http"</code> module</h2>
             <form action="/music/upload" enctype="multipart/form-data" method="post">
             <div>Text field title: <input type="text" name="title" /></div>
@@ -62,7 +56,7 @@ class MusicController {
 
                 if (error) {
                     logger.error(error);
-                    return sendResponse(res, error.httpCode || 400, { 'Content-Type': 'text/plain' }, `${error}`);
+                    return sendResponse(res, error.httpCode || 400, { 'Content-Type': 'text/plain' }, error);
                 }
                 // sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify({ fields, files }, null, 2));
                 this.createMusic(req, res);
@@ -101,9 +95,7 @@ class MusicController {
     };
 
     range = async (req, res) => {
-        sendResponse(res, 200, {
-            'Content-Type': 'text/html'
-        }, null);
+        sendResponse(res, 200, { 'Content-Type': 'text/html' }, null);
     };
 }
 
