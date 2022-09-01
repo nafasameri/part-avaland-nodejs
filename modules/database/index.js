@@ -45,6 +45,7 @@ class DataBase {
 
     insert(table, columns, values) {
         const sql = `INSERT INTO "${this.schema}"."${table}" ( ${columns} ) VALUES ( ${values} ) RETURNING *`;
+        console.log(sql);
         return this.query(sql);
     }
 

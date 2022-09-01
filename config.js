@@ -29,7 +29,10 @@ const appsDirectoriesPath = "./apps";
 //   schema: 'public'
 // };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5caf6e9c609e47cd9c76fde78c9a3bb9bf1671d7
 const databaseConfig = {
   host: '127.0.0.1',
   user: 'postgres',

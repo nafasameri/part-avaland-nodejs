@@ -26,6 +26,7 @@ class AlbumController {
     createAlbum = async (req, res) => {
         try {
             const { body } = req;
+            console.log(body);
             const album = await albumRepository.add(body, req.UserID);
 
             if (!album)
