@@ -12,6 +12,7 @@ class RoleRepository {
         return db.selcet('Role', '*', `"RoleID"=${id}`);
     }
 
+
     async add(role, userID) {
         const roleModel = new Role(
             0,
@@ -21,7 +22,7 @@ class RoleRepository {
             datetime(),
             userID,
             datetime(),
-            0
+            false
         );
         const roleRow = db.insert('Role', '"RoleName", "RoleDesc", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `'${roleModel.RoleName}', '${roleModel.RoleDesc}', ${roleModel.Creator}, '${roleModel.CreateTime}', ${roleModel.Modifier}, '${roleModel.ModifiTime}', ${roleModel.IsDelete}`);
@@ -32,7 +33,7 @@ class RoleRepository {
         role.Modifier = userID;
         role.ModifiTime = datetime();
 
-        return db.update('Role', `"RoleName"='${role.RoleName}', "RoleDesc"='${role.RoleDesc}', "Modifier"=${role.Modifier}, "ModifiTime"='${role.ModifiTime}'`, 
+        return db.update('Role', `"RoleName"='${role.RoleName}', "RoleDesc"='${role.RoleDesc}', "Modifier"=${role.Modifier}, "ModifiTime"='${role.ModifiTime}'`,
             `"RoleID"=${role.RoleID}`);
     }
 

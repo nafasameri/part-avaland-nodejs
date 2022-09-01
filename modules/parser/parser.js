@@ -3,6 +3,7 @@ const logger = require('log4js').getLogger();
 logger.level = 'debug';
 
 
+
 function fetchQueryStringFromURL(req, res, next) {
   try {
     let q = req.url.split("?"),
