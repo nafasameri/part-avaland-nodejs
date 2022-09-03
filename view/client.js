@@ -1,4 +1,4 @@
-const config = require("../config");
+// const config = require("../config");
 const http = require('http');
 const fs = require('fs');
 const logger = require('log4js').getLogger();
@@ -6,6 +6,9 @@ logger.level = 'debug';
 
 // const url = require('url');
 // console.log(url.parse('/users?id=3'));
+
+
+
 
 /// POST roles
 // let req = http.request({
@@ -36,25 +39,25 @@ logger.level = 'debug';
 
 
 /// GET roles
-http.request({
-    hostname: config.serverConfig.hostname,
-    port: config.serverConfig.port,
-    path: '/role/roles',
-    method: 'GET'
-}, (res) => {
-    let buffer = '';
-    res.on('data', (chunk) => {
-        buffer += chunk;
-    });
+// http.request({
+//     hostname: config.serverConfig.hostname,
+//     port: config.serverConfig.port,
+//     path: '/role/roles',
+//     method: 'GET'
+// }, (res) => {
+//     let buffer = '';
+//     res.on('data', (chunk) => {
+//         buffer += chunk;
+//     });
 
-    res.on('end', () => {
-        if (res.statusCode == 200)
-            logger.info(buffer.toString());
-        // logger.info(JSON.parse(buffer.toString()));
-        else
-            logger.error(JSON.parse(buffer.toString()));
-    });
-}).end();
+//     res.on('end', () => {
+//         if (res.statusCode == 200)
+//             logger.info(buffer.toString());
+//         // logger.info(JSON.parse(buffer.toString()));
+//         else
+//             logger.error(JSON.parse(buffer.toString()));
+//     });
+// }).end();
 
 
 /// delete roles
