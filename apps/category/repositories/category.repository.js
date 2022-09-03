@@ -15,8 +15,8 @@ class CategoryRepository {
     async add(category, userID) {
         let categoryModel = new Category(
             0,
-            category.CategoryName,
-            category.CategoryImg,
+            category.CategoryName ?? '',
+            category.CategoryImg ?? '',
             userID,
             datetime(),
             userID,

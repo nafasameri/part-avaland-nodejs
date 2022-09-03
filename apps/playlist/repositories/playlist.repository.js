@@ -15,8 +15,8 @@ class PlaylistRepository {
     async add(playlist, userID) {
         const playlistModel = new Playlist(
             0,
-            playlist.PlaylistName,
-            playlist.PlaylistDesc,
+            playlist.PlaylistName ?? '',
+            playlist.PlaylistDesc ?? '',
             userID,
             datetime(),
             userID,

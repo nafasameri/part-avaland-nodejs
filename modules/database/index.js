@@ -23,12 +23,6 @@ class DataBase {
         return records;
     }
 
-<<<<<<< HEAD
-    selcet(table, columns, conditions) {
-        let sql = `SELECT ${columns} FROM "${this.schema}"."${table}" WHERE ${conditions} and "IsDelete"=0`;
-        if (conditions == undefined)
-            sql = `SELECT ${columns} FROM "${this.schema}"."${table}" WHERE "IsDelete"=0`;
-=======
     selcet(table, columns, conditions, IsDelete = 0) {
         let sql = `SELECT ${columns} FROM "${this.schema}"."${table}" WHERE ${conditions} AND "IsDelete"=${IsDelete}`;
         if (conditions == undefined)
@@ -39,13 +33,11 @@ class DataBase {
             if (conditions == undefined)
                 sql = `SELECT ${columns} FROM "${this.schema}"."${table}"`;
         }
->>>>>>> 0dfd8968264019ec389dea66eb19f2f13730e0fb
         return this.query(sql);
     }
 
     insert(table, columns, values) {
         const sql = `INSERT INTO "${this.schema}"."${table}" ( ${columns} ) VALUES ( ${values} ) RETURNING *`;
-        console.log(sql);
         return this.query(sql);
     }
 

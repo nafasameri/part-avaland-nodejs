@@ -1,4 +1,4 @@
-// const config = require("../config");
+const config = require("../config");
 const http = require('http');
 const fs = require('fs');
 const logger = require('log4js').getLogger();
@@ -8,34 +8,32 @@ logger.level = 'debug';
 // console.log(url.parse('/users?id=3'));
 
 
-
-
 /// POST roles
-// let req = http.request({
-//     hostname: config.serverConfig.hostname,
-//     port: config.serverConfig.port,
-//     path: '/roles/role',
-//     headers: {
-//         'content-type': 'application/json'
-//     },
-//     method: 'POST'
-// }, (res) => {
-//     let buffer = '';
-//     res.on('data', (chunk) => {
-//         buffer += chunk;
-//     });
-//     res.on('end', () => {
-//         if (res.statusCode == 200)
-//             logger.info(buffer.toString());
-//         else
-//             logger.error(JSON.parse(buffer.toString()));
-//     });
-// });
-// req.write(JSON.stringify({
-//     RoleName: "Producer",
-//     RoleDesc: "تولید کننده"
-// }));
-// req.end();
+let req = http.request({
+    hostname: config.serverConfig.hostname,
+    port: config.serverConfig.port,
+    path: '/user/add',
+    headers: {
+        'content-type': 'application/json'
+    },
+    method: 'POST'
+}, (res) => {
+    let buffer = '';
+    res.on('data', (chunk) => {
+        buffer += chunk;
+    });
+    res.on('end', () => {
+        if (res.statusCode == 200)
+            logger.info(JSON.parse(buffer.toString()));
+        else
+            logger.error(JSON.parse(buffer.toString()));
+    });
+});
+req.write(JSON.stringify({
+    "UserName":"arsadeghi",
+    "RoleID":1    	
+}));
+req.end();
 
 
 /// GET roles

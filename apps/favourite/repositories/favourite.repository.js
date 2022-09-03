@@ -27,8 +27,8 @@ class FavouriteRepository {
     async add(favourite, userID) {
         let favouriteModel = new Favourite(
             0,
-            favourite.UserID,
-            favourite.MusicID,
+            favourite.UserID ?? null,
+            favourite.MusicID ?? null,
             datetime(),
             userID,
             datetime(),

@@ -12,14 +12,14 @@ const routerConfig = {
 
 const appsDirectoriesPath = "./apps";
 
-// const databaseConfig = {
-//   host: '192.168.5.121',
-//   database: 'college',
-//   user: '404',
-//   password: '&6Tw3C0V4q@w',
-//   port: '5432',
-//   schema: '404'
-// };
+const databaseConfig = {
+  host: '192.168.5.121',
+  database: 'college',
+  user: '404',
+  password: '&6Tw3C0V4q@w',
+  port: '5432',
+  schema: '404'
+};
 
 // const databaseConfig = {
 //   host: '127.0.0.1',
@@ -28,18 +28,6 @@ const appsDirectoriesPath = "./apps";
 //   port: '5432',
 //   schema: 'public'
 // };
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 5caf6e9c609e47cd9c76fde78c9a3bb9bf1671d7
-const databaseConfig = {
-  host: '127.0.0.1',
-  user: 'postgres',
-  password: 'ars64334',
-  port: '5432',
-  schema: 'public'
-};
 
 module.exports = {
   serverConfig,

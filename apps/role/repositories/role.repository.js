@@ -16,8 +16,8 @@ class RoleRepository {
     async add(role, userID) {
         const roleModel = new Role(
             0,
-            role.RoleName,
-            role.RoleDesc,
+            role.RoleName ?? '',
+            role.RoleDesc ?? '',
             userID,
             datetime(),
             userID,

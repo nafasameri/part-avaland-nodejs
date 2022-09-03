@@ -15,8 +15,8 @@ class HistoryRepository {
     async add(history, userID) {
         let historyModel = new History(
             0,
-            history.UserID,
-            history.MusicID,
+            history.UserID ?? null,
+            history.MusicID ?? null,
             userID,
             datetime(),
             userID,

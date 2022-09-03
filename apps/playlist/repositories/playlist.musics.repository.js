@@ -9,18 +9,14 @@ class PlaylistMusicsRepository {
     }
 
     async fetchById(id) {
-<<<<<<< HEAD
         return db.selcet('PlaylistMusics', '*', `"PlaylistMusicsID"=${id}`);
-=======
-        return db.selcet('PlaylistMusics', '*', `"PlaylistMusicID"=${id}`);
->>>>>>> 5caf6e9c609e47cd9c76fde78c9a3bb9bf1671d7
     }
 
     async add(playlistMusics, userID) {
         const playlistMusicModel = new PlaylistMusics(
             0,
-            playlistMusics.PlaylistID,
-            playlistMusics.MusicID,
+            playlistMusics.PlaylistID ?? null,
+            playlistMusics.MusicID ?? null,
             userID,
             datetime(),
             userID,
@@ -35,11 +31,7 @@ class PlaylistMusicsRepository {
 
 
     async delete(id, userID) {
-<<<<<<< HEAD
-        return db.update('PlaylistMusics', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"RoleID"=${id}`);
-=======
         return db.update('PlaylistMusics', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"PlaylistMusicID"=${id}`);
->>>>>>> 5caf6e9c609e47cd9c76fde78c9a3bb9bf1671d7
     }
 }
 

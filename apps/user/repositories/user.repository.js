@@ -15,10 +15,10 @@ class UserRepository {
     async add(user, userID) {
         const userModel = new User(
             0,
-            user.UserName,
-            user.UserPhone,
-            user.UserEmail,
-            user.RoleID,
+            user.UserName ?? '',
+            user.UserPhone ?? '',
+            user.UserEmail ?? '',
+            user.RoleID ?? null,
             userID,
             datetime(),
             userID,
