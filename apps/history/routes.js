@@ -1,29 +1,29 @@
-const roleController = require("./controllers/role.controller");
+const historyController = require("./controllers/history.controller");
 const { fetchQueryStringFromURL, getPostData, getHeaders, authentication } = require('./middlewares');
 
 const routes = [
   {
-    url: "roles",
+    url: "histories",
     method: "GET",
-    controller: roleController.getRoles,
+    controller: historyController.getHistories,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
     url: "add",
     method: "POST",
-    controller: roleController.createRole,
+    controller: historyController.createHistory,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
     url: "update",
     method: "PUT",
-    controller: roleController.updateRole,
+    controller: historyController.updateHistory,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
     url: "delete",
     method: "DELETE",
-    controller: roleController.deleteRole,
+    controller: historyController.deleteHistory,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   }
 ];

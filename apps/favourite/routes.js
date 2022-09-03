@@ -9,19 +9,19 @@ const routes = [
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "favourite",
+    url: "add",
     method: "POST",
     controller: favouriteController.createFavourite,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "favourite",
+    url: "update",
     method: "PUT",
     controller: favouriteController.updateFavourite,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "favourite",
+    url: "delete",
     method: "DELETE",
     controller: favouriteController.deleteFavourite,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],

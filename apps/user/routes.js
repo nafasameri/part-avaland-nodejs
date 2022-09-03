@@ -9,19 +9,19 @@ const routes = [
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "user",
+    url: "add",
     method: "POST",
     controller: userController.createUser,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "user",
+    url: "update",
     method: "PUT",
     controller: userController.updateUser,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "user",
+    url: "delete",
     method: "DELETE",
     controller: userController.deleteUser,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],

@@ -9,19 +9,19 @@ const routes = [
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "add",
     method: "POST",
     controller: categoryController.createCategory,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "update",
     method: "PUT",
     controller: categoryController.updateCategory,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "category",
+    url: "delete",
     method: "DELETE",
     controller: categoryController.deleteCategory,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
