@@ -53,6 +53,7 @@ class MusicController {
             form.parse(req, (error, fields, files) => {
                 req.fields = fields;
                 req.files = files;
+                req.body = files;
 
                 if (error) {
                     logger.error(error);
@@ -70,8 +71,8 @@ class MusicController {
     };
 
     createMusic = async (req, res) => {
-        const { files } = req;
-        const { filepath, newFilename, originalFilename, mimetype } = files['multipleFiles'];
+        const { body } = req;
+        const { filepath, newFilename, originalFilename, mimetype } = body['multipleFiles'];
         const newMusic = {
             MusicURL: newFilename
             // MusicMimeType: mimetype

@@ -15,8 +15,7 @@ class MusicRepository {
     async add(music, userID) {
         let musicModel = new Music(
             0,
-            music.ArtistID ?? null,
-            music.AlbumID ?? null,
+            music.AlbumName ?? null,
             music.CategoryID ?? null,
             music.MusicName ?? null,
             music.MusicTitle ?? null,
@@ -34,9 +33,9 @@ class MusicRepository {
             0
         );
 
-        const musicRow = db.insert('Music', `"AlbumID", "ArtistID", "CategoryID", "MusicName", "MusicTitle", "MusicPoster", "MusicURL", 
+        const musicRow = db.insert('Music', `"AlbumName", "CategoryID", "MusicName", "MusicTitle", "MusicPoster", "MusicURL", 
             "MusicDuration", "MusicLyrics", "MusicTags", "MusicArtists", "MusicReleaseTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"`,
-            `${musicModel.AlbumID}, ${musicModel.ArtistID}, ${musicModel.CategoryID},'${musicModel.MusicName}','${musicModel.MusicTitle}','${musicModel.MusicPoster}',
+            `${musicModel.AlbumName}, ${musicModel.CategoryID},'${musicModel.MusicName}','${musicModel.MusicTitle}','${musicModel.MusicPoster}',
             '${musicModel.MusicURL}','${musicModel.MusicDuration}','${musicModel.MusicLyrics}','${musicModel.MusicTags}','${musicModel.MusicArtists}',
             '${musicModel.MusicReleaseTime}',${musicModel.Creator}, '${musicModel.CreateTime}', ${musicModel.Modifier}, '${musicModel.ModifiTime}', ${musicModel.IsDelete}`);
         return musicRow;
@@ -46,7 +45,7 @@ class MusicRepository {
         music.Modifier = userID;
         music.ModifiTime = datetime();
 
-        return db.update('Music', `"AlbumID"=${music.AlbumID}, "ArtistID"=${music.ArtistID},"CategoryID"=${music.CategoryID}, "MusicName"='${music.MusicName}',
+        return db.update('Music', `"AlbumName"=${music.AlbumName}, "CategoryID"=${music.CategoryID}, "MusicName"='${music.MusicName}',
             "MusicTitle"='${music.MusicTitle}', "MusicPoster"='${music.MusicPoster}',"MusicURL"='${music.MusicURL}', "MusicDuration"='${music.MusicDuration}',
             "MusicLyrics"='${music.MusicLyrics}', "MusicTags"='${music.MusicTags}',"MusicArtists"='${music.MusicArtists}', "MusicReleaseTime"='${music.MusicReleaseTime}',
             "Modifier"=${music.Modifier}, "ModifiTime"='${music.ModifiTime}'`, `"MusicID"=${music.MusicID}`);

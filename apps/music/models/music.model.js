@@ -1,7 +1,6 @@
 class Music {
     MusicID;
-    AlbumID;
-    ArtistID;
+    AlbumName;
     CategoryID;
     MusicName;
     MusicTitle;
@@ -19,10 +18,9 @@ class Music {
     ModifiTime;
     IsDelete;
 
-    constructor(MusicID, AlbumID, ArtistID, CategoryID, MusicName, MusicTitle, MusicPoster, MusicURL, MusicDuration, MusicLyrics, MusicTags, MusicArtists, MusicReleaseTime, Creator, CreateTime, Modifier, ModifiTime, IsDelete) {
+    constructor(MusicID, AlbumName, CategoryID, MusicName, MusicTitle, MusicPoster, MusicURL, MusicDuration, MusicLyrics, MusicTags, MusicArtists, MusicReleaseTime, Creator, CreateTime, Modifier, ModifiTime, IsDelete) {
         this.MusicID = MusicID;
-        this.AlbumID = AlbumID;
-        this.ArtistID = ArtistID;
+        this.AlbumName = AlbumName;
         this.CategoryID = CategoryID;
         this.MusicName = MusicName;
         this.MusicTitle = MusicTitle;
