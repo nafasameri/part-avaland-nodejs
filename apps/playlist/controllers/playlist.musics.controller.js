@@ -12,10 +12,10 @@ class PlaylistMusicsController {
             const { id } = req.querystring;
             if (id) {
                 const playlistMusics = await playlistMusicsRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics, null, 2));
             } else {
                 const playlistMusics = await playlistMusicsRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics, null, 2));
             }
         } catch (error) {
             logger.error('getAllPlaylist: ', error);
@@ -28,11 +28,10 @@ class PlaylistMusicsController {
             const { body } = req;
             const playlistMusics = await playlistMusicsRepository.add(body, req.UserID);
 
-            if (!playlistMusics) {
-                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Create' }, null, 2));
-            } else {
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics.rows));
-            }
+            if (!playlistMusics)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Create');
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics));
         } catch (error) {
             logger.error('createPlaylistMusics: ', error);
             throw error;
@@ -45,17 +44,10 @@ class PlaylistMusicsController {
         try {
             const { id } = req.querystring;
             const playlistMusics = await playlistMusicsRepository.delete(id, req.UserID);
-            if (!playlistMusics) {
-                sendResponse(res, 404, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify({
-                    message: 'Could Not Delete!'
-                }, null, 2));
-            } else {
-                sendResponse(res, 200, {
-                    "Content-Type": "application/json"
-                }, JSON.stringify(playlistMusics.rows));
-            }
+            if (!playlistMusics)
+                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Delete!');
+            else
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics));
         } catch (error) {
             logger.error('deletePlaylistMusics: ', error);
             throw error;

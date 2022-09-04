@@ -13,15 +13,13 @@ logger.level = 'debug';
 class MusicController {
     getMusics = async (req, res) => {
         try {
-            const {
-                id
-            } = req.querystring;
+            const { id } = req.querystring;
             if (id) {
                 const music = await musicRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(music.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(music, null, 2));
             } else {
                 const musics = await musicRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(musics.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(musics, null, 2));
             }
         } catch (error) {
             logger.error('getMusics: ', error);
@@ -78,20 +76,18 @@ class MusicController {
             // MusicMimeType: mimetype
         };        
         const music = await musicRepository.add(newMusic, req.UserID);
-        sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify(music.rows[0], null, 2));
+        sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify(music, null, 2));
     };
 
     updateMusic = async (req, res) => {
         const { body } = req;
         const music = await musicRepository.update(body, req.UserID);
-        sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify(music.rows[0], null, 2));
+        sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify(music, null, 2));
     };
 
 
     load = async (req, res) => {
-        sendResponse(res, 200, {
-                'Content-Type': 'text/html'
-            },
+        sendResponse(res, 200, { 'Content-Type': 'text/html' },
             fs.readFileSync('D:\\Development\\Work\\Part\\College\\session29\\30-session\\view\\range.html'));
     };
 

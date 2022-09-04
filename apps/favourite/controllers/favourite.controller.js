@@ -12,10 +12,10 @@ class FavouriteController {
             const { id } = req.querystring;
             if (id) {
                 const favourite = await favouriteRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite, null, 2));
             } else {
                 const favourites = await favouriteRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourites.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourites, null, 2));
             }
         } catch (error) {
             logger.error('getAllFavourites: ', error);
@@ -27,17 +27,16 @@ class FavouriteController {
         try {
             const { body } = req;
             let favourite = await favouriteRepository.fetchByUserMusic(body.MusicID, body.UserID);            
-            if (favourite.rows.length == 0)
+            if (favourite.length == 0)
                 favourite = await favouriteRepository.add(body, req.UserID);
             else { 
-                const data = favourite.rows[0];
-                data.IsDelete = data.IsDelete == 0 ? 1 : 0;
-                favourite = await favouriteRepository.update(data, req.UserID);
+                favourite.IsDelete = favourite.IsDelete == 0 ? 1 : 0;
+                favourite = await favouriteRepository.update(favourite, req.UserID);
             }
             if (!favourite)
-                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Create' }, null, 2));
+                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite.rows));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite));
         } catch (error) {
             logger.error('createFavourite: ', error);
             throw error;
@@ -48,16 +47,15 @@ class FavouriteController {
         try {
             const { id } = req.querystring;
             const { body } = req;
-            const row = await favouriteRepository.fetchById(id);
-            const favouriteOld = row.rows[0];
+            const favouriteOld = await favouriteRepository.fetchById(id);
             favouriteOld.UserID = body.UserID ?? favouriteOld.UserID;
             favouriteOld.MusicID = body.MusicID ?? favouriteOld.MusicID;
 
             const favourite = await favouriteRepository.update(favouriteOld, req.UserID);
             if (!favourite)
-                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Update!' }, null, 2));
+                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite.rows));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite));
         } catch (error) {
             logger.error('updateFavourite: ', error);
             throw error;
@@ -69,9 +67,9 @@ class FavouriteController {
             const { id } = req.querystring;
             const favourite = await favouriteRepository.delete(id, req.UserID);
             if (!favourite)
-                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Delete!' }, null, 2));
+                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite.rows));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite));
         } catch (error) {
             logger.error('deleteFavourite: ', error);
             throw error;

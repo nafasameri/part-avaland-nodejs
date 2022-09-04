@@ -9,53 +9,52 @@ logger.level = 'debug';
 
 
 /// POST roles
-let req = http.request({
+// let req = http.request({
+//     hostname: config.serverConfig.hostname,
+//     port: config.serverConfig.port,
+//     path: '/user/add',
+//     headers: {
+//         'content-type': 'application/json'
+//     },
+//     method: 'POST'
+// }, (res) => {
+//     let buffer = '';
+//     res.on('data', (chunk) => {
+//         buffer += chunk;
+//     });
+//     res.on('end', () => {
+//         if (res.statusCode == 200)
+//             logger.info(JSON.parse(buffer.toString()));
+//         else
+//             logger.error(JSON.parse(buffer.toString()));
+//     });
+// });
+// req.write(JSON.stringify({
+//     "UserName":"arsadeghi",
+//     "RoleID":1    	
+// }));
+// req.end();
+
+
+/// GET roles
+http.request({
     hostname: config.serverConfig.hostname,
     port: config.serverConfig.port,
-    path: '/user/add',
-    headers: {
-        'content-type': 'application/json'
-    },
-    method: 'POST'
+    path: '/category/categories',
+    method: 'GET'
 }, (res) => {
     let buffer = '';
     res.on('data', (chunk) => {
         buffer += chunk;
     });
+
     res.on('end', () => {
         if (res.statusCode == 200)
             logger.info(JSON.parse(buffer.toString()));
         else
             logger.error(JSON.parse(buffer.toString()));
     });
-});
-req.write(JSON.stringify({
-    "UserName":"arsadeghi",
-    "RoleID":1    	
-}));
-req.end();
-
-
-/// GET roles
-// http.request({
-//     hostname: config.serverConfig.hostname,
-//     port: config.serverConfig.port,
-//     path: '/role/roles',
-//     method: 'GET'
-// }, (res) => {
-//     let buffer = '';
-//     res.on('data', (chunk) => {
-//         buffer += chunk;
-//     });
-
-//     res.on('end', () => {
-//         if (res.statusCode == 200)
-//             logger.info(buffer.toString());
-//         // logger.info(JSON.parse(buffer.toString()));
-//         else
-//             logger.error(JSON.parse(buffer.toString()));
-//     });
-// }).end();
+}).end();
 
 
 /// delete roles

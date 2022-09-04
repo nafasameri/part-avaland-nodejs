@@ -5,23 +5,28 @@ const datetime = require('../../../modules/utility').datetime;
 
 class FavouriteRepository {
     async fetchAll() {
-        return db.selcet('Favourite', '*');
+        const record = await db.selcet('Favourite', '*');
+        return record.rows;
     }
 
     async fetchById(id) {
-        return db.selcet('Favourite', '*', `"FavouriteID"=${id}`);
+        const record = await db.selcet('Favourite', '*', `"FavouriteID"=${id}`);
+        return record.rows[0];
     }
 
     async fetchByUser(id) {
-        return db.selcet('Favourite', '*', `"UserID"=${id}`, 1);
+        const record = await db.selcet('Favourite', '*', `"UserID"=${id}`, 1);
+        return record.rows[0];
     }
 
     async fetchByMusic(id) {
-        return db.selcet('Favourite', '*', `"MusicID"=${id}`);
+        const record = await db.selcet('Favourite', '*', `"MusicID"=${id}`);
+        return record.rows[0];
     }
 
     async fetchByUserMusic(musicId, userId) {
-        return db.selcet('Favourite', '*', `"MusicID"=${musicId} AND "UserID"=${userId}`, 1);
+        const record = await db.selcet('Favourite', '*', `"MusicID"=${musicId} AND "UserID"=${userId}`, 1);
+        return record.rows[0];
     }
 
     async add(favourite, userID) {
@@ -36,21 +41,23 @@ class FavouriteRepository {
             datetime(),
             0
         );
-        const favouriteRow = db.insert('Favourite', '"UserID", "MusicID", "LikedTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
+        const record = await db.insert('Favourite', '"UserID", "MusicID", "LikedTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `${favouriteModel.UserID}, ${favouriteModel.MusicID}, '${favouriteModel.LikedTime}', ${favouriteModel.Creator}, '${favouriteModel.CreateTime}', ${favouriteModel.Modifier}, '${favouriteModel.ModifiTime}', ${favouriteModel.IsDelete}`);
-        return favouriteRow;
+        return record.rows[0];
     }
 
     async update(favourite, userID) {
         favourite.Modifier = userID;
         favourite.ModifiTime = datetime();
 
-        return db.update('Favourite', `"UserID"='${favourite.UserID}', "MusicID"='${favourite.MusicID}', "LikedTime"='${favourite.LikedTime}', 
+        const record = await db.update('Favourite', `"UserID"='${favourite.UserID}', "MusicID"='${favourite.MusicID}', "LikedTime"='${favourite.LikedTime}', 
             "Modifier"=${favourite.Modifier}, "ModifiTime"='${favourite.ModifiTime}', "IsDelete" = ${favourite.IsDelete}`, `"FavouriteID"=${favourite.FavouriteID}`);
+        return record.rows[0];
     }
 
     async delete(id, userID) {
-        return db.update('Favourite', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"FavouriteID"=${id}`);
+        const record = await db.update('Favourite', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"FavouriteID"=${id}`);
+        return record.rows[0];
     }
 }
 

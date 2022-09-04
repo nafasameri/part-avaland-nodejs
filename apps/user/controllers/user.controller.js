@@ -12,10 +12,10 @@ class UserController {
             const { id } = req.querystring;
             if (id) {
                 const user = await userRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user, null, 2));
             } else {
                 const users = await userRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(users.rows, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(users, null, 2));
             }
         } catch (error) {
             logger.error('getAllUsers: ', error);
@@ -29,9 +29,9 @@ class UserController {
             const user = await userRepository.add(body, req.UserID);
 
             if (!user)
-                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Create' }, null, 2));
+                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user.rows));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user));
         } catch (error) {
             logger.error('createUser: ', error);
             throw error;
@@ -42,8 +42,7 @@ class UserController {
         try {
             const { id } = req.querystring;
             const { body } = req;
-            const row = await userRepository.fetchById(id);
-            const userOld = row.rows[0];
+            const userOld = await userRepository.fetchById(id);
             userOld.UserName = body.UserName ?? userOld.UserName;
             userOld.UserPhone = body.UserPhone ?? userOld.UserPhone;
             userOld.UserEmail = body.UserEmail ?? userOld.UserEmail;
@@ -51,9 +50,9 @@ class UserController {
 
             const user = await userRepository.update(userOld, req.UserID);
             if (!user)
-                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Update!' }, null, 2));
+                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user.rows));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user));
         } catch (error) {
             logger.error('updateUser: ', error);
             throw error;
@@ -65,9 +64,9 @@ class UserController {
             const { id } = req.querystring;
             const user = await userRepository.delete(id, req.UserID);
             if (!user)
-                sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: 'Could Not Delete!' }, null, 2));
+                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user.rows));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user));
         } catch (error) {
             logger.error('deleteUser: ', error);
             throw error;

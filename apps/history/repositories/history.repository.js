@@ -5,11 +5,13 @@ const datetime = require('../../../modules/utility').datetime;
 
 class HistoryRepository {
     async fetchAll() {
-        return db.selcet('History', '*');
+        const record = await db.selcet('History', '*');
+        return record.rows;
     }
 
     async fetchById(id) {
-        return db.selcet('History', '*', `"HistoryID"=${id}`);
+        const record = await db.selcet('History', '*', `"HistoryID"=${id}`);
+        return record.rows[0];
     }
 
     async add(history, userID) {
@@ -23,20 +25,22 @@ class HistoryRepository {
             datetime(),
             0
         );
-        const historyRow = db.insert('History', '"UserID", "MusicID", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
+        const record = await db.insert('History', '"UserID", "MusicID", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `'${historyModel.UserID}', '${historyModel.MusicID}', ${historyModel.Creator}, '${historyModel.CreateTime}', ${historyModel.Modifier}, '${historyModel.ModifiTime}', ${historyModel.IsDelete}`);
-        return historyRow;
+        return record.rows[0];
     }
 
     async update(history, userID) {
         history.Modifier = userID;
         history.ModifiTime = datetime();
 
-        return db.update('History', `"HistoryName"='${history.UserID}', "HistoryImg"='${history.MusicID}', "Modifier"=${history.Modifier}, "ModifiTime"='${history.ModifiTime}'`, `"HistoryID"=${history.HistoryID}`);
+        const record = await db.update('History', `"HistoryName"='${history.UserID}', "HistoryImg"='${history.MusicID}', "Modifier"=${history.Modifier}, "ModifiTime"='${history.ModifiTime}'`, `"HistoryID"=${history.HistoryID}`);
+        return record.rows[0];
     }
 
     async delete(id, userID) {
-        return db.update('History', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"HistoryID"=${id}`);
+        const record = await db.update('History', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"HistoryID"=${id}`);
+        return record.rows[0];
     }
 }
 

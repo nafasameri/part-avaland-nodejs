@@ -5,11 +5,13 @@ const datetime = require('../../../modules/utility').datetime;
 
 class MusicRepository {
     async fetchAll() {
-        return db.selcet('Music', '*');
+        const record = await db.selcet('Music', '*');
+        return record.rows;
     }
 
     async fetchById(id) {
-        return db.selcet('Music', '*', `"MusicID"=${id}`);
+        const record = await db.selcet('Music', '*', `"MusicID"=${id}`);
+        return record.rows[0];
     }
 
     async add(music, userID) {
@@ -33,26 +35,28 @@ class MusicRepository {
             0
         );
 
-        const musicRow = db.insert('Music', `"AlbumName", "CategoryID", "MusicName", "MusicTitle", "MusicPoster", "MusicURL", 
+        const record = await db.insert('Music', `"AlbumName", "CategoryID", "MusicName", "MusicTitle", "MusicPoster", "MusicURL", 
             "MusicDuration", "MusicLyrics", "MusicTags", "MusicArtists", "MusicReleaseTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"`,
             `${musicModel.AlbumName}, ${musicModel.CategoryID},'${musicModel.MusicName}','${musicModel.MusicTitle}','${musicModel.MusicPoster}',
             '${musicModel.MusicURL}','${musicModel.MusicDuration}','${musicModel.MusicLyrics}','${musicModel.MusicTags}','${musicModel.MusicArtists}',
             '${musicModel.MusicReleaseTime}',${musicModel.Creator}, '${musicModel.CreateTime}', ${musicModel.Modifier}, '${musicModel.ModifiTime}', ${musicModel.IsDelete}`);
-        return musicRow;
+        return record.rows[0];
     }
 
     async update(music, userID) {
         music.Modifier = userID;
         music.ModifiTime = datetime();
 
-        return db.update('Music', `"AlbumName"=${music.AlbumName}, "CategoryID"=${music.CategoryID}, "MusicName"='${music.MusicName}',
+        const record = await db.update('Music', `"AlbumName"=${music.AlbumName}, "CategoryID"=${music.CategoryID}, "MusicName"='${music.MusicName}',
             "MusicTitle"='${music.MusicTitle}', "MusicPoster"='${music.MusicPoster}',"MusicURL"='${music.MusicURL}', "MusicDuration"='${music.MusicDuration}',
             "MusicLyrics"='${music.MusicLyrics}', "MusicTags"='${music.MusicTags}',"MusicArtists"='${music.MusicArtists}', "MusicReleaseTime"='${music.MusicReleaseTime}',
             "Modifier"=${music.Modifier}, "ModifiTime"='${music.ModifiTime}'`, `"MusicID"=${music.MusicID}`);
+        return record.rows[0];
     }
 
     async delete(id, userID) {
-        return db.update('Music', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"MusicID"=${id}`);
+        const record = await db.update('Music', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"MusicID"=${id}`);
+        return record.rows[0];
     }
 }
 

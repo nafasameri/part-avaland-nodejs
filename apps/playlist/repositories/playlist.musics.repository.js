@@ -5,11 +5,13 @@ const datetime = require('../../../modules/utility').datetime;
 
 class PlaylistMusicsRepository {
     async fetchAll() {
-        return db.selcet('PlaylistMusics', '*');
+        const record = await db.selcet('PlaylistMusics', '*');
+        return record.rows;
     }
 
     async fetchById(id) {
-        return db.selcet('PlaylistMusics', '*', `"PlaylistMusicsID"=${id}`);
+        const record = await db.selcet('PlaylistMusics', '*', `"PlaylistMusicsID"=${id}`);
+        return record.rows[0];
     }
 
     async add(playlistMusics, userID) {
@@ -23,15 +25,16 @@ class PlaylistMusicsRepository {
             datetime(),
             0
         );
-        const playlistMusicsRow = db.insert('PlaylistMusics', '"PlaylistID", "MusicID", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
+        const record = await db.insert('PlaylistMusics', '"PlaylistID", "MusicID", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `'${playlistMusicModel.PlaylistID}', '${playlistMusicModel.MusicID}', ${playlistMusicModel.Creator}, '${playlistMusicModel.CreateTime}', ${playlistMusicModel.Modifier}, '${playlistMusicModel.ModifiTime}', ${playlistMusicModel.IsDelete}`);
-        return playlistMusicsRow;
+        return record.rows[0];
     }
 
 
 
     async delete(id, userID) {
-        return db.update('PlaylistMusics', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"PlaylistMusicID"=${id}`);
+        const record = await db.update('PlaylistMusics', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"PlaylistMusicID"=${id}`);
+        return record.rows[0];
     }
 }
 

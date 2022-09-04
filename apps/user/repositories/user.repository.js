@@ -5,11 +5,13 @@ const datetime = require('../../../modules/utility').datetime;
 
 class UserRepository {
     async fetchAll() {
-        return db.selcet('User', '*');
+        const record = await db.selcet('User', '*');
+        return record.rows;
     }
 
     async fetchById(id) {
-        return db.selcet('User', '*', `"UserID"=${id}`);
+        const record = await db.selcet('User', '*', `"UserID"=${id}`);
+        return record.rows[0];
     }
 
     async add(user, userID) {
@@ -25,21 +27,23 @@ class UserRepository {
             datetime(),
             0
         );
-        const userRow = db.insert('User', '"UserName", "UserPhone", "UserEmail", "RoleID", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
+        const record = await db.insert('User', '"UserName", "UserPhone", "UserEmail", "RoleID", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `'${userModel.UserName}', '${userModel.UserPhone}', '${userModel.UserEmail}', '${userModel.RoleID}', ${userModel.Creator}, '${userModel.CreateTime}', ${userModel.Modifier}, '${userModel.ModifiTime}', ${userModel.IsDelete}`);
-        return userRow;
+        return record.rows[0];
     }
 
     async update(user, userID) {
         user.Modifier = userID;
         user.ModifiTime = datetime();
 
-        return db.update('User', `"UserName"='${user.UserName}', "UserPhone"='${user.UserPhone}', "UserEmail"='${user.UserEmail}', "RoleID"='${user.RoleID}', "Modifier"=${user.Modifier}, "ModifiTime"='${user.ModifiTime}'`, 
+        const record = await db.update('User', `"UserName"='${user.UserName}', "UserPhone"='${user.UserPhone}', "UserEmail"='${user.UserEmail}', "RoleID"='${user.RoleID}', "Modifier"=${user.Modifier}, "ModifiTime"='${user.ModifiTime}'`,
             `"UserID"=${user.UserID}`);
+        return record.rows[0];
     }
 
     async delete(id, userID) {
-        return db.update('User', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"UserID"=${id}`);
+        const record = await db.update('User', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"UserID"=${id}`);
+        return record.rows[0];
     }
 }
 

@@ -5,11 +5,13 @@ const datetime = require('../../../modules/utility').datetime;
 
 class RoleRepository {
     async fetchAll() {
-        return db.selcet('Role', '*');
+        const record = await db.selcet('Role', '*');
+        return record.rows;
     }
 
     async fetchById(id) {
-        return db.selcet('Role', '*', `"RoleID"=${id}`);
+        const record = await db.selcet('Role', '*', `"RoleID"=${id}`);
+        return record.rows[0];
     }
 
 
@@ -24,21 +26,23 @@ class RoleRepository {
             datetime(),
             false
         );
-        const roleRow = db.insert('Role', '"RoleName", "RoleDesc", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
+        const record = await db.insert('Role', '"RoleName", "RoleDesc", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `'${roleModel.RoleName}', '${roleModel.RoleDesc}', ${roleModel.Creator}, '${roleModel.CreateTime}', ${roleModel.Modifier}, '${roleModel.ModifiTime}', ${roleModel.IsDelete}`);
-        return roleRow;
+        return record.rows[0];
     }
 
     async update(role, userID) {
         role.Modifier = userID;
         role.ModifiTime = datetime();
 
-        return db.update('Role', `"RoleName"='${role.RoleName}', "RoleDesc"='${role.RoleDesc}', "Modifier"=${role.Modifier}, "ModifiTime"='${role.ModifiTime}'`,
+        const record = await db.update('Role', `"RoleName"='${role.RoleName}', "RoleDesc"='${role.RoleDesc}', "Modifier"=${role.Modifier}, "ModifiTime"='${role.ModifiTime}'`,
             `"RoleID"=${role.RoleID}`);
+        return record.rows[0];
     }
 
     async delete(id, userID) {
-        return db.update('Role', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"RoleID"=${id}`);
+        const record = await db.update('Role', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"RoleID"=${id}`);
+        return record.rows[0];
     }
 }
 
