@@ -7,15 +7,37 @@ const userRepository = new UserRepository();
 
 
 class UserController {
+
+    #print = (userArr) => {
+        const userData = []
+        userArr.forEach(user => {
+            const userJson = {
+                "user-id": user.UserID,
+                "name": user.UserName,
+                "phone": user.UserPhone,
+                "email": user.UserEmail,
+                "role-id": user.RoleID,
+                "creator": user.Creator,
+                "create-time": user.CreateTime,
+                "modifier": user.Modifier,
+                "modifi-time": user.ModifiTime,
+                "delete-flag": user.IsDelete
+            }
+            userData.push(userJson)
+        });
+
+        return (userData.length === 1) ? userData[0] : userData;
+    }
+
     getUsers = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const user = await userRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user]), null, 2));
             } else {
                 const users = await userRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(users, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(users), null, 2));
             }
         } catch (error) {
             logger.error('getAllUsers: ', error);

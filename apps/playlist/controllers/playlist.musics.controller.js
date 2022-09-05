@@ -7,6 +7,17 @@ const playlistMusicsRepository = new PlaylistMusicsRepository();
 
 
 class PlaylistMusicsController {
+
+    #print = (playlistMusicsArr) => {
+
+        const playlistMusicsData = []
+        playlistMusicsArr.forEach(playlistMusics => {
+            const playlistMusicsJson = { }
+            playlistMusicsData.push(playlistMusicsJson)
+        });
+        return playlistMusicsData;
+    }
+
     getPlaylistMusics = async (req, res) => {
         try {
             const { id } = req.querystring;

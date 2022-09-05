@@ -7,6 +7,18 @@ const historyRepository = new HistoryRepository();
 
 
 class HistoryController {
+
+    #print = (historyArr) => {
+
+        const historyData = []
+        historyArr.forEach(history => {
+            const historyJson = { }
+            historyData.push(historyJson)
+        });
+        return historyData;
+    }
+
+
     getHistories = async (req, res) => {
         try {
             const { id } = req.querystring;

@@ -11,6 +11,17 @@ logger.level = 'debug';
 
 
 class MusicController {
+
+    #print = (musicArr) => {
+
+        const musicData = []
+        musicArr.forEach(music => {
+            const musicJson = { }
+            musicData.push(musicJson)
+        });
+        return musicData;
+    }
+
     getMusics = async (req, res) => {
         try {
             const { id } = req.querystring;

@@ -7,15 +7,37 @@ const categoryRepository = new CategoryRepository();
 
 
 class CategoryController {
+
+    #print = (categoryArr) => {
+
+        const categoryData = []
+        categoryArr.forEach(category => {
+            const categoryJson = {
+                "category-id": category.CategoryID,
+                "name": category.CategoryName,
+                "img": category.CategoryImg,
+                "creator": category.Creator,
+                "create-time": category.CreateTime,
+                "midifier": category.Modifier,
+                "modifi-time": category.ModifiTime,
+                "delete-flag": category.IsDelete
+            }
+            categoryData.push(categoryJson)
+        });
+        return categoryData;
+    }
+
     getCategories = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const category = await categoryRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(category, null, 2));
+
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([category]), null, 2));
             } else {
                 const categorys = await categoryRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(categorys, null, 2));
+
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(categorys), null, 2));
             }
         } catch (error) {
             logger.error('getAllCategorys: ', error);
@@ -44,6 +66,7 @@ class CategoryController {
             const categoryOld = await categoryRepository.fetchById(id);
             categoryOld.CategoryName = body.CategoryName ?? categoryOld.CategoryName;
             categoryOld.CategoryImg = body.CategoryImg ?? categoryOld.CategoryImg;
+
 
             const category = await categoryRepository.update(categoryOld, req.UserID);
             if (!category)

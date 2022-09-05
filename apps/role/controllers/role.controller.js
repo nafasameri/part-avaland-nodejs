@@ -7,15 +7,34 @@ const roleRepository = new RoleRepository();
 
 
 class RoleController {
+
+    #print = (roleArr) => {
+        const roleData = []
+        roleArr.forEach(role => {
+            const roleJson = {
+                "role-id": role.RoleID,
+                "role-name": role.RoleName,
+                "description": role.RoleDesc,
+                "creator": role.Creator,
+                "create-time": role.CreateTime,
+                "modifier": role.Modifier,
+                "modifi-time": role.ModifiTime,
+                "delete-flag": role.IsDelete
+            }
+            roleData.push(roleJson)
+        });
+        return roleData;
+    }
+
     getRoles = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const role = await roleRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(role, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([role]), null, 2));
             } else {
                 const roles = await roleRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(roles, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(roles), null, 2));
             }
         } catch (error) {
             logger.error('getAllRoles: ', error);
