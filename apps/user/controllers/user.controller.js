@@ -25,7 +25,6 @@ class UserController {
             }
             userData.push(userJson)
         });
-
         return (userData.length === 1) ? userData[0] : userData;
     }
 

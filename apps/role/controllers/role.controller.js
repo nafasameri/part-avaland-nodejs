@@ -23,7 +23,7 @@ class RoleController {
             }
             roleData.push(roleJson)
         });
-        return roleData;
+        return (roleData.length == 1) ? roleData[0] : roleData;
     }
 
     getRoles = async (req, res) => {

@@ -24,7 +24,7 @@ class CategoryController {
             }
             categoryData.push(categoryJson)
         });
-        return categoryData;
+        return (categoryData == 1) ? categoryData[0] : categoryData;
     }
 
     getCategories = async (req, res) => {

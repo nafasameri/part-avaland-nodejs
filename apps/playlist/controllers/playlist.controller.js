@@ -13,18 +13,18 @@ class PlaylistController {
         const playlistData = []
         playlistArr.forEach(playlist => {
             const playlistJson = {
-                "playlist-id":playlist.PlaylistID,
-                "name":playlist.PlaylistName,
-                "description":playlist.PlaylistDesc,
-                "creator":playlist.Creator,
-                "create-time":playlist.CreateTime,
-                "modifier":playlist.Modifier,
-                "modifi-time":playlist.ModifiTime,
-                "delete-flag":playlist.IsDelete
+                "playlist-id": playlist.PlaylistID,
+                "name": playlist.PlaylistName,
+                "description": playlist.PlaylistDesc,
+                "creator": playlist.Creator,
+                "create-time": playlist.CreateTime,
+                "modifier": playlist.Modifier,
+                "modifi-time": playlist.ModifiTime,
+                "delete-flag": playlist.IsDelete
             }
             playlistData.push(playlistJson)
         });
-        return playlistData;
+        return (playlistData == 1) ? playlistData[0] : playlistData;
     }
 
 

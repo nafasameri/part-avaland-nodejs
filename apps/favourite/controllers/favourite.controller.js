@@ -24,7 +24,7 @@ class FavouriteController {
             }
             favouriteData.push(favouriteJson)
         });
-        return favouriteData;
+        return (favouriteData == 1) ? favouriteData[0] : favouriteData;
     }
 
     getFavourites = async (req, res) => {

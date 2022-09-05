@@ -16,10 +16,28 @@ class MusicController {
 
         const musicData = []
         musicArr.forEach(music => {
-            const musicJson = { }
+            const musicJson = {
+                "music-id": music.MusicID,
+                "album-name": music.AlbumName,
+                "category-id": music.CategoryID,
+                "name": music.MusicName,
+                "title": music.MusicTitle,
+                "poster": music.MusicPoster,
+                "url": music.MusicURL,
+                "duration": music.MusicDuration,
+                "lyrics": music.MusicLyrics,
+                "tags": music.MusicTags,
+                "artists": music.MusicArtists,
+                "release-time": music.MusicReleaseTime,
+                "creator": music.Creator,
+                "create-time": music.CreateTime,
+                "modifier": music.Modifier,
+                "modifi-time": music.ModifiTime,
+                "delete-flag": music.IsDelete
+            }
             musicData.push(musicJson)
         });
-        return musicData;
+        return (musicData == 1) ? musicData[0] : musicData;
     }
 
     getMusics = async (req, res) => {
@@ -27,10 +45,10 @@ class MusicController {
             const { id } = req.querystring;
             if (id) {
                 const music = await musicRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(music, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([music]), null, 2));
             } else {
                 const musics = await musicRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(musics, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(musics), null, 2));
             }
         } catch (error) {
             logger.error('getMusics: ', error);
@@ -39,14 +57,17 @@ class MusicController {
     };
 
     root = async (req, res) => {
-        sendResponse(res, 200, { 'Content-Type': 'text/html' }, `<html><body>
+        sendResponse(res, 200, { 'Content-Type': 'text/html' },
+            `
+            <html><body>
             <h2>With Node.js <code>"http"</code> module</h2>
             <form action="/music/upload" enctype="multipart/form-data" method="post">
             <div>Text field title: <input type="text" name="title" /></div>
             <div>File: <input type="file" name="multipleFiles" multiple="multiple" /></div>
             <input type="submit" value="Upload" />
             </form>
-            </body></html>`);
+            </body></html>
+            `);
     };
 
     upload = async (req, res) => {
@@ -85,7 +106,7 @@ class MusicController {
         const newMusic = {
             MusicURL: newFilename
             // MusicMimeType: mimetype
-        };        
+        };
         const music = await musicRepository.add(newMusic, req.UserID);
         sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify(music, null, 2));
     };
