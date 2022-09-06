@@ -7,15 +7,35 @@ const playlistMusicsRepository = new PlaylistMusicsRepository();
 
 
 class PlaylistMusicsController {
+
+    #print = (playlistMusicsArr) => {
+
+        const playlistMusicsData = []
+        playlistMusicsArr.forEach(playlistMusics => {
+            const playlistMusicsJson = {
+                "playlist-music-id":playlistMusics.PlaylistMusicID,
+                "playlist-id":playlistMusics.PlaylistID,
+                "music-id":playlistMusics.MusicID,
+                "creator":playlistMusics.Creator,
+                "create-time":playlistMusics.CreateTime,
+                "modifier":playlistMusics.Modifier,
+                "modifi-time":playlistMusics.ModifiTime,
+                "delete-flag":playlistMusics.IsDelete
+            }
+            playlistMusicsData.push(playlistMusicsJson)
+        });
+        return (playlistMusicsData == 1) ? playlistMusicsData[0] : playlistMusicsData;
+    }
+
     getPlaylistMusics = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
-                const playlistMusics = await playlistMusicsRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics, null, 2));
+                const playlistMusic = await playlistMusicsRepository.fetchById(id);
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusic]), null, 2));
             } else {
                 const playlistMusics = await playlistMusicsRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(playlistMusics), null, 2));
             }
         } catch (error) {
             logger.error('getAllPlaylist: ', error);
@@ -38,9 +58,9 @@ class PlaylistMusicsController {
         }
     };
 
-  
 
-    deletePlaylistMusics= async (req, res) => {
+
+    deletePlaylistMusics = async (req, res) => {
         try {
             const { id } = req.querystring;
             const playlistMusics = await playlistMusicsRepository.delete(id, req.UserID);

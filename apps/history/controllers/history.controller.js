@@ -7,15 +7,36 @@ const historyRepository = new HistoryRepository();
 
 
 class HistoryController {
+
+    #print = (historyArr) => {
+
+        const historyData = []
+        historyArr.forEach(history => {
+            const historyJson = {
+                "history-id": history.HistoryID,
+                "user-id": history.UserID,
+                "musid-id": history.MusicID,
+                "creator": history.Creator,
+                "creator-time": history.CreateTime,
+                "modifier": history.Modifier,
+                "modifi-time": history.ModifiTime,
+                "delete-flag": history.IsDelete
+            }
+            historyData.push(historyJson)
+        });
+        return (historyData == 1) ? historyData[0] : historyData;
+    }
+
+
     getHistories = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const history = await historyRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(history, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([history]), null, 2));
             } else {
                 const historys = await historyRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(historys, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(historys), null, 2));
             }
         } catch (error) {
             logger.error('getHistories: ', error);
@@ -28,7 +49,7 @@ class HistoryController {
             const { body } = req;
             const history = await historyRepository.add(body, req.UserID);
 
-            if (!history) 
+            if (!history)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Create');
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(history));

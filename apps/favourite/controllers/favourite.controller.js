@@ -7,15 +7,35 @@ const favouriteRepository = new FavouriteRepository();
 
 
 class FavouriteController {
+    #print = (favouriteArr) => {
+
+        const favouriteData = []
+        favouriteArr.forEach(favourite => {
+            const favouriteJson = {
+                "favourite-id": favourite.FavouriteID,
+                "user-id": favourite.UserID,
+                "music-id": favourite.MusicID,
+                "like-time": favourite.LikedTime,
+                "creator": favourite.Creator,
+                "create-time": favourite.CreateTime,
+                "modifier": favourite.Modifier,
+                "modifi-time": favourite.ModifiTime,
+                "delete-flag": favourite.IsDelete
+            }
+            favouriteData.push(favouriteJson)
+        });
+        return (favouriteData == 1) ? favouriteData[0] : favouriteData;
+    }
+
     getFavourites = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const favourite = await favouriteRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([favourite]), null, 2));
             } else {
                 const favourites = await favouriteRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourites, null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(favourites), null, 2));
             }
         } catch (error) {
             logger.error('getAllFavourites: ', error);
@@ -26,10 +46,10 @@ class FavouriteController {
     createFavourite = async (req, res) => {
         try {
             const { body } = req;
-            let favourite = await favouriteRepository.fetchByUserMusic(body.MusicID, body.UserID);            
+            let favourite = await favouriteRepository.fetchByUserMusic(body.MusicID, body.UserID);
             if (favourite.length == 0)
                 favourite = await favouriteRepository.add(body, req.UserID);
-            else { 
+            else {
                 favourite.IsDelete = favourite.IsDelete == 0 ? 1 : 0;
                 favourite = await favouriteRepository.update(favourite, req.UserID);
             }
