@@ -12,7 +12,7 @@ logger.level = 'debug';
 // let req = http.request({
 //     hostname: config.serverConfig.hostname,
 //     port: config.serverConfig.port,
-//     path: '/user/add',
+//     path: '/user/login',
 //     headers: {
 //         'content-type': 'application/json'
 //     },
@@ -30,8 +30,8 @@ logger.level = 'debug';
 //     });
 // });
 // req.write(JSON.stringify({
-//     "UserName":"arsadeghi",
-//     "RoleID":1    	
+//     "username": "test sign up",
+//     "password": '11411'    	
 // }));
 // req.end();
 
@@ -40,8 +40,11 @@ logger.level = 'debug';
 http.request({
     hostname: config.serverConfig.hostname,
     port: config.serverConfig.port,
-    path: '/category/categories',
-    method: 'GET'
+    path: '/role/roles',
+    method: 'GET',
+    headers: {
+        'Set-Cookie': 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lIjoxNjYyNzk3NDcwMzczLCJ1c2VybmFtZSI6InRlc3Qgc2lnbiB1cCIsInBhc3N3b3JkIjoiMTExMSIsImlhdCI6MTY2Mjc5NzQ3MH0.eBQr_JGRUJWCFt7itzsEu0x1LRGtJwTPBCelKuFrtt0; Expires=Sat, 10 Sep 2022 08:11:20 GMT; Path=/; Domain=127.0.0.1'
+    }
 }, (res) => {
     let buffer = '';
     res.on('data', (chunk) => {

@@ -1,10 +1,25 @@
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 const logger = require('log4js').getLogger();
 logger.level = 'debug';
 
 const sendResponse = require('../../../modules/handler/response.handler');
 const UserRepository = require("../repositories/user.repository");
 const userRepository = new UserRepository();
+const client = require('../../../modules/database/redis');
 
+
+function generateToken(username, password) {
+    const jwtSecretKey = process.env.JWT_SECRET_KEY || 'jwt_secret_key';
+    const data = {
+        time: Date.now(),
+        username: username,
+        password: password
+    };
+
+    const token = jwt.sign(data, jwtSecretKey);
+    return token;
+}
 
 class UserController {
 
@@ -44,18 +59,48 @@ class UserController {
         }
     };
 
-    createUser = async (req, res) => {
+    signUp = async (req, res) => {
         try {
             const { body } = req;
-            const user = await userRepository.add(body, req.UserID);
+            const passHash = crypto.createHash("md5").update(body.password + "hash").digest("hex");
+            const userInfo = {
+                UserName: body.username,
+                Password: passHash,
+                RoleID: 3
+            }
+            const user = await userRepository.add(userInfo);
 
             if (!user)
-                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Create');
+                sendResponse(res, 401, { "Content-Type": "application/json" }, 'Could Not Sign up');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
         } catch (error) {
-            logger.error('createUser: ', error);
-            throw error;
+            logger.error('signUp: ', error);
+            throw Error('Could Not Sign up');
+        }
+    };
+
+    login = async (req, res) => {
+        try {
+            const { body } = req;
+            const passHash = crypto.createHash("md5").update(body.password + "hash").digest("hex");
+            const user = await userRepository.fetchByUserNamePassword(body.username, passHash);
+
+            if (user) {
+                const token = generateToken(body.username, body.password);
+                const time = new Date(Date.now() + 10000);
+                let setCookieCommand = 'token=' + token + '; Expires=' + time.toUTCString() + '; Path=/' + '; Domain=127.0.0.1';
+                const key = token.split('.')[2];
+                client.set(key, user.UserID);
+        
+                if (token)
+                    return sendResponse(res, 200, { 'Set-Cookie': setCookieCommand, 'token': token }, 'Authorized');
+                return sendResponse(res, 401, null, 'Un Authorized');
+            }
+            return sendResponse(res, 401, null, 'Un Authorized');
+        } catch (error) {
+            logger.error('signUp: ', error);
+            throw Error('Could Not Login');
         }
     };
 

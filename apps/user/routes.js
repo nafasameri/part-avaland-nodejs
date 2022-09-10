@@ -9,10 +9,16 @@ const routes = [
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "add",
+    url: "login",
     method: "POST",
-    controller: userController.createUser,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
+    controller: userController.login,
+    middlewares: [fetchQueryStringFromURL, getHeaders],
+  },
+  {
+    url: "signup",
+    method: "POST",
+    controller: userController.signUp,
+    middlewares: [fetchQueryStringFromURL, getHeaders],
   },
   {
     url: "update",

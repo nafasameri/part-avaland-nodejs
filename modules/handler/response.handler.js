@@ -5,7 +5,7 @@ module.exports = (res, status, header, content) => {
     res.end(JSON.stringify({ 
         statusCode: status,
         statusMessage: statusCode.getStatusText(status),
-        timestamp: Date.now(),
+        time: Date.now(),
         message: content
     }));
 };
