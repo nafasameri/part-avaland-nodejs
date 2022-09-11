@@ -38,10 +38,7 @@ class Router {
       let runMiddlewareForRoute = await this.#runMiddlewares(middlewares, req, res);
       if (runMiddlewareForRoute) await handler(req, res);
     } catch (e) {
-      sendResponse(res, res?.statusCode ?? 500, { "Content-Type": "application/json" }, JSON.stringify({
-        message: "Something Went Wrong!",
-        additionalInfo: e?.message,
-      }));
+      sendResponse(res, res?.status ?? 500, { "Content-Type": "application/json" }, e?.message);
     }
   }
 

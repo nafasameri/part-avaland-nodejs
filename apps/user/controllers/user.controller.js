@@ -99,7 +99,7 @@ class UserController {
             }
             return sendResponse(res, 401, null, 'Un Authorized');
         } catch (error) {
-            logger.error('signUp: ', error);
+            logger.error('Login: ', error);
             throw Error('Could Not Login');
         }
     };
