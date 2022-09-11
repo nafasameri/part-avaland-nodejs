@@ -1,6 +1,4 @@
-const logger = require('log4js').getLogger();
-logger.level = 'debug';
-
+const logger = require('../../../modules/logger');
 const sendResponse = require('../../../modules/handler/response.handler');
 const RoleRepository = require("../repositories/role.repository");
 const roleRepository = new RoleRepository();
@@ -37,7 +35,7 @@ class RoleController {
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(roles), null, 2));
             }
         } catch (error) {
-            logger.error('getAllRoles: ', error);
+            logger.error('getAllRoles: ' + error);
             throw error;
         }
     };
@@ -53,7 +51,7 @@ class RoleController {
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(role));
             }
         } catch (error) {
-            logger.error('createRole: ', error);
+            logger.error('createRole: ' + error);
             throw error;
         }
     };
@@ -72,7 +70,7 @@ class RoleController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(role));
         } catch (error) {
-            logger.error('updateRole: ', error);
+            logger.error('updateRole: ' + error);
             throw error;
         }
     };
@@ -87,7 +85,7 @@ class RoleController {
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(role));
             }
         } catch (error) {
-            logger.error('deleteRole: ', error);
+            logger.error('deleteRole: ' + error);
             throw error;
         }
     };

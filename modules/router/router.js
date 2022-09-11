@@ -1,6 +1,8 @@
-const Route = require("./Route");
 const METHODS = require("http").METHODS;
+
+const Route = require("./Route");
 const sendResponse = require('../../modules/handler/response.handler');
+const logger = require('../logger');
 
 class Router {
   #routePool;
@@ -38,6 +40,7 @@ class Router {
       let runMiddlewareForRoute = await this.#runMiddlewares(middlewares, req, res);
       if (runMiddlewareForRoute) await handler(req, res);
     } catch (e) {
+      logger.error(e?.message);
       sendResponse(res, res?.status ?? 500, { "Content-Type": "application/json" }, e?.message);
     }
   }

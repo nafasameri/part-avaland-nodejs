@@ -1,6 +1,4 @@
-const logger = require('log4js').getLogger();
-logger.level = 'debug';
-
+const logger = require('../../../modules/logger');
 const sendResponse = require('../../../modules/handler/response.handler');
 const CategoryRepository = require("../repositories/category.repository");
 const categoryRepository = new CategoryRepository();
@@ -40,7 +38,7 @@ class CategoryController {
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(categorys), null, 2));
             }
         } catch (error) {
-            logger.error('getAllCategorys: ', error);
+            logger.error('getAllCategorys: ' + error);
             throw error;
         }
     };
@@ -54,7 +52,7 @@ class CategoryController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(category));
         } catch (error) {
-            logger.error('createCategory: ', error);
+            logger.error('createCategory: ' + error);
             throw error;
         }
     };
@@ -74,7 +72,7 @@ class CategoryController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(category));
         } catch (error) {
-            logger.error('updateCategory: ', error);
+            logger.error('updateCategory: ' + error);
             throw error;
         }
     };
@@ -88,7 +86,7 @@ class CategoryController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(category));
         } catch (error) {
-            logger.error('deleteCategory: ', error);
+            logger.error('deleteCategory: ' + error);
             throw error;
         }
     };

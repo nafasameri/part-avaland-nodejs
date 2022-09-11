@@ -1,6 +1,4 @@
-const logger = require('log4js').getLogger();
-logger.level = 'debug';
-
+const logger = require('../../../modules/logger');
 const sendResponse = require('../../../modules/handler/response.handler');
 const PlaylistMusicsRepository = require("../repositories/playlist.musics.repository");
 const playlistMusicsRepository = new PlaylistMusicsRepository();
@@ -38,7 +36,7 @@ class PlaylistMusicsController {
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(playlistMusics), null, 2));
             }
         } catch (error) {
-            logger.error('getAllPlaylist: ', error);
+            logger.error('getAllPlaylist: ' + error);
             throw error;
         }
     };
@@ -53,7 +51,7 @@ class PlaylistMusicsController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics));
         } catch (error) {
-            logger.error('createPlaylistMusics: ', error);
+            logger.error('createPlaylistMusics: ' + error);
             throw error;
         }
     };
@@ -69,7 +67,7 @@ class PlaylistMusicsController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics));
         } catch (error) {
-            logger.error('deletePlaylistMusics: ', error);
+            logger.error('deletePlaylistMusics: ' + error);
             throw error;
         }
     };

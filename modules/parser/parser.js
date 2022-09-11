@@ -1,7 +1,5 @@
 const sendResponse = require('../handler/response.handler');
-const logger = require('log4js').getLogger();
-logger.level = 'debug';
-
+const logger = require('../logger');
 
 
 function fetchQueryStringFromURL(req, res, next) {
@@ -71,11 +69,11 @@ async function getHeaders(req, res, next) {
     switch (contentType) {
       case 'application/x-www-form-urlencoded':
         req.params = data;
-        logger.warn('params: ' + req.params);
+        logger.warn('params: ' + JSON.stringify(req.params));
         break;
       case 'application/json':
         req.body = data;
-        logger.warn('body: ' + req.body);
+        logger.warn('body: ' + JSON.stringify(req.body));
         break;
     }
     return req;

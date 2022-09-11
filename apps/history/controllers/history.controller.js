@@ -1,6 +1,4 @@
-const logger = require('log4js').getLogger();
-logger.level = 'debug';
-
+const logger = require('../../../modules/logger');
 const sendResponse = require('../../../modules/handler/response.handler');
 const HistoryRepository = require("../repositories/History.repository");
 const historyRepository = new HistoryRepository();
@@ -39,7 +37,7 @@ class HistoryController {
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(historys), null, 2));
             }
         } catch (error) {
-            logger.error('getHistories: ', error);
+            logger.error('getHistories: ' + error);
             throw error;
         }
     };
@@ -54,7 +52,7 @@ class HistoryController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(history));
         } catch (error) {
-            logger.error('createHistory: ', error);
+            logger.error('createHistory: ' + error);
             throw error;
         }
     };
@@ -73,7 +71,7 @@ class HistoryController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(history));
         } catch (error) {
-            logger.error('updateHistory: ', error);
+            logger.error('updateHistory: ' + error);
             throw error;
         }
     };
@@ -87,7 +85,7 @@ class HistoryController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(history));
         } catch (error) {
-            logger.error('deleteHistory: ', error);
+            logger.error('deleteHistory: ' + error);
             throw error;
         }
     };

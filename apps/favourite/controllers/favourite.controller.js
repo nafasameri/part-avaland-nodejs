@@ -1,6 +1,4 @@
-const logger = require('log4js').getLogger();
-logger.level = 'debug';
-
+const logger = require('../../../modules/logger');
 const sendResponse = require('../../../modules/handler/response.handler');
 const FavouriteRepository = require("../repositories/favourite.repository");
 const favouriteRepository = new FavouriteRepository();
@@ -38,7 +36,7 @@ class FavouriteController {
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(favourites), null, 2));
             }
         } catch (error) {
-            logger.error('getAllFavourites: ', error);
+            logger.error('getAllFavourites: ' + error);
             throw error;
         }
     };
@@ -58,7 +56,7 @@ class FavouriteController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite));
         } catch (error) {
-            logger.error('createFavourite: ', error);
+            logger.error('createFavourite: ' + error);
             throw error;
         }
     };
@@ -77,7 +75,7 @@ class FavouriteController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite));
         } catch (error) {
-            logger.error('updateFavourite: ', error);
+            logger.error('updateFavourite: ' + error);
             throw error;
         }
     };
@@ -91,7 +89,7 @@ class FavouriteController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(favourite));
         } catch (error) {
-            logger.error('deleteFavourite: ', error);
+            logger.error('deleteFavourite: ' + error);
             throw error;
         }
     };

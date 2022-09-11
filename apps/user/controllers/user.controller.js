@@ -1,8 +1,7 @@
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-const logger = require('log4js').getLogger();
-logger.level = 'debug';
 
+const logger = require('../../../modules/logger');
 const sendResponse = require('../../../modules/handler/response.handler');
 const UserRepository = require("../repositories/user.repository");
 const userRepository = new UserRepository();
@@ -54,7 +53,7 @@ class UserController {
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(users), null, 2));
             }
         } catch (error) {
-            logger.error('getAllUsers: ', error);
+            logger.error('getAllUsers: ' + error);
             throw error;
         }
     };
@@ -75,7 +74,7 @@ class UserController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
         } catch (error) {
-            logger.error('signUp: ', error);
+            logger.error('signUp: ' + error);
             throw Error('Could Not Sign up');
         }
     };
@@ -99,7 +98,7 @@ class UserController {
             }
             return sendResponse(res, 401, null, 'Un Authorized');
         } catch (error) {
-            logger.error('Login: ', error);
+            logger.error('Login: ' + error);
             throw Error('Could Not Login');
         }
     };
@@ -120,7 +119,7 @@ class UserController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user));
         } catch (error) {
-            logger.error('updateUser: ', error);
+            logger.error('updateUser: ' + error);
             throw error;
         }
     };
@@ -134,7 +133,7 @@ class UserController {
             else
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user));
         } catch (error) {
-            logger.error('deleteUser: ', error);
+            logger.error('deleteUser: ' + error);
             throw error;
         }
     };

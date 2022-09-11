@@ -1,0 +1,80 @@
+[2022-09-11T18:34:29.285Z] [INFO]: [object Object]
+[2022-09-11T18:40:32.482Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:40:44.482Z] [Warning]: querystring: {}
+[2022-09-11T18:40:44.488Z] [ERROR]: getAllRoles: Error: connect EHOSTUNREACH 192.168.5.121:5432
+[2022-09-11T18:40:44.493Z] [ERROR]: [object Object]
+[2022-09-11T18:42:31.488Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:42:40.943Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:42:42.016Z] [Warning]: querystring: {}
+[2022-09-11T18:42:42.022Z] [ERROR]: getAllRoles: Error: connect EHOSTUNREACH 192.168.5.121:5432
+[2022-09-11T18:42:42.027Z] [ERROR]: [object Object]
+[2022-09-11T18:43:42.211Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:43:45.972Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:43:47.681Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:43:49.072Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:43:49.246Z] [Warning]: querystring: {}
+[2022-09-11T18:43:49.252Z] [ERROR]: getAllRoles: Error: connect EHOSTUNREACH 192.168.5.121:5432
+[2022-09-11T18:43:49.257Z] [ERROR]: {"statusCode":500,"statusMessage":"Internal Server Error","time":1662921829254,"message":"connect EHOSTUNREACH 192.168.5.121:5432"}
+[2022-09-11T18:44:22.079Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:44:26.342Z] [Warning]: querystring: {}
+[2022-09-11T18:44:26.348Z] [ERROR]: getAllRoles: Error: connect EHOSTUNREACH 192.168.5.121:5432
+[2022-09-11T18:44:26.353Z] [ERROR]: {"statusCode":500,"statusMessage":"Internal Server Error","time":1662921866349,"message":"connect EHOSTUNREACH 192.168.5.121:5432"}
+[2022-09-11T18:45:57.634Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:46:02.974Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:46:11.414Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:46:15.475Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:46:17.411Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:46:18.588Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:46:21.146Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:46:25.088Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:46:26.737Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:46:29.146Z] [Warning]: querystring: {}
+[2022-09-11T18:46:29.152Z] [ERROR]: getAllRoles: Error: connect EHOSTUNREACH 192.168.5.121:5432
+[2022-09-11T18:46:29.152Z] [ERROR]: connect EHOSTUNREACH 192.168.5.121:5432
+[2022-09-11T18:46:29.157Z] [ERROR]: {"statusCode":500,"statusMessage":"Internal Server Error","time":1662921989154,"message":"connect EHOSTUNREACH 192.168.5.121:5432"}
+[2022-09-11T18:48:05.670Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:49:04.909Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:49:19.645Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:49:21.154Z] [ERROR]: Cannot read properties of undefined (reading '0')
+[2022-09-11T18:49:21.159Z] [ERROR]: [object Object]
+[2022-09-11T18:49:41.663Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:49:42.254Z] [ERROR]: Cannot read properties of undefined (reading '0')
+[2022-09-11T18:49:42.259Z] [ERROR]: {"statusCode":500,"statusMessage":"Internal Server Error","time":1662922182256,"message":"Cannot read properties of undefined (reading '0')"}
+[2022-09-11T18:50:17.290Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:50:21.420Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:50:31.747Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:50:35.997Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:50:45.660Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:50:48.969Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:50:55.702Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:50:59.596Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:51:00.123Z] [Warning]: querystring: {}
+[2022-09-11T18:51:00.129Z] [ERROR]: getMusics: ,Error: connect EHOSTUNREACH 192.168.5.121:5432
+[2022-09-11T18:51:00.129Z] [ERROR]: connect EHOSTUNREACH 192.168.5.121:5432
+[2022-09-11T18:51:00.134Z] [ERROR]: {"statusCode":500,"statusMessage":"Internal Server Error","time":1662922260131,"message":"connect EHOSTUNREACH 192.168.5.121:5432"}
+[2022-09-11T18:52:40.002Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:01.597Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:11.083Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:13.728Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:18.471Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:21.713Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:33.807Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:37.261Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:39.944Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:42.796Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:53.472Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:56.458Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:53:59.364Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:54:02.222Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:54:13.321Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:54:15.640Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:54:19.820Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:54:51.149Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:55:00.744Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:55:04.505Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:55:05.071Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:55:42.785Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:55:53.804Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:56:02.406Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:56:10.024Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-11T18:56:15.833Z] [INFO]: Server is running at: 127.0.0.1:81

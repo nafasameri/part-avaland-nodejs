@@ -1,13 +1,11 @@
 const formidable = require('formidable')
-const logger = require('log4js').getLogger();
 const fs = require('fs');
 
+const logger = require('../../../modules/logger');
 const sendResponse = require('../../../modules/handler/response.handler');
 const MusicRepository = require("../repositories/music.repository");
 const musicRepository = new MusicRepository();
 const { date } = require('../../../modules/utility');
-
-logger.level = 'debug';
 
 
 class MusicController {
@@ -51,7 +49,7 @@ class MusicController {
                 sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(musics), null, 2));
             }
         } catch (error) {
-            logger.error('getMusics: ', error);
+            logger.error('getMusics: ' + error);
             throw error;
         }
     };
