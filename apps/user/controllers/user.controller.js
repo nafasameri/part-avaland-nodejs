@@ -47,10 +47,10 @@ class UserController {
             const { id } = req.querystring;
             if (id) {
                 const user = await userRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user]), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
             } else {
                 const users = await userRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(users), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(users)));
             }
         } catch (error) {
             logger.error('getAllUsers: ' + error);
@@ -117,7 +117,7 @@ class UserController {
             if (!user)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
         } catch (error) {
             logger.error('updateUser: ' + error);
             throw error;
@@ -131,7 +131,7 @@ class UserController {
             if (!user)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(user));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
         } catch (error) {
             logger.error('deleteUser: ' + error);
             throw error;

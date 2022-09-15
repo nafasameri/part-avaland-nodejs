@@ -78,3 +78,67 @@
 [2022-09-11T18:56:02.406Z] [INFO]: Server is running at: 127.0.0.1:81
 [2022-09-11T18:56:10.024Z] [INFO]: Server is running at: 127.0.0.1:81
 [2022-09-11T18:56:15.833Z] [INFO]: Server is running at: 127.0.0.1:81
+[2022-09-15T11:27:54.542Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:17:35.508Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:17:46.879Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:17:54.000Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:18:00.357Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:18:07.632Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:18:16.445Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:18:18.311Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:19:34.303Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:19:35.899Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:19:36.569Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:20:14.459Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:20:14.459Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:20:18.572Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:20:34.946Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:20:55.226Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:21:03.442Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:21:13.996Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:21:30.436Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:21:44.017Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:21:56.592Z] [INFO]:  
+[2022-09-15T12:22:30.301Z] [INFO]:  
+[2022-09-15T12:22:44.821Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:22:46.168Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:23:24.777Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:26:40.417Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:26:44.095Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:26:52.322Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:26:53.842Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:27:03.750Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:27:07.118Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:27:09.813Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:27:40.725Z] [Warning]: querystring: {} 
+[2022-09-15T12:27:40.726Z] [Warning]: body: {"username":"test sign up","password":"1111"} 
+[2022-09-15T12:28:22.297Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:28:25.723Z] [Warning]: querystring: {} 
+[2022-09-15T12:28:25.725Z] [Warning]: body: {"username":"test sign up","password":"1111"} 
+[2022-09-15T12:29:04.464Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:29:06.283Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:29:07.395Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:29:11.328Z] [Warning]: querystring: {} 
+[2022-09-15T12:29:11.330Z] [Warning]: body: {"username":"test sign up","password":"1111"} 
+[2022-09-15T12:29:11.410Z] [ERROR]: Login: error: column "Password" does not exist 
+[2022-09-15T12:29:11.411Z] [ERROR]: Could Not Login 
+[2022-09-15T12:29:42.815Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:29:46.895Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:30:00.870Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:30:04.799Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:30:07.158Z] [INFO]: querystring: {} 
+[2022-09-15T12:30:07.160Z] [INFO]: body: {"username":"test sign up","password":"1111"} 
+[2022-09-15T12:30:07.244Z] [ERROR]: Login: error: column "Password" does not exist 
+[2022-09-15T12:30:07.245Z] [ERROR]: Could Not Login 
+[2022-09-15T12:30:19.224Z] [INFO]: querystring: {} 
+[2022-09-15T12:30:19.225Z] [INFO]: body: {"username":"test sign up","password":"1111"} 
+[2022-09-15T12:30:19.304Z] [ERROR]: Login: error: column "Password" does not exist 
+[2022-09-15T12:30:19.304Z] [ERROR]: Could Not Login 
+[2022-09-15T12:31:11.221Z] [INFO]: querystring: {} 
+[2022-09-15T12:31:11.221Z] [INFO]: body: {"username":"test sign up","password":"1111"} 
+[2022-09-15T12:42:01.283Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-15T12:42:03.685Z] [INFO]: querystring: {} 
+[2022-09-15T12:42:03.687Z] [INFO]: body: {"username":"test sign up","password":"1111"} 
+[2022-09-15T12:42:03.687Z] [ERROR]: Login: TypeError: userRepository.sdfghj is not a function 
+[2022-09-15T12:42:03.688Z] [ERROR]: Could Not Login 
+[2022-09-15T12:42:28.855Z] [INFO]: Server is running at: 127.0.0.1:81 

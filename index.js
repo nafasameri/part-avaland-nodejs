@@ -1,5 +1,6 @@
-const EventEmitter = require("events");
 const fs = require("fs");
+const EventEmitter = require("events");
+
 const Server = require("./modules/server");
 const Router = require("./modules/router/router");
 

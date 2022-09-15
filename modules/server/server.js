@@ -15,7 +15,9 @@ class Server {
         eventEmitter.emit(this.eventName, req, res);
       })
       .listen(this.port, this.hostname, () => {
-        logger.info(`Server is running at: ${this.hostname}:${this.port}`);
+        const logServer = `Server is running at: ${this.hostname}:${this.port}`;
+        logger.info(logServer);
+        console.log(logServer);
       });
   }
 }

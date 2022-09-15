@@ -29,10 +29,10 @@ class RoleController {
             const { id } = req.querystring;
             if (id) {
                 const role = await roleRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([role]), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([role])));
             } else {
                 const roles = await roleRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(roles), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(roles)));
             }
         } catch (error) {
             logger.error('getAllRoles: ' + error);
@@ -48,7 +48,7 @@ class RoleController {
             if (!role) {
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Create');
             } else {
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(role));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([role])));
             }
         } catch (error) {
             logger.error('createRole: ' + error);
@@ -68,7 +68,7 @@ class RoleController {
             if (!role)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(role));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([role])));
         } catch (error) {
             logger.error('updateRole: ' + error);
             throw error;
@@ -82,7 +82,7 @@ class RoleController {
             if (!role) {
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Delete!');
             } else {
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(role));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([role])));
             }
         } catch (error) {
             logger.error('deleteRole: ' + error);

@@ -31,10 +31,10 @@ class HistoryController {
             const { id } = req.querystring;
             if (id) {
                 const history = await historyRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([history]), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([history])));
             } else {
                 const historys = await historyRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(historys), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(historys)));
             }
         } catch (error) {
             logger.error('getHistories: ' + error);
@@ -50,7 +50,7 @@ class HistoryController {
             if (!history)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(history));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([history])));
         } catch (error) {
             logger.error('createHistory: ' + error);
             throw error;
@@ -69,7 +69,7 @@ class HistoryController {
             if (!history)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(history));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([history])));
         } catch (error) {
             logger.error('updateHistory: ' + error);
             throw error;
@@ -83,7 +83,7 @@ class HistoryController {
             if (!history)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(history));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([history])));
         } catch (error) {
             logger.error('deleteHistory: ' + error);
             throw error;
