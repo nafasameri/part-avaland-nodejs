@@ -7,7 +7,6 @@ const categoryRepository = new CategoryRepository();
 class CategoryController {
 
     #print = (categoryArr) => {
-
         const categoryData = []
         categoryArr.forEach(category => {
             const categoryJson = {
@@ -30,12 +29,11 @@ class CategoryController {
             const { id } = req.querystring;
             if (id) {
                 const category = await categoryRepository.fetchById(id);
-
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([category]), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([category])));
             } else {
                 const categorys = await categoryRepository.fetchAll();
 
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(categorys), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(categorys)));
             }
         } catch (error) {
             logger.error('getAllCategorys: ' + error);
@@ -50,7 +48,7 @@ class CategoryController {
             if (!category)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(category));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([category])));
         } catch (error) {
             logger.error('createCategory: ' + error);
             throw error;
@@ -70,7 +68,7 @@ class CategoryController {
             if (!category)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(category));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([category])));
         } catch (error) {
             logger.error('updateCategory: ' + error);
             throw error;
@@ -84,7 +82,7 @@ class CategoryController {
             if (!category)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(category));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([category])));
         } catch (error) {
             logger.error('deleteCategory: ' + error);
             throw error;

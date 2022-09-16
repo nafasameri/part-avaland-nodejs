@@ -43,10 +43,10 @@ class MusicController {
             const { id } = req.querystring;
             if (id) {
                 const music = await musicRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([music]), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([music])));
             } else {
                 const musics = await musicRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(musics), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(musics)));
             }
         } catch (error) {
             logger.error('getMusics: ' + error);
@@ -56,16 +56,14 @@ class MusicController {
 
     root = async (req, res) => {
         sendResponse(res, 200, { 'Content-Type': 'text/html' },
-            `
-            <html><body>
+            `<html><body>
             <h2>With Node.js <code>"http"</code> module</h2>
             <form action="/music/upload" enctype="multipart/form-data" method="post">
             <div>Text field title: <input type="text" name="title" /></div>
             <div>File: <input type="file" name="multipleFiles" multiple="multiple" /></div>
             <input type="submit" value="Upload" />
             </form>
-            </body></html>
-            `);
+            </body></html>`);
     };
 
     upload = async (req, res) => {
@@ -87,7 +85,7 @@ class MusicController {
                     logger.error(error);
                     return sendResponse(res, error.httpCode || 400, { 'Content-Type': 'text/plain' }, error);
                 }
-                // sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify({ fields, files }, null, 2));
+                // sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify({ fields, files }));
                 this.createMusic(req, res);
             });
 
@@ -106,13 +104,13 @@ class MusicController {
             // MusicMimeType: mimetype
         };
         const music = await musicRepository.add(newMusic, req.UserID);
-        sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify(music, null, 2));
+        sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify(this.#print([music])));
     };
 
     updateMusic = async (req, res) => {
         const { body } = req;
         const music = await musicRepository.update(body, req.UserID);
-        sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify(music, null, 2));
+        sendResponse(res, 200, { 'Content-Type': 'application/json' }, JSON.stringify(this.#print([music])));
     };
 
 

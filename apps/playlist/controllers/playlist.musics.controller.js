@@ -30,10 +30,10 @@ class PlaylistMusicsController {
             const { id } = req.querystring;
             if (id) {
                 const playlistMusic = await playlistMusicsRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusic]), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusic])));
             } else {
                 const playlistMusics = await playlistMusicsRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(playlistMusics), null, 2));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(playlistMusics)));
             }
         } catch (error) {
             logger.error('getAllPlaylist: ' + error);
@@ -49,14 +49,12 @@ class PlaylistMusicsController {
             if (!playlistMusics)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusics])));
         } catch (error) {
             logger.error('createPlaylistMusics: ' + error);
             throw error;
         }
     };
-
-
 
     deletePlaylistMusics = async (req, res) => {
         try {
@@ -65,7 +63,7 @@ class PlaylistMusicsController {
             if (!playlistMusics)
                 sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(playlistMusics));
+                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusics])));
         } catch (error) {
             logger.error('deletePlaylistMusics: ' + error);
             throw error;

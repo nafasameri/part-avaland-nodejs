@@ -1,8 +1,7 @@
 const config = require("../config");
 const http = require('http');
 const fs = require('fs');
-const logger = require('log4js').getLogger();
-logger.level = 'debug';
+const logger = require('../modules/logger');
 
 // const url = require('url');
 // console.log(url.parse('/users?id=3'));
@@ -36,11 +35,11 @@ logger.level = 'debug';
 // req.end();
 
 
-/// GET roles
+/// GET
 http.request({
     hostname: config.serverConfig.hostname,
     port: config.serverConfig.port,
-    path: '/role/roles',
+    path: '/music/musics',
     method: 'GET',
     headers: {
         'Set-Cookie': 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lIjoxNjYyNzk3NDcwMzczLCJ1c2VybmFtZSI6InRlc3Qgc2lnbiB1cCIsInBhc3N3b3JkIjoiMTExMSIsImlhdCI6MTY2Mjc5NzQ3MH0.eBQr_JGRUJWCFt7itzsEu0x1LRGtJwTPBCelKuFrtt0; Expires=Sat, 10 Sep 2022 08:11:20 GMT; Path=/; Domain=127.0.0.1'
@@ -53,98 +52,8 @@ http.request({
 
     res.on('end', () => {
         if (res.statusCode == 200)
-            logger.info(JSON.parse(buffer.toString()));
+            logger.info(buffer.toString());
         else
-            logger.error(JSON.parse(buffer.toString()));
+            logger.error(buffer.toString());
     });
 }).end();
-
-
-/// delete roles
-// http.request({
-//     hostname: config.serverConfig.hostname,
-//     port: config.serverConfig.port,
-//     path: '/roles/role?id=1',
-//     method: 'DELETE'
-// }, (res) => {
-//     let buffer = '';
-//     res.on('data', (chunk) => {
-//         buffer += chunk;
-//     });
-
-//     res.on('end', () => {
-//         if (res.statusCode == 200)
-//             logger.info(buffer.toString());
-//         // logger.info(JSON.parse(buffer.toString()));
-//         else
-//             logger.error(JSON.parse(buffer.toString()));
-//     });
-// }).end();
-
-
-
-//#region PUT roles
-// let req = http.request({
-//     hostname: config.serverConfig.hostname,
-//     port: config.serverConfig.port,
-//     path: '/role/role?id=1',
-//     headers: {
-//         'content-type': 'application/json'
-//     },
-//     method: 'PUT'
-// }, (res) => {
-//     let buffer = '';
-//     res.on('data', (chunk) => {
-//         buffer += chunk;
-//     });
-//     res.on('end', () => {
-//         if (res.statusCode == 200)
-//             logger.info(buffer.toString());
-//         else
-//             logger.error(JSON.parse(buffer.toString()));
-//     });
-// });
-// req.write(JSON.stringify({
-//     RoleName: "Admidsfgthyujkln",
-//     RoleDesc: "ادمین"
-// }));
-// req.end();
-//#endregion
-
-
-// const req = http.request({
-//     hostname: config.serverConfig.hostname,
-//     port: config.serverConfig.port,
-//     path: '/music/saveInfo',
-//     headers: {
-//         'content-type': 'application/json'
-//     },
-//     method: 'PUT'
-// }, (res) => {
-//     let buffer = '';
-//     res.on('data', (chunk) => {
-//         buffer += chunk;
-//     });
-//     res.on('end', () => {
-//         if (res.statusCode == 200)
-//             logger.info(buffer.toString());
-//         else
-//             logger.error(JSON.parse(buffer.toString()));
-//     });
-// });
-// req.write(JSON.stringify({
-//     MusicID: 10,
-//     AlbumID: null,
-//     ArtistID: null,
-//     CategoryID: null,
-//     MusicName: "In The Morning",
-//     MusicTitle: "In The Morning",
-//     MusicPoster: "null",
-//     MusicURL: "1401-6-3 Itzy - In The Morning [ KohanMusic ] 720.mp4",
-//     MusicDuration: "null",
-//     MusicLyrics: "null",
-//     MusicTags: "null",
-//     MusicArtists: "Itzy",
-//     MusicReleaseTime: "1401-6-3"
-//   }));
-// req.end();
