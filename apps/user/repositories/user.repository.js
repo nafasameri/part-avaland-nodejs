@@ -14,6 +14,11 @@ class UserRepository {
         return record.rows[0];
     }
 
+    async fetchByUserName(username) {
+        const record = await db.selcet('User', '*', `"UserName"='${username}'`);
+        return record.rows[0];
+    }
+
     async fetchByUserNamePassword(username, password) {
         const record = await db.selcet('User', '*', `"UserName"='${username}' AND "Password"='${password}'`);
         return record.rows[0];

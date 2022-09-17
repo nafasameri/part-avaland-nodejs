@@ -66,13 +66,17 @@ class UserController {
             const { body } = req;
             if (!body || !body.username || !body.password)
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
-    
+            
+            const username = await userRepository.fetchByUserName(body.username);
+            if (!username)
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'This username early exist!');
+
             const passHash = crypto.createHash("md5").update(body.password + "hash").digest("hex");
             const newUser = new User(0, body.username, null, null, passHash, 3);
             const user = await userRepository.add(newUser);
 
             if (!user)
-                sendResponse(res, 401, { "Content-Type": "application/json" }, 'Could Not Sign up');
+                sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Could Not Sign up');
             else
                 sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
         } catch (error) {
@@ -86,6 +90,10 @@ class UserController {
             const { body } = req;
             if (!body || !body.username || !body.password)
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+
+            const username = await userRepository.fetchByUserName(body.username);
+            if (!username)
+                return sendResponse(res, statusCode.UNAUTHORIZED, { "Content-Type": "application/json" }, 'This username does not exist!');
 
             const passHash = crypto.createHash("md5").update(body.password + "hash").digest("hex");
             const user = await userRepository.fetchByUserNamePassword(body.username, passHash);
@@ -101,7 +109,7 @@ class UserController {
                     return sendResponse(res, statusCode.OK, { 'Set-Cookie': setCookieCommand, 'token': token }, 'Authorized');
                 return sendResponse(res, 401, null, 'Un Authorized');
             }
-            return sendResponse(res, 401, null, 'Un Authorized');
+            return sendResponse(res, 401, null, 'The password is incorrect!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw Error('Could Not Login');
