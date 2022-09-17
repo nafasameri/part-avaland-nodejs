@@ -1,6 +1,6 @@
 const playlistController = require("./controllers/playlist.controller");
 const playlistMusicsController = require("./controllers/playlist.musics.controller");
-const { fetchQueryStringFromURL, getPostData, getHeaders, authentication } = require('./middlewares');
+const { fetchQueryStringFromURL, getPostData, getHeaders, authentication, InvalidId } = require('./middlewares');
 
 const routes = [
   {
@@ -19,19 +19,19 @@ const routes = [
     url: "update",
     method: "PUT",
     controller: playlistController.updatePlaylist,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   },
   {
     url: "delete",
     method: "DELETE",
     controller: playlistController.deletePlaylist,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   },
   {
     url: "musics",
     method: "GET",
     controller: playlistMusicsController.getPlaylistMusics,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   },
   {
     url: "addmusic",
@@ -43,13 +43,13 @@ const routes = [
     url: "updatemusic",
     method: "PUT",
     controller: playlistMusicsController.updatePlaylistMusics,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   },
   {
     url: "deletemusic",
     method: "DELETE",
     controller: playlistMusicsController.deletePlaylistMusics,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   }
 ];
 

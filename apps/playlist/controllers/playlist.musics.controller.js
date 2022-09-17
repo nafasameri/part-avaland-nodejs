@@ -3,13 +3,14 @@ const sendResponse = require('../../../modules/handler/response.handler');
 const PlaylistMusicsRepository = require("../repositories/playlist.musics.repository");
 const playlistMusicsRepository = new PlaylistMusicsRepository();
 
+const statusCode = require('http-status-codes');
+const PlaylistMusic = require('../models/playlist.musics.model');
 
 class PlaylistMusicsController {
 
-    #print = (playlistMusicsArr) => {
-
+    #print = (playlistMusicsList) => {
         const playlistMusicsData = []
-        playlistMusicsArr.forEach(playlistMusics => {
+        playlistMusicsList.forEach(playlistMusics => {
             const playlistMusicsJson = {
                 "playlist-music-id":playlistMusics.PlaylistMusicID,
                 "playlist-id":playlistMusics.PlaylistID,
@@ -29,14 +30,14 @@ class PlaylistMusicsController {
         try {
             const { id } = req.querystring;
             if (id) {
-                const playlistMusic = await playlistMusicsRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusic])));
+                const playlistMusics = await playlistMusicsRepository.fetchByPlaylistId(id);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(playlistMusics)));
             } else {
                 const playlistMusics = await playlistMusicsRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(playlistMusics)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(playlistMusics)));
             }
         } catch (error) {
-            logger.error('getAllPlaylist: ' + error);
+            logger.error(`${req.url}: ${error}`);
             throw error;
         }
     };
@@ -44,14 +45,18 @@ class PlaylistMusicsController {
     createPlaylistMusics = async (req, res) => {
         try {
             const { body } = req;
-            const playlistMusics = await playlistMusicsRepository.add(body, req.UserID);
+            if (!body || !body["playlist-id"] || !body["music-id"])
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+
+            const newPlaylistMusic = new PlaylistMusic(0, body["playlist-id"], body["music-id"]);
+            const playlistMusics = await playlistMusicsRepository.add(newPlaylistMusic, req.UserID);
 
             if (!playlistMusics)
-                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Create');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusics])));
+                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusics])));
         } catch (error) {
-            logger.error('createPlaylistMusics: ' + error);
+            logger.error(`${req.url}: ${error}`);
             throw error;
         }
     };
@@ -61,11 +66,11 @@ class PlaylistMusicsController {
             const { id } = req.querystring;
             const playlistMusics = await playlistMusicsRepository.delete(id, req.UserID);
             if (!playlistMusics)
-                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Delete!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusics])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusics])));
         } catch (error) {
-            logger.error('deletePlaylistMusics: ' + error);
+            logger.error(`${req.url}: ${error}`);
             throw error;
         }
     };
