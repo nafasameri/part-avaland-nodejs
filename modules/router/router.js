@@ -76,7 +76,7 @@ class Router {
   route(req, res) {
     let route = req.url.split("?")[0];
     if (!this.#routePool.has(`${route}_${req.method}`))
-      return sendResponse(res, 404, { "Content-Type": "application/json" }, JSON.stringify({ message: "URL NOT FOUND!" }));
+      return sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, JSON.stringify({ message: "URL NOT FOUND!" }));
     this.#eventEmitter.emit(`${route}_${req.method}`, req, res);
   }
 }

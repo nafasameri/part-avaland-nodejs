@@ -1,11 +1,10 @@
 const axios = require('axios');
 axios.default.withCredemtials = true;
 const mocha = require('mocha');
-// const assert = require('chai').assert;
 const assert = require('assert');
-const url = 'http://127.0.0.1:81';
+const statusCode = require('http-status-codes');
 
-const token = '';
+const url = 'http://127.0.0.1:81';
 
 describe('userAPI', () => {
     describe('Login', () => {
@@ -20,7 +19,7 @@ describe('userAPI', () => {
             };
             axios(options)
                 .then(res => {
-                    assert.equal(res.data.statusCode, 200, 'passed');
+                    assert.equal(res.data.statusCode, statusCode.OK, 'passed');
                     console.log(`res is -> ${JSON.stringify(res.data)}`);
                     done();
                 })
@@ -40,12 +39,12 @@ describe('userAPI', () => {
             };
             axios(options)
                 .then(res => {
-                    // assert.equal(res.data.statusCode, 401, 'passed');
+                    // assert.equal(res.data.statusCode, statusCode.UNAUTHORIZED, 'passed');
                     console.log(`res is -> ${JSON.stringify(res.data)}`);
                     done();
                 })
                 .catch((error) => {
-                    assert.equal(error.response.status, 401, 'passed');
+                    assert.equal(error.response.status, statusCode.UNAUTHORIZED, 'passed');
                     console.log(`res is -> ${JSON.stringify(error.response.data)}`);
                     done();
                 });
