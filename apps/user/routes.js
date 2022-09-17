@@ -1,5 +1,5 @@
 const userController = require("./controllers/user.controller");
-const { fetchQueryStringFromURL, getPostData, getHeaders, authentication } = require('./middlewares');
+const { fetchQueryStringFromURL, getPostData, getHeaders, authentication, InvalidId } = require('./middlewares');
 
 const routes = [
   {
@@ -24,13 +24,13 @@ const routes = [
     url: "update",
     method: "PUT",
     controller: userController.updateUser,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   },
   {
     url: "delete",
     method: "DELETE",
     controller: userController.deleteUser,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   }
 ];
 

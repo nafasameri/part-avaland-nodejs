@@ -1,5 +1,5 @@
 const premissionController = require("./controllers/premission.controller");
-const { fetchQueryStringFromURL, getPostData, getHeaders, authentication } = require('./middlewares');
+const { fetchQueryStringFromURL, getPostData, getHeaders, authentication, InvalidId } = require('./middlewares');
 
 const routes = [
   {
@@ -18,13 +18,13 @@ const routes = [
     url: "update",
     method: "PUT",
     controller: premissionController.updatePremission,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   },
   {
     url: "delete",
     method: "DELETE",
     controller: premissionController.deletePremission,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   }
 ];
 
