@@ -14,7 +14,6 @@ class RoleRepository {
         return record.rows[0];
     }
 
-
     async add(role, userID) {
         const roleModel = new Role(
             0,
@@ -24,7 +23,7 @@ class RoleRepository {
             datetime(),
             userID,
             datetime(),
-            false
+            0
         );
         const record = await db.insert('Role', '"RoleName", "RoleDesc", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `'${roleModel.RoleName}', '${roleModel.RoleDesc}', ${roleModel.Creator}, '${roleModel.CreateTime}', ${roleModel.Modifier}, '${roleModel.ModifiTime}', ${roleModel.IsDelete}`);

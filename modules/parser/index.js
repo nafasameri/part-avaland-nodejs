@@ -5,8 +5,7 @@ const statusCode = require('http-status-codes');
 
 function fetchQueryStringFromURL(req, res, next) {
     try {
-        let q = req.url.split("?"),
-            result = {};
+        let q = req.url.split("?"), result = {};
         if (q.length >= 2) {
             q[1].split("&").forEach((item) => {
                 try {
@@ -20,14 +19,8 @@ function fetchQueryStringFromURL(req, res, next) {
         logger.info('querystring: ' + JSON.stringify(req.querystring));
         return req;
     } catch (e) {
-        sendResponse(res, 500, {
-                "Content-Type": "application/json"
-            },
-            JSON.stringify({
-                message: "oOps! Something went wrong!",
-                addtionalInfo: e.message,
-            })
-        );
+        logger.error(e?.message);
+        return sendResponse(res, 500, { "Content-Type": "application/json" }, e?.message);
     }
 }
 
@@ -50,7 +43,8 @@ async function getPostData(req, res, next) {
             // return req;
         });
     } catch (e) {
-        sendResponse(res, 500, { "Content-Type": "application/json" }, e.message);
+        logger.error(e?.message);
+        return sendResponse(res, 500, { "Content-Type": "application/json" }, e?.message);
     }
 }
 
@@ -71,14 +65,17 @@ async function getHeaders(req, res, next) {
         }
         return req;
     } catch (e) {
-        sendResponse(res, 500, { "Content-Type": "application/json" }, e.message);
+        logger.error(e?.message);
+        return sendResponse(res, 500, { "Content-Type": "application/json" }, e?.message);
     }
 }
 
 async function InvalidId(req, res, next) {
     const { id } = req.querystring;
-    if (!id)
+    if (!id) {
+        logger.error('Invalid parameter id!');
         return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+    }
     return req;
 }
 

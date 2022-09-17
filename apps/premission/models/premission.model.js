@@ -1,5 +1,5 @@
-class History {
-    HistoryID;
+class Premission {
+    PremissionID;
     RoleID;
     MenuID;
     Creator;
@@ -8,8 +8,8 @@ class History {
     ModifiTime;
     IsDelete;
 
-    constructor(HistoryID, RoleID, MenuID, Creator, CreateTime, Modifier, ModifiTime, IsDelete) {
-        this.HistoryID = HistoryID;
+    constructor(PremissionID, RoleID, MenuID, Creator, CreateTime, Modifier, ModifiTime, IsDelete) {
+        this.PremissionID = PremissionID;
         this.RoleID = RoleID;
         this.MenuID = MenuID;
         this.Creator = Creator;
@@ -20,4 +20,4 @@ class History {
     }
 }
 
-module.exports = History;
+module.exports = Premission;
