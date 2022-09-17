@@ -1,11 +1,13 @@
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
+const statusCode = require('http-status-codes');
 
 const logger = require('../../../modules/logger');
 const sendResponse = require('../../../modules/handler/response.handler');
 const UserRepository = require("../repositories/user.repository");
 const userRepository = new UserRepository();
 const client = require('../../../modules/database/redis');
+const User = require('../models/user.model');
 
 
 function generateToken(username, password) {
@@ -22,14 +24,15 @@ function generateToken(username, password) {
 
 class UserController {
 
-    #print = (userArr) => {
+    #print = (userList) => {
         const userData = []
-        userArr.forEach(user => {
+        userList.forEach(user => {
             const userJson = {
                 "user-id": user.UserID,
-                "name": user.UserName,
+                "username": user.UserName,
                 "phone": user.UserPhone,
                 "email": user.UserEmail,
+                "password": user.Password,
                 "role-id": user.RoleID,
                 "creator": user.Creator,
                 "create-time": user.CreateTime,
@@ -47,13 +50,13 @@ class UserController {
             const { id } = req.querystring;
             if (id) {
                 const user = await userRepository.fetchById(id);
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
             } else {
                 const users = await userRepository.fetchAll();
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print(users)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(users)));
             }
         } catch (error) {
-            logger.error('getAllUsers: ' + error);
+            logger.error(`${req.url}: ${error}`);
             throw error;
         }
     };
@@ -61,20 +64,19 @@ class UserController {
     signUp = async (req, res) => {
         try {
             const { body } = req;
+            if (!body || !body.username || !body.password)
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+    
             const passHash = crypto.createHash("md5").update(body.password + "hash").digest("hex");
-            const userInfo = {
-                UserName: body.username,
-                Password: passHash,
-                RoleID: 3
-            }
-            const user = await userRepository.add(userInfo);
+            const newUser = new User(0, body.username, null, null, passHash, 3);
+            const user = await userRepository.add(newUser);
 
             if (!user)
                 sendResponse(res, 401, { "Content-Type": "application/json" }, 'Could Not Sign up');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
+                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
         } catch (error) {
-            logger.error('signUp: ' + error);
+            logger.error(`${req.url}: ${error}`);
             throw Error('Could Not Sign up');
         }
     };
@@ -82,6 +84,9 @@ class UserController {
     login = async (req, res) => {
         try {
             const { body } = req;
+            if (!body || !body.username || !body.password)
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+
             const passHash = crypto.createHash("md5").update(body.password + "hash").digest("hex");
             const user = await userRepository.fetchByUserNamePassword(body.username, passHash);
 
@@ -93,12 +98,12 @@ class UserController {
                 client.set(key, user.UserID);
         
                 if (token)
-                    return sendResponse(res, 200, { 'Set-Cookie': setCookieCommand, 'token': token }, 'Authorized');
+                    return sendResponse(res, statusCode.OK, { 'Set-Cookie': setCookieCommand, 'token': token }, 'Authorized');
                 return sendResponse(res, 401, null, 'Un Authorized');
             }
             return sendResponse(res, 401, null, 'Un Authorized');
         } catch (error) {
-            logger.error('Login: ' + error);
+            logger.error(`${req.url}: ${error}`);
             throw Error('Could Not Login');
         }
     };
@@ -107,19 +112,22 @@ class UserController {
         try {
             const { id } = req.querystring;
             const { body } = req;
+            if (!body)
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+
             const userOld = await userRepository.fetchById(id);
-            userOld.UserName = body.UserName ?? userOld.UserName;
-            userOld.UserPhone = body.UserPhone ?? userOld.UserPhone;
-            userOld.UserEmail = body.UserEmail ?? userOld.UserEmail;
-            userOld.RoleID = body.RoleID ?? userOld.RoleID;
+            userOld.UserName = body.username ?? userOld.UserName;
+            userOld.UserPhone = body.phone ?? userOld.UserPhone;
+            userOld.UserEmail = body.email ?? userOld.UserEmail;
+            userOld.RoleID = body["role-id"] ?? userOld.RoleID;
 
             const user = await userRepository.update(userOld, req.UserID);
             if (!user)
-                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Update!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
         } catch (error) {
-            logger.error('updateUser: ' + error);
+            logger.error(`${req.url}: ${error}`);
             throw error;
         }
     };
@@ -129,11 +137,11 @@ class UserController {
             const { id } = req.querystring;
             const user = await userRepository.delete(id, req.UserID);
             if (!user)
-                sendResponse(res, 404, { "Content-Type": "application/json" }, 'Could Not Delete!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, 200, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
         } catch (error) {
-            logger.error('deleteUser: ' + error);
+            logger.error(`${req.url}: ${error}`);
             throw error;
         }
     };
