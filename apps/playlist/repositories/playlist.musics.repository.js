@@ -14,6 +14,11 @@ class PlaylistMusicsRepository {
         return record.rows[0];
     }
 
+    async fetchByPlaylistId(id) {
+        const record = await db.selcet('PlaylistMusics', '*', `"PlaylistID"=${id}`);
+        return record.rows;
+    }
+
     async add(playlistMusics, userID) {
         const playlistMusicModel = new PlaylistMusics(
             0,
