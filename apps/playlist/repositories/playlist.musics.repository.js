@@ -15,7 +15,7 @@ class PlaylistMusicsRepository {
     }
 
     async fetchByPlaylistId(id) {
-        const record = await db.selcet('PlaylistMusics', '*', `"PlaylistID"=${id}`);
+        const record = await db.join('PlaylistMusics', 'Music', 'MusicID', '*', `"PlaylistMusics"."PlaylistID"=${id}`);
         return record.rows;
     }
 

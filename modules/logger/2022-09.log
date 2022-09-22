@@ -635,3 +635,143 @@
 [2022-09-17T10:04:20.173Z] [INFO]: querystring: {"id":"5"} 
 [2022-09-17T10:04:20.173Z] [INFO]: body: {"name":"sadeghi","description":"صادقی"} 
 [2022-09-17T10:11:19.143Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:12:58.656Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:13:42.893Z] [INFO]: querystring: {} 
+[2022-09-22T04:13:42.894Z] [INFO]: body: {"username":"test","password":"1111"} 
+[2022-09-22T04:13:42.977Z] [ERROR]: /user/login: ReferenceError: document is not defined 
+[2022-09-22T04:13:42.977Z] [ERROR]: /user/login - Could Not Login 
+[2022-09-22T04:14:22.759Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:14:24.107Z] [INFO]: querystring: {} 
+[2022-09-22T04:14:24.109Z] [INFO]: body: {"username":"test","password":"1111"} 
+[2022-09-22T04:15:24.875Z] [INFO]: querystring: {"id":"1"} 
+[2022-09-22T04:15:24.876Z] [INFO]: body: {"name":"golchin","description":"گلچین"} 
+[2022-09-22T04:15:45.419Z] [INFO]: querystring: {} 
+[2022-09-22T04:15:45.419Z] [INFO]: body: {"name":"golchin","description":"kgjfld;'"} 
+[2022-09-22T04:15:45.483Z] [ERROR]: /playlist/add: error: syntax error at or near "1401" 
+[2022-09-22T04:15:45.483Z] [ERROR]: /playlist/add - syntax error at or near "1401" 
+[2022-09-22T04:16:30.506Z] [INFO]: querystring: {} 
+[2022-09-22T04:16:30.506Z] [INFO]: body: {"name":"golchin","description":"kgjfld"} 
+[2022-09-22T04:17:52.587Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:18:15.699Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:18:59.080Z] [INFO]: body: {"name":"golchin","description":"kgjfld"} 
+[2022-09-22T04:18:59.080Z] [ERROR]: Invalid parameter id! 
+[2022-09-22T04:18:59.079Z] [INFO]: querystring: {} 
+[2022-09-22T04:19:19.592Z] [INFO]: querystring: {"id":"1"} 
+[2022-09-22T04:19:19.593Z] [INFO]: body: {"name":"golchin","description":"kgjfld"} 
+[2022-09-22T04:20:37.803Z] [INFO]: querystring: {} 
+[2022-09-22T04:20:37.803Z] [INFO]: body: {"playlist-id":1,"music-id":2} 
+[2022-09-22T04:21:43.310Z] [INFO]: querystring: {} 
+[2022-09-22T04:21:43.310Z] [INFO]: body: {"playlist-id":1,"music-id":1} 
+[2022-09-22T04:22:00.500Z] [INFO]: querystring: {"id":"1"} 
+[2022-09-22T04:22:00.500Z] [INFO]: body: {"playlist-id":1,"music-id":1} 
+[2022-09-22T04:22:33.558Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:22:40.732Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:22:43.018Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:22:46.214Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:22:47.709Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:22:49.477Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:23:00.442Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:23:01.755Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:23:03.180Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:23:07.805Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:23:26.840Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:23:55.366Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:24:00.603Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:24:05.364Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:24:13.121Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:24:26.807Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:24:32.835Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:24:34.556Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:24:40.291Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:24:49.414Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:24:52.087Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:24:56.484Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:25:02.059Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:25:04.904Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:25:09.583Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:25:15.196Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:25:24.057Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:25:31.591Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:25:39.346Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:25:48.601Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:25:51.606Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:25:56.291Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:26:00.711Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:26:04.535Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:26:06.711Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:26:08.913Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:26:10.640Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:26:12.036Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:26:16.521Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:26:24.060Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:26:32.577Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:26:46.787Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:26:59.334Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:08.210Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:16.371Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:19.139Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:24.692Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:27.234Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:30.469Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:37.366Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:39.593Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:42.631Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:46.038Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:48.623Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:55.329Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:27:57.424Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:28:00.171Z] [INFO]: querystring: {"id":"1"} 
+[2022-09-22T04:28:00.172Z] [INFO]: body: {"playlist-id":1,"music-id":1} 
+[2022-09-22T04:28:00.255Z] [ERROR]: /playlist/musics?id=1: error: column reference "IsDelete" is ambiguous 
+[2022-09-22T04:28:00.255Z] [ERROR]: /playlist/musics?id=1 - column reference "IsDelete" is ambiguous 
+[2022-09-22T04:29:17.382Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:29:18.699Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:29:20.202Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:29:25.194Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:29:28.405Z] [INFO]: querystring: {"id":"1"} 
+[2022-09-22T04:29:28.406Z] [INFO]: body: {"playlist-id":1,"music-id":1} 
+[2022-09-22T04:29:28.488Z] [ERROR]: /playlist/musics?id=1: error: column reference "IsDelete" is ambiguous 
+[2022-09-22T04:29:28.488Z] [ERROR]: /playlist/musics?id=1 - column reference "IsDelete" is ambiguous 
+[2022-09-22T04:30:20.970Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:30:30.728Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:30:33.795Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:30:36.959Z] [INFO]: querystring: {"id":"1"} 
+[2022-09-22T04:30:36.960Z] [INFO]: body: {"playlist-id":1,"music-id":1} 
+[2022-09-22T04:32:00.056Z] [INFO]: querystring: {"id":"1"} 
+[2022-09-22T04:32:00.057Z] [INFO]: body: {"playlist-id":1,"music-id":1} 
+[2022-09-22T04:33:07.339Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:33:18.867Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:33:20.331Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:33:24.535Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:33:29.171Z] [INFO]: querystring: {"id":"1"} 
+[2022-09-22T04:33:29.172Z] [INFO]: body: {"playlist-id":1,"music-id":1} 
+[2022-09-22T04:33:54.668Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:33:56.251Z] [INFO]: querystring: {"id":"1"} 
+[2022-09-22T04:33:56.252Z] [INFO]: body: {"playlist-id":1,"music-id":1} 
+[2022-09-22T04:34:09.192Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:34:19.378Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:34:26.063Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:34:50.789Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:35:07.853Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:35:13.919Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:35:19.118Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:35:39.435Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:35:48.128Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:36:01.766Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:36:09.533Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:36:33.793Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:36:42.484Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:36:49.700Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:37:03.254Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:38:32.428Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:39:23.993Z] [INFO]: querystring: {} 
+[2022-09-22T04:39:23.994Z] [INFO]: body: {"UserID":1,"MusicID":9} 
+[2022-09-22T04:39:46.647Z] [INFO]: querystring: {} 
+[2022-09-22T04:39:46.648Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-22T04:39:46.728Z] [ERROR]: /favourite/add: TypeError: Cannot read properties of undefined (reading 'length') 
+[2022-09-22T04:39:46.728Z] [ERROR]: /favourite/add - Cannot read properties of undefined (reading 'length') 
+[2022-09-22T04:40:49.778Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:40:52.752Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-22T04:40:54.862Z] [INFO]: querystring: {} 
+[2022-09-22T04:40:54.863Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-22T04:44:34.862Z] [INFO]: Server is running at: 127.0.0.1:81 

@@ -31,10 +31,10 @@ class FavouriteController {
             const { id } = req.querystring;
             if (id) {
                 const favourite = await favouriteRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([favourite])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([favourite]));
             } else {
                 const favourites = await favouriteRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(favourites)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print(favourites));
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -50,7 +50,7 @@ class FavouriteController {
 
             const newFav = new Favourite(0, body["user-id"], body["music-id"]);
             let favourite = await favouriteRepository.fetchByUserMusic(newFav.MusicID, newFav.UserID);
-            if (favourite.length == 0)
+            if (!favourite)
                 favourite = await favouriteRepository.add(newFav, req.UserID);
             else {
                 favourite.IsDelete = favourite.IsDelete == 0 ? 1 : 0;
@@ -59,7 +59,7 @@ class FavouriteController {
             if (!favourite)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([favourite])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([favourite]));
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -81,7 +81,7 @@ class FavouriteController {
             if (!favourite)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([favourite])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([favourite]));
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -95,7 +95,7 @@ class FavouriteController {
             if (!favourite)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([favourite])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([favourite]));
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

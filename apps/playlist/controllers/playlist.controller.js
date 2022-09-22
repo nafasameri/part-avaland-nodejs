@@ -32,10 +32,10 @@ class PlaylistController {
             const { id } = req.querystring;
             if (id) {
                 const playlist = await playlistRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlist])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([playlist]));
             } else {
                 const playlists = await playlistRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(playlists)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print(playlists));
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -54,7 +54,7 @@ class PlaylistController {
             if (!playlist) {
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             } else {
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlist])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([playlist]));
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -77,7 +77,7 @@ class PlaylistController {
             if (!playlist)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlist])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([playlist]));
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -91,7 +91,7 @@ class PlaylistController {
             if (!playlist)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlist])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([playlist]));
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

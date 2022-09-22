@@ -50,10 +50,10 @@ class UserController {
             const { id } = req.querystring;
             if (id) {
                 const user = await userRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([user]));
             } else {
                 const users = await userRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(users)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print(users));
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -66,7 +66,7 @@ class UserController {
             const { body } = req;
             if (!body || !body.username || !body.password)
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
-            
+
             const username = await userRepository.fetchByUserName(body.username);
             if (!username)
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'This username early exist!');
@@ -78,7 +78,7 @@ class UserController {
             if (!user)
                 sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Could Not Sign up');
             else
-                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
+                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, this.#print([user]));
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw Error('Could Not Sign up');
@@ -105,8 +105,10 @@ class UserController {
                 const key = token.split('.')[2];
                 client.set(key, user.UserID);
         
-                if (token)
+                if (token) {
+                    // document.cookie = setCookieCommand;
                     return sendResponse(res, statusCode.OK, { 'Set-Cookie': setCookieCommand, 'token': token }, 'Authorized');
+                }
                 return sendResponse(res, 401, null, 'Un Authorized');
             }
             return sendResponse(res, 401, null, 'The password is incorrect!');
@@ -133,7 +135,7 @@ class UserController {
             if (!user)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([user]));
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -147,7 +149,7 @@ class UserController {
             if (!user)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([user])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([user]));
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

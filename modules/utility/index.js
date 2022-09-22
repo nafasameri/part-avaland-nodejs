@@ -1,7 +1,7 @@
 const persianDate = require('persian-date');
 
 function date() {
-    persianDate.toLocale('fa').toCalendar('persian');
+    // persianDate.toLocale('fa').toCalendar('persian');
     const now = new persianDate(Date.now());//.format('YYYY-MM-DD H:m:s');
     return `${now.year()}-${now.month()}-${now.day()}`;
     // const now = new Date(Date.now());
@@ -9,7 +9,7 @@ function date() {
 }
 
 function datetime() {
-    persianDate.toLocale('fa').toCalendar('persian');
+    // persianDate.toLocale('fa').toCalendar('persian');
     const now = new persianDate(Date.now());//.format('YYYY-MM-DD H:m:s');
     return `${now.year()}-${now.month()}-${now.day()} ${now.hours()}:${now.minutes()}:${now.seconds()}`;
     // const now = new Date(Date.now());

@@ -26,15 +26,41 @@ class PlaylistMusicsController {
         return (playlistMusicsData == 1) ? playlistMusicsData[0] : playlistMusicsData;
     }
 
+    #printMusics = (musicList) => {
+        const musicData = []
+        musicList.forEach(music => {
+            const musicJson = {
+                "music-id": music.MusicID,
+                "album-name": music.AlbumName,
+                "name": music.MusicName,
+                "title": music.MusicTitle,
+                "poster": music.MusicPoster,
+                "url": music.MusicURL,
+                "duration": music.MusicDuration,
+                "lyrics": music.MusicLyrics,
+                "tags": music.MusicTags,
+                "artists": music.MusicArtists,
+                "release-time": music.MusicReleaseTime,
+                "creator": music.Creator,
+                "create-time": music.CreateTime,
+                "modifier": music.Modifier,
+                "modifi-time": music.ModifiTime,
+                "delete-flag": music.IsDelete
+            }
+            musicData.push(musicJson)
+        });
+        return (musicData == 1) ? musicData[0] : musicData;
+    }
+
     getPlaylistMusics = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const playlistMusics = await playlistMusicsRepository.fetchByPlaylistId(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(playlistMusics)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#printMusics(playlistMusics));
             } else {
                 const playlistMusics = await playlistMusicsRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(playlistMusics)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print(playlistMusics));
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -54,7 +80,7 @@ class PlaylistMusicsController {
             if (!playlistMusics)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusics])));
+                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, this.#print([playlistMusics]));
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -68,7 +94,7 @@ class PlaylistMusicsController {
             if (!playlistMusics)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([playlistMusics])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([playlistMusics]));
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

@@ -50,6 +50,25 @@ class DataBase {
         const sql = `DELETE FROM "${this.schema}"."${table}" WHERE ${conditions}`;
         return this.query(sql);
     }
+
+    join(table1, table2, key, columns, conditions, IsDelete = 0) {
+        let sql = `SELECT ${columns} FROM "${this.schema}"."${table1}" 
+         JOIN "${this.schema}"."${table2}" ON "${table1}"."${key}" = "${table2}"."${key}"
+         WHERE ${conditions} 
+         AND "${table1}"."IsDelete"=${IsDelete} AND "${table2}"."IsDelete"=${IsDelete}`;
+
+
+        if (conditions == undefined)
+            sql = `SELECT ${columns} FROM "${this.schema}"."${table}" WHERE "IsDelete"=${IsDelete}`;
+
+        if (IsDelete == 1) {
+            sql = `SELECT ${columns} FROM "${this.schema}"."${table}" WHERE ${conditions}`;
+            if (conditions == undefined)
+                sql = `SELECT ${columns} FROM "${this.schema}"."${table}"`;
+        }
+        console.log(sql);
+        return this.query(sql);
+    }
 }
 
 module.exports = new DataBase(config);
