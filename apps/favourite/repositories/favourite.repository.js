@@ -63,8 +63,6 @@ class FavouriteRepository {
             UserID: favourite["user-id"] ?? null,
             MusicID: favourite["music-id"] ?? null,
             LikedTime: favourite["liked-time"] ?? '',
-            Creator: favourite["creator"] ?? null,
-            CreateTime: favourite["create-time"] ?? '',
             Modifier: userID,
             ModifiTime: datetime(),
             IsDelete: favourite["delete?"] ?? 0

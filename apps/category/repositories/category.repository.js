@@ -39,11 +39,8 @@ class CategoryRepository {
             id: category["category-id"] ?? null,
             name: category.name ?? '',
             img: category.img ?? '',
-            Creator: category["creator"] ?? null,
-            CreateTime: category["create-time"] ?? '',
             Modifier: userID,
             ModifiTime: datetime(),
-            IsDelete: category["delete?"] ?? 0
         };
 
         const record = await db.update('Category', `"CategoryName"='${categoryModel.name}', "CategoryImg"='${categoryModel.img}', "Modifier"=${categoryModel.Modifier}, "ModifiTime"='${categoryModel.ModifiTime}'`, `"CategoryID"=${categoryModel.id}`);

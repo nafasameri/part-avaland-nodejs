@@ -7,35 +7,15 @@ const statusCode = require('http-status-codes');
 const History = require('../models/history.model');
 
 class HistoryController {
-
-    #print = (historyList) => {
-        const historyData = []
-        historyList.forEach(history => {
-            const historyJson = {
-                "history-id": history.HistoryID,
-                "user-id": history.UserID,
-                "music-id": history.MusicID,
-                "creator": history.Creator,
-                "creator-time": history.CreateTime,
-                "modifier": history.Modifier,
-                "modifi-time": history.ModifiTime,
-                "delete-flag": history.IsDelete
-            }
-            historyData.push(historyJson)
-        });
-        return (historyData == 1) ? historyData[0] : historyData;
-    }
-
-
     getHistories = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const history = await historyRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([history])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
             } else {
                 const historys = await historyRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(historys)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, historys);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -49,13 +29,11 @@ class HistoryController {
             if (!body || !body["music-id"] || !body["user-id"])
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
-            const newHistory = new History(0, body["user-id"], body["music-id"]);
-            const history = await historyRepository.add(newHistory, req.UserID);
-
+            const history = await historyRepository.add(body, req.UserID);
             if (!history)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([history])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -70,14 +48,14 @@ class HistoryController {
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const historyOld = await historyRepository.fetchById(id);
-            historyOld.UserID = body["user-id"] ?? historyOld.UserID;
-            historyOld.MusicID = body["music-id"] ?? historyOld.MusicID;
+            historyOld["user-id"] = body["user-id"] ?? historyOld["user-id"];
+            historyOld["music-id"] = body["music-id"] ?? historyOld["music-id"];
 
             const history = await historyRepository.update(historyOld, req.UserID);
             if (!history)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([history])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -91,7 +69,39 @@ class HistoryController {
             if (!history)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([history])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
+        } catch (error) {
+            logger.error(`${req.url}: ${error}`);
+            throw error;
+        }
+    };
+
+    getHistoryMusic = async (req, res) => {
+        try {
+            const { id } = req.querystring;
+            if (id) {
+                const history = await historyRepository.fetchByMusic(id);
+                if (history.length > 0)
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
+                else
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found');
+            } 
+        } catch (error) {
+            logger.error(`${req.url}: ${error}`);
+            throw error;
+        }
+    };
+
+    getHistoryUser = async (req, res) => {
+        try {
+            const { id } = req.querystring;
+            if (id) {
+                const history = await historyRepository.fetchByUser(id);
+                if (history.length > 0)
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
+                else
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found');
+            }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

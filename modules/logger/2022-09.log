@@ -1155,3 +1155,47 @@
 [2022-09-27T14:10:48.465Z] [INFO]: Server is running at: 127.0.0.1:81 
 [2022-09-27T14:10:52.946Z] [INFO]: Server is running at: 127.0.0.1:81 
 [2022-09-27T14:10:56.369Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:34:15.796Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:35:46.800Z] [ERROR]: query: "UPDATE "public"."History" SET "HistoryName"='1', "HistoryImg"='10', "Modifier"=4, "ModifiTime"='1401-7-4 18:5:46' WHERE "HistoryID"=1 RETURNING *" message: error: column "HistoryName" of relation "History" does not exist 
+[2022-09-27T14:35:46.800Z] [ERROR]: /history/update?id=1: error: column "HistoryName" of relation "History" does not exist 
+[2022-09-27T14:35:46.800Z] [ERROR]: /history/update?id=1 - column "HistoryName" of relation "History" does not exist 
+[2022-09-27T14:36:33.439Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:36:38.749Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:37:12.437Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:37:15.104Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:37:29.161Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:37:33.491Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:37:39.423Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:37:42.748Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:39:08.908Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:39:12.418Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:39:14.155Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:39:20.692Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:39:26.513Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:39:29.791Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:39:43.954Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:40:11.514Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:40:27.819Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:40:39.029Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:40:42.316Z] [ERROR]: /history/music?id=20: TypeError: Cannot read properties of undefined (reading 'HistoryID') 
+[2022-09-27T14:40:42.317Z] [ERROR]: /history/music?id=20 - Cannot read properties of undefined (reading 'HistoryID') 
+[2022-09-27T14:40:45.872Z] [ERROR]: /history/music?id=20: TypeError: Cannot read properties of undefined (reading 'HistoryID') 
+[2022-09-27T14:40:45.872Z] [ERROR]: /history/music?id=20 - Cannot read properties of undefined (reading 'HistoryID') 
+[2022-09-27T14:41:12.532Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:41:13.689Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:41:16.622Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:41:17.988Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:43:19.368Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:43:22.511Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:43:35.156Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:43:47.794Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:44:17.863Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:44:20.404Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:44:26.230Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:45:04.156Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:45:59.116Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:46:01.559Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:46:08.038Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:46:10.082Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:46:16.646Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:46:18.523Z] [INFO]: Server is running at: 127.0.0.1:81 
