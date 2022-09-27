@@ -54,14 +54,18 @@ class FavouriteController {
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const favouriteOld = await favouriteRepository.fetchById(id);
-            favouriteOld["user-id"] = body["user-id"] ?? favouriteOld["user-id"];
-            favouriteOld["music-id"] = body["music-id"] ?? favouriteOld["music-id"];
+            if (favouriteOld) {
+                favouriteOld["user-id"] = body["user-id"] ?? favouriteOld["user-id"];
+                favouriteOld["music-id"] = body["music-id"] ?? favouriteOld["music-id"];
 
-            const favourite = await favouriteRepository.update(favouriteOld, req.UserID);
-            if (!favourite)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                const favourite = await favouriteRepository.update(favouriteOld, req.UserID);
+                if (!favourite)
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                else
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
+            }
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

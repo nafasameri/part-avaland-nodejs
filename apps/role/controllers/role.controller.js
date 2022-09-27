@@ -49,14 +49,18 @@ class RoleController {
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
         
             const roleOld = await roleRepository.fetchById(id);
-            roleOld.name = body.name ?? roleOld.name;
-            roleOld.description = body.description ?? roleOld.description;
+            if (roleOld) {
+                roleOld.name = body.name ?? roleOld.name;
+                roleOld.description = body.description ?? roleOld.description;
 
-            const role = await roleRepository.update(roleOld, req.UserID);
-            if (!role)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                const role = await roleRepository.update(roleOld, req.UserID);
+                if (!role)
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                else
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, role);
+            }
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, role);
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

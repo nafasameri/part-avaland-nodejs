@@ -15,7 +15,7 @@ class UserRepository {
 
     async fetchById(id) {
         const record = await db.selcet('User', '*', `"UserID"=${id}`);
-        return new User(record.rows[0]).get();
+        return record.rows[0] ? new User(record.rows[0]).get() : undefined;
     }
 
     async fetchByUserName(username) {
@@ -43,7 +43,7 @@ class UserRepository {
         };
         const record = await db.insert('User', '"UserName", "UserPhone", "UserEmail", "Password", "RoleID", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `'${userModel.UserName}', '${userModel.UserPhone}', '${userModel.UserEmail}', '${userModel.Password}', '${userModel.RoleID}', ${userModel.Creator}, '${userModel.CreateTime}', ${userModel.Modifier}, '${userModel.ModifiTime}', ${userModel.IsDelete}`);
-        return new User(record.rows[0]).get();
+        return record.rows[0] ? new User(record.rows[0]).get() : undefined;
     }
 
     async update(user, userID) {
@@ -60,7 +60,7 @@ class UserRepository {
         };
         const record = await db.update('User', `"UserName"='${userModel.UserName}', "UserPhone"='${userModel.UserPhone}', "UserEmail"='${userModel.UserEmail}', "Password"='${userModel.Password}', "RoleID"='${userModel.RoleID}', "Modifier"=${userModel.Modifier}, "ModifiTime"='${userModel.ModifiTime}'`,
             `"UserID"=${userModel.UserID}`);
-        return new User(record.rows[0]).get();
+        return record.rows[0] ? new User(record.rows[0]).get() : undefined;
     }
 
     async updatePassword(user, userID) {
@@ -72,12 +72,12 @@ class UserRepository {
         };
         const record = await db.update('User', `"Password"='${userModel.Password}', "Modifier"=${userModel.Modifier}, "ModifiTime"='${userModel.ModifiTime}'`,
             `"UserID"=${userModel.UserID}`);
-        return new User(record.rows[0]).get();
+        return record.rows[0] ? new User(record.rows[0]).get() : undefined;
     }
 
     async delete(id, userID) {
         const record = await db.update('User', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"UserID"=${id}`);
-        return new User(record.rows[0]).get();
+        return record.rows[0] ? new User(record.rows[0]).get() : undefined;
     }
 }
 

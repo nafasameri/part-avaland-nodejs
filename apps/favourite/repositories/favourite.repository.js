@@ -15,7 +15,7 @@ class FavouriteRepository {
 
     async fetchById(id) {
         const record = await db.selcet('Favourite', '*', `"FavouriteID"=${id}`);
-        return new Favourite(record.rows[0]).get();
+        return record.rows[0] ? new Favourite(record.rows[0]).get() : undefined;
     }
 
     async fetchByUser(id) {
@@ -54,7 +54,7 @@ class FavouriteRepository {
         };
         const record = await db.insert('Favourite', '"UserID", "MusicID", "LikedTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `${favouriteModel.UserID}, ${favouriteModel.MusicID}, '${favouriteModel.LikedTime}', ${favouriteModel.Creator}, '${favouriteModel.CreateTime}', ${favouriteModel.Modifier}, '${favouriteModel.ModifiTime}', ${favouriteModel.IsDelete}`);
-        return new Favourite(record.rows[0]).get();
+        return record.rows[0] ? new Favourite(record.rows[0]).get() : undefined;
     }
 
     async update(favourite, userID) {
@@ -70,12 +70,12 @@ class FavouriteRepository {
 
         const record = await db.update('Favourite', `"UserID"='${favouriteModel.UserID}', "MusicID"='${favouriteModel.MusicID}', "LikedTime"='${favouriteModel.LikedTime}', 
             "Modifier"=${favouriteModel.Modifier}, "ModifiTime"='${favouriteModel.ModifiTime}', "IsDelete" = ${favouriteModel.IsDelete}`, `"FavouriteID"=${favouriteModel.id}`);
-        return new Favourite(record.rows[0]).get();
+        return record.rows[0] ? new Favourite(record.rows[0]).get() : undefined;
     }
 
     async delete(id, userID) {
         const record = await db.update('Favourite', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"FavouriteID"=${id}`);
-        return new Favourite(record.rows[0]).get();
+        return record.rows[0] ? new Favourite(record.rows[0]).get() : undefined;
     }
 }
 

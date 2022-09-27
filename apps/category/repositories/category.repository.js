@@ -15,8 +15,8 @@ class CategoryRepository {
 
     async fetchById(id) {
         const record = await db.selcet('Category', '*', `"CategoryID"=${id}`);
-        const category = new Category(record.rows[0]);
-        return category.get();
+        return record.rows[0] ? new Category(record.rows[0]).get() : undefined;
+
     }
 
     async add(category, userID) {
@@ -31,7 +31,7 @@ class CategoryRepository {
         };
         const record = await db.insert('Category', '"CategoryName", "CategoryImg", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `'${categoryModel.name}', '${categoryModel.img}', ${categoryModel.Creator}, '${categoryModel.CreateTime}', ${categoryModel.Modifier}, '${categoryModel.ModifiTime}', ${categoryModel.IsDelete}`);
-        return new Category(record.rows[0]).get();
+        return record.rows[0] ? new Category(record.rows[0]).get() : undefined;
     }
 
     async update(category, userID) {
@@ -44,12 +44,12 @@ class CategoryRepository {
         };
 
         const record = await db.update('Category', `"CategoryName"='${categoryModel.name}', "CategoryImg"='${categoryModel.img}', "Modifier"=${categoryModel.Modifier}, "ModifiTime"='${categoryModel.ModifiTime}'`, `"CategoryID"=${categoryModel.id}`);
-        return new Category(record.rows[0]).get();
+        return record.rows[0] ? new Category(record.rows[0]).get() : undefined;
     }
 
     async delete(id, userID) {
         const record = await db.update('Category', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"CategoryID"=${id}`);
-        return new Category(record.rows[0]).get();
+        return record.rows[0] ? new Category(record.rows[0]).get() : undefined;
     }
 }
 

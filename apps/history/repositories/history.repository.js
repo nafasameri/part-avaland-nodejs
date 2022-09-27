@@ -15,7 +15,7 @@ class HistoryRepository {
 
     async fetchById(id) {
         const record = await db.selcet('History', '*', `"HistoryID"=${id}`);
-        return new History(record.rows[0]).get();
+        return record.rows[0] ? new History(record.rows[0]).get() : undefined;
     }
 
     async fetchByUser(id) {
@@ -48,7 +48,7 @@ class HistoryRepository {
         };
         const record = await db.insert('History', '"UserID", "MusicID", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `'${historyModel.UserID}', '${historyModel.MusicID}', ${historyModel.Creator}, '${historyModel.CreateTime}', ${historyModel.Modifier}, '${historyModel.ModifiTime}', ${historyModel.IsDelete}`);
-        return new History(record.rows[0]).get();
+        return record.rows[0] ? new History(record.rows[0]).get() : undefined;
     }
 
     async update(history, userID) {
@@ -61,12 +61,12 @@ class HistoryRepository {
         };
 
         const record = await db.update('History', `"UserID"='${historyModel.UserID}', "MusicID"='${historyModel.MusicID}', "Modifier"=${historyModel.Modifier}, "ModifiTime"='${historyModel.ModifiTime}'`, `"HistoryID"=${historyModel.id}`);
-        return new History(record.rows[0]).get();
+        return record.rows[0] ? new History(record.rows[0]).get() : undefined;
     }
 
     async delete(id, userID) {
         const record = await db.update('History', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"HistoryID"=${id}`);
-        return new History(record.rows[0]).get();
+        return record.rows[0] ? new History(record.rows[0]).get() : undefined;
     }
 }
 

@@ -2,7 +2,6 @@ const logger = require('../../../modules/logger');
 const sendResponse = require('../../../modules/handler/response.handler');
 const CategoryRepository = require("../repositories/category.repository");
 const categoryRepository = new CategoryRepository();
-const Category = require('../models/category.model');
 
 const statusCode = require('http-status-codes');
 
@@ -48,14 +47,18 @@ class CategoryController {
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const categoryOld = await categoryRepository.fetchById(id);
-            categoryOld.name = body.name ?? categoryOld.name;
-            categoryOld.img = body.img ?? categoryOld.img;
+            if (categoryOld) {
+                categoryOld.name = body.name ?? categoryOld.name;
+                categoryOld.img = body.img ?? categoryOld.img;
 
-            const category = await categoryRepository.update(categoryOld, req.UserID);
-            if (!category)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                const category = await categoryRepository.update(categoryOld, req.UserID);
+                if (!category)
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                else
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, category);
+            }
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, category);
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

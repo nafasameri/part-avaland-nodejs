@@ -15,7 +15,7 @@ class RoleRepository {
 
     async fetchById(id) {
         const record = await db.selcet('Role', '*', `"RoleID"=${id}`);
-        return new Role(record.rows[0]).get();
+        return record.rows[0] ? new Role(record.rows[0]).get() : undefined;
     }
 
     async add(role, userID) {
@@ -30,7 +30,7 @@ class RoleRepository {
         };
         const record = await db.insert('Role', '"RoleName", "RoleDesc", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete"',
             `'${roleModel.RoleName}', '${roleModel.RoleDesc}', ${roleModel.Creator}, '${roleModel.CreateTime}', ${roleModel.Modifier}, '${roleModel.ModifiTime}', ${roleModel.IsDelete}`);
-        return new Role(record.rows[0]).get();
+        return record.rows[0] ? new Role(record.rows[0]).get() : undefined;
     }
 
     async update(role, userID) {
@@ -44,12 +44,12 @@ class RoleRepository {
 
         const record = await db.update('Role', `"RoleName"='${roleModel.RoleName}', "RoleDesc"='${roleModel.RoleDesc}', "Modifier"=${roleModel.Modifier}, "ModifiTime"='${roleModel.ModifiTime}'`,
             `"RoleID"=${roleModel.RoleID}`);
-        return new Role(record.rows[0]).get();
+        return record.rows[0] ? new Role(record.rows[0]).get() : undefined;
     }
 
     async delete(id, userID) {
         const record = await db.update('Role', `"Modifier"=${userID}, "ModifiTime"='${datetime()}', "IsDelete" = 1`, `"RoleID"=${id}`);
-        return new Role(record.rows[0]).get();
+        return record.rows[0] ? new Role(record.rows[0]).get() : undefined;
     }
 }
 

@@ -48,14 +48,18 @@ class HistoryController {
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const historyOld = await historyRepository.fetchById(id);
-            historyOld["user-id"] = body["user-id"] ?? historyOld["user-id"];
-            historyOld["music-id"] = body["music-id"] ?? historyOld["music-id"];
+            if (historyOld) {
+                historyOld["user-id"] = body["user-id"] ?? historyOld["user-id"];
+                historyOld["music-id"] = body["music-id"] ?? historyOld["music-id"];
 
-            const history = await historyRepository.update(historyOld, req.UserID);
-            if (!history)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                const history = await historyRepository.update(historyOld, req.UserID);
+                if (!history)
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                else
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
+            }
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

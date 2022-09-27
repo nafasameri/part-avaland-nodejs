@@ -115,12 +115,16 @@ class UserController {
             
             const passHash = crypto.createHash(config.algorithm).update(body.password + config.hash).digest(config.encoding);
             const userOld = await userRepository.fetchById(id);
-            userOld.password = passHash ?? userOld.password;
-            const user = await userRepository.updatePassword(userOld, req.UserID);
-            if (!user)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+            if (userOld) {
+                userOld.password = passHash ?? userOld.password;
+                const user = await userRepository.updatePassword(userOld, req.UserID);
+                if (!user)
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                else
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, user);
+            }
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, user);
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -135,16 +139,20 @@ class UserController {
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const userOld = await userRepository.fetchById(id);
-            userOld.username = body.username ?? userOld.username;
-            userOld.phone = body.phone ?? userOld.phone;
-            userOld.email = body.email ?? userOld.email;
-            userOld["role-id"] = body["role-id"] ?? userOld["role-id"];
+            if (userOld) {
+                userOld.username = body.username ?? userOld.username;
+                userOld.phone = body.phone ?? userOld.phone;
+                userOld.email = body.email ?? userOld.email;
+                userOld["role-id"] = body["role-id"] ?? userOld["role-id"];
 
-            const user = await userRepository.update(userOld, req.UserID);
-            if (!user)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                const user = await userRepository.update(userOld, req.UserID);
+                if (!user)
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                else
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, user);
+            }
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, user);
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
