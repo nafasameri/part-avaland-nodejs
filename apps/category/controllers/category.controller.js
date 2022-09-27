@@ -7,34 +7,15 @@ const Category = require('../models/category.model');
 const statusCode = require('http-status-codes');
 
 class CategoryController {
-
-    #print = (categoryList) => {
-        const categoryData = []
-        categoryList.forEach(category => {
-            const categoryJson = {
-                "category-id": category.CategoryID,
-                "name": category.CategoryName,
-                "img": category.CategoryImg,
-                "creator": category.Creator,
-                "create-time": category.CreateTime,
-                "midifier": category.Modifier,
-                "modifi-time": category.ModifiTime,
-                "delete-flag": category.IsDelete
-            }
-            categoryData.push(categoryJson)
-        });
-        return (categoryData == 1) ? categoryData[0] : categoryData;
-    }
-
     getCategories = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const category = await categoryRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([category])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, category);
             } else {
                 const categorys = await categoryRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(categorys)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, categorys);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -48,12 +29,11 @@ class CategoryController {
             if (!body || !body.name)
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
-            const newCategory = new Category(0, body.name, body.img);
-            const category = await categoryRepository.add(newCategory, req.UserID);
+            const category = await categoryRepository.add(body, req.UserID);
             if (!category)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, JSON.stringify(this.#print([category])));
+                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, category);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -68,14 +48,14 @@ class CategoryController {
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const categoryOld = await categoryRepository.fetchById(id);
-            categoryOld.CategoryName = body.name ?? categoryOld.CategoryName;
-            categoryOld.CategoryImg = body.img ?? categoryOld.CategoryImg;
+            categoryOld.name = body.name ?? categoryOld.name;
+            categoryOld.img = body.img ?? categoryOld.img;
 
             const category = await categoryRepository.update(categoryOld, req.UserID);
             if (!category)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, statusCode.NO_CONTENT, { "Content-Type": "application/json" }, JSON.stringify(this.#print([category])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, category);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -89,7 +69,7 @@ class CategoryController {
             if (!category)
                 sendResponse(res, statusCode.GONE, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([category])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, category);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

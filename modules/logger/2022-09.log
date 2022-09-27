@@ -788,3 +788,179 @@
 [2022-09-27T12:22:05.036Z] [ERROR]: query: "SELECT * FROM "404"."Favourite" WHERE "MusicID"=9 AND "UserID"=1" message: Error: connect ETIMEDOUT 192.168.5.121:5432 
 [2022-09-27T12:22:05.036Z] [ERROR]: /favourite/add - connect ETIMEDOUT 192.168.5.121:5432 
 [2022-09-27T12:22:05.036Z] [ERROR]: /favourite/add: Error: connect ETIMEDOUT 192.168.5.121:5432 
+[2022-09-27T12:34:01.756Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:35:00.862Z] [INFO]: querystring: {} 
+[2022-09-27T12:35:00.863Z] [INFO]: body: {"username":"test","password":"1111"} 
+[2022-09-27T12:35:53.151Z] [INFO]: querystring: {} 
+[2022-09-27T12:35:53.151Z] [INFO]: body: {"ArtistName":"محمدرضا","ArtistFamily":"شجریان"} 
+[2022-09-27T12:35:53.236Z] [ERROR]: /category/categories: TypeError: categoryList.forEach is not a function 
+[2022-09-27T12:35:53.236Z] [ERROR]: /category/categories - categoryList.forEach is not a function 
+[2022-09-27T12:37:19.665Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:37:22.748Z] [INFO]: querystring: {} 
+[2022-09-27T12:37:22.749Z] [INFO]: body: "" 
+
+[2022-09-27T12:37:41.146Z] [INFO]: querystring: {} 
+[2022-09-27T12:37:41.146Z] [INFO]: body: "" 
+[2022-09-27T12:38:03.653Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:06.397Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:08.069Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:10.496Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:17.161Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:19.289Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:20.564Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:27.244Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:29.114Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:30.193Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:32.388Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:37.502Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:38.777Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:40.224Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:41.518Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:38:42.354Z] [INFO]: querystring: {} 
+[2022-09-27T12:38:42.355Z] [INFO]: body: "" 
+[2022-09-27T12:38:42.433Z] [ERROR]: /category/categories: TypeError: Cannot read properties of undefined (reading 'CategoryID') 
+[2022-09-27T12:38:42.433Z] [ERROR]: /category/categories - Cannot read properties of undefined (reading 'CategoryID') 
+[2022-09-27T12:39:01.989Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:39:03.887Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:39:05.504Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:39:07.268Z] [INFO]: querystring: {} 
+[2022-09-27T12:39:07.269Z] [INFO]: body: "" 
+[2022-09-27T12:39:07.350Z] [ERROR]: /category/categories: TypeError: Cannot read properties of undefined (reading 'CategoryID') 
+[2022-09-27T12:39:07.350Z] [ERROR]: /category/categories - Cannot read properties of undefined (reading 'CategoryID') 
+[2022-09-27T12:40:07.827Z] [INFO]: querystring: {} 
+[2022-09-27T12:40:07.827Z] [INFO]: body: "" 
+[2022-09-27T12:40:08.037Z] [ERROR]: /category/categories: TypeError: Cannot read properties of undefined (reading 'CategoryID') 
+[2022-09-27T12:40:08.037Z] [ERROR]: /category/categories - Cannot read properties of undefined (reading 'CategoryID') 
+[2022-09-27T12:40:24.341Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:40:25.105Z] [INFO]: querystring: {} 
+[2022-09-27T12:40:25.106Z] [INFO]: body: "" 
+[2022-09-27T12:40:51.789Z] [INFO]: querystring: {} 
+[2022-09-27T12:40:51.789Z] [INFO]: body: "" 
+[2022-09-27T12:42:09.458Z] [INFO]: querystring: {} 
+[2022-09-27T12:42:09.458Z] [INFO]: body: "" 
+[2022-09-27T12:42:54.173Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:43:07.323Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:43:09.318Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:43:19.656Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:44:38.190Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:44:41.477Z] [INFO]: querystring: {} 
+[2022-09-27T12:44:41.478Z] [INFO]: body: "" 
+[2022-09-27T12:45:10.672Z] [INFO]: querystring: {} 
+[2022-09-27T12:45:10.672Z] [INFO]: body: "" 
+[2022-09-27T12:45:27.211Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:45:33.671Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:45:36.877Z] [INFO]: querystring: {} 
+[2022-09-27T12:45:36.878Z] [INFO]: body: "" 
+[2022-09-27T12:45:51.887Z] [INFO]: querystring: {} 
+[2022-09-27T12:45:51.887Z] [INFO]: body: "" 
+[2022-09-27T12:46:04.440Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:46:26.536Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:46:28.946Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:46:33.150Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:46:35.733Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:46:39.640Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:46:40.790Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:46:42.535Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:46:44.911Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:46:48.844Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:46:50.226Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:46:51.849Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:47:01.904Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:47:15.487Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:47:17.360Z] [INFO]: querystring: {} 
+[2022-09-27T12:47:17.361Z] [INFO]: body: "" 
+[2022-09-27T12:47:37.075Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:47:43.312Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:47:50.279Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:47:53.465Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:47:56.993Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:10.794Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:12.261Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:18.892Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:20.505Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:22.127Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:24.892Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:29.439Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:30.594Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:35.341Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:38.498Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:39.760Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:41.094Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:45.027Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:46.573Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:49.714Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:52.324Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:55.410Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:48:58.247Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:49:04.989Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:49:06.156Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:49:27.505Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:49:36.092Z] [INFO]: querystring: {} 
+[2022-09-27T12:49:36.094Z] [INFO]: body: "" 
+[2022-09-27T12:49:47.634Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:49:59.355Z] [INFO]: querystring: {"id":"1"} 
+[2022-09-27T12:49:59.357Z] [INFO]: body: "" 
+[2022-09-27T12:52:46.211Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:52:56.836Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:52:59.960Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:55:11.044Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:55:16.807Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:56:06.467Z] [INFO]: querystring: {} 
+[2022-09-27T12:56:06.469Z] [INFO]: body: {"name":"jgfk","img":"ghjfdk"} 
+[2022-09-27T12:56:06.578Z] [ERROR]: query: "INSERT INTO "public"."Category" ( "CategoryName", "CategoryImg", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete" ) VALUES ( 'jgfk', 'ghjfdk', 4, '1401-7-4 16:26:6', 4, '1401-7-4 16:26:6', 0 ) RETURNING *" message: error: null value in column "CategoryID" of relation "Category" violates not-null constraint 
+[2022-09-27T12:56:06.579Z] [ERROR]: /category/add: error: null value in column "CategoryID" of relation "Category" violates not-null constraint 
+[2022-09-27T12:56:06.580Z] [ERROR]: /category/add - null value in column "CategoryID" of relation "Category" violates not-null constraint 
+[2022-09-27T12:56:46.672Z] [INFO]: querystring: {} 
+[2022-09-27T12:56:46.673Z] [INFO]: body: {"name":"jgfk","img":"ghjfdk"} 
+[2022-09-27T12:56:46.779Z] [ERROR]: query: "INSERT INTO "public"."Category" ( "CategoryName", "CategoryImg", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete" ) VALUES ( 'jgfk', 'ghjfdk', 4, '1401-7-4 16:26:46', 4, '1401-7-4 16:26:46', 0 ) RETURNING *" message: error: duplicate key value violates unique constraint "Category_pkey" 
+[2022-09-27T12:56:46.780Z] [ERROR]: /category/add: error: duplicate key value violates unique constraint "Category_pkey" 
+[2022-09-27T12:56:46.781Z] [ERROR]: /category/add - duplicate key value violates unique constraint "Category_pkey" 
+[2022-09-27T12:57:21.146Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:57:25.495Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:57:29.481Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:57:33.505Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:57:45.843Z] [INFO]: querystring: {} 
+[2022-09-27T12:57:45.844Z] [INFO]: body: {"name":"jgfk","img":"ghjfdk"} 
+[2022-09-27T12:58:24.178Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:59:14.131Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T12:59:20.801Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:00:39.029Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:00:40.615Z] [INFO]: querystring: {} 
+[2022-09-27T13:00:40.616Z] [INFO]: body: {"name":"jgfk","img":"ghjfdk"} 
+[2022-09-27T13:00:53.310Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:02:22.587Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:02:48.567Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:03:33.730Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:03:36.095Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:03:39.808Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:04:12.368Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:04:29.284Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:04:58.837Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:05:11.026Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:05:15.479Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:05:18.901Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:05:21.675Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:05:24.965Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:05:28.238Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:05:32.088Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:05:34.294Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:05:48.877Z] [INFO]: querystring: {} 
+[2022-09-27T13:05:48.878Z] [INFO]: body: {"name":"jgfk","img":"ghjfdk"} 
+[2022-09-27T13:05:48.879Z] [ERROR]: Invalid parameter id! 
+[2022-09-27T13:06:16.265Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:06:19.690Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:06:23.326Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:06:26.246Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:06:33.990Z] [INFO]: querystring: {} 
+[2022-09-27T13:06:33.991Z] [INFO]: body: {"name":"jgfk","img":"ghjfdk"} 
+[2022-09-27T13:06:33.992Z] [ERROR]: Invalid parameter id! 
+[2022-09-27T13:06:51.207Z] [INFO]: querystring: {"id":"2"} 
+[2022-09-27T13:06:51.208Z] [INFO]: body: {"name":"jgfk","img":"ghjfdk"} 
+[2022-09-27T13:07:02.644Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:07:15.804Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:07:18.965Z] [INFO]: querystring: {"id":"2"} 
+[2022-09-27T13:07:18.967Z] [INFO]: body: {"name":"jgfk","img":"ghjfdk"} 
+[2022-09-27T13:07:36.563Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:10:04.467Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:10:05.548Z] [INFO]: querystring: {"id":"2"} 
+[2022-09-27T13:10:05.550Z] [INFO]: body: {"name":"jgfk","img":"ghjfdk"} 
