@@ -1,10 +1,11 @@
 const statusCode = require('http-status-codes');
+const { datetime } = require('../utility');
 
 module.exports = (res, status, header, content) => {
     res.writeHead(status, header);
     if (status >= 500)
         res.end(JSON.stringify({
-            time: Date.now(),
+            time: datetime(),
             status: status,
             message: statusCode.getStatusText(status)
         }));
@@ -12,7 +13,7 @@ module.exports = (res, status, header, content) => {
         res.end(JSON.stringify({
             statusCode: status,
             statusMessage: statusCode.getStatusText(status),
-            time: Date.now(),
+            time: datetime(),
             message: content
         }));
 };

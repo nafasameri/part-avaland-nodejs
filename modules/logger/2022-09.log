@@ -1371,3 +1371,291 @@
 [2022-09-27T15:53:32.143Z] [INFO]: Server is running at: 127.0.0.1:81 
 [2022-09-27T15:54:07.568Z] [INFO]: /user/fogetpass?id=5 PUT 
 [2022-09-27T15:54:29.145Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:49:01.513Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:49:04.305Z] [INFO]: /music/musics GET 
+[2022-09-27T16:49:54.791Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:50:21.506Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:50:26.857Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:50:29.463Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:50:33.220Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:50:38.175Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:51:11.983Z] [INFO]: /music/add POST 
+[2022-09-27T16:51:46.025Z] [INFO]: /music/add POST 
+[2022-09-27T16:51:46.139Z] [ERROR]: query: "INSERT INTO "public"."Music" ( "AlbumName", "CategoryID", "MusicName", "MusicTitle", "MusicPoster", "MusicURL", 
+            "MusicDuration", "MusicLyrics", "MusicTags", "MusicArtists", "MusicReleaseTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete" ) VALUES ( undefined, undefined,'undefined','undefined','undefined',
+            'undefined','undefined','undefined','undefined','undefined',
+            'undefined',undefined, 'undefined', undefined, 'undefined', undefined ) RETURNING *" message: error: column "AlbumName" of relation "Music" does not exist 
+[2022-09-27T16:51:46.141Z] [ERROR]: /music/add: error: column "AlbumName" of relation "Music" does not exist 
+[2022-09-27T16:51:46.141Z] [ERROR]: /music/add - column "AlbumName" of relation "Music" does not exist 
+[2022-09-27T16:52:13.973Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:52:28.357Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:56:03.361Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:56:34.167Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:56:40.800Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:56:46.769Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:56:54.134Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:57:28.285Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:57:30.093Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:57:39.303Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:57:49.043Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:58:06.740Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:58:16.355Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:58:34.982Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:58:49.076Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:58:59.679Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:02.101Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:08.552Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:10.325Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:13.963Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:21.987Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:29.524Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:36.200Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:39.995Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:47.296Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:50.557Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:54.259Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T16:59:57.778Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:00:14.003Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:01:19.907Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:01:34.624Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:01:45.748Z] [INFO]: /music/add POST 
+[2022-09-27T17:01:45.856Z] [ERROR]: query: "INSERT INTO "public"."Music" ( "AlbumName", "CategoryID", "MusicName", "MusicTitle", "MusicPoster", "MusicURL", 
+            "MusicDuration", "MusicLyrics", "MusicTags", "MusicArtists", "MusicReleaseTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete" ) VALUES ( , null,'','','',
+            'ghjfkdls.mp3','','','','',
+            '',4, '1401-7-4 20:31:45', 4, '1401-7-4 20:31:45', 0 ) RETURNING *" message: error: syntax error at or near "," 
+[2022-09-27T17:01:45.857Z] [ERROR]: /music/add - syntax error at or near "," 
+[2022-09-27T17:01:45.857Z] [ERROR]: /music/add: error: syntax error at or near "," 
+[2022-09-27T17:02:12.358Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:02:13.889Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:02:16.239Z] [INFO]: /music/add POST 
+[2022-09-27T17:02:16.335Z] [ERROR]: query: "INSERT INTO "public"."Music" ( "AlbumName", "CategoryID", "MusicName", "MusicTitle", "MusicPoster", "MusicURL", 
+            "MusicDuration", "MusicLyrics", "MusicTags", "MusicArtists", "MusicReleaseTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete" ) VALUES ( '', null,'','','',
+            'ghjfkdls.mp3','','','','',
+            '',4, '1401-7-4 20:32:16', 4, '1401-7-4 20:32:16', 0 ) RETURNING *" message: error: column "AlbumName" of relation "Music" does not exist 
+[2022-09-27T17:02:16.336Z] [ERROR]: /music/add: error: column "AlbumName" of relation "Music" does not exist 
+[2022-09-27T17:02:16.336Z] [ERROR]: /music/add - column "AlbumName" of relation "Music" does not exist 
+[2022-09-27T17:03:13.151Z] [INFO]: /music/add POST 
+[2022-09-27T17:03:42.498Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:03:44.150Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:03:49.865Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:05:51.049Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:05:57.998Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:01.005Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:06.243Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:11.494Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:13.453Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:19.095Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:22.344Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:23.626Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:27.328Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:31.406Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:32.635Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:35.917Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:36.948Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:41.470Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:42.826Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:46.013Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:47.499Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:50.608Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:51.938Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:55.185Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:06:56.349Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:07:02.856Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:07:06.776Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:07:13.683Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:07:17.203Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:08:42.290Z] [INFO]: /music/update?id=3 PUT 
+[2022-09-27T17:08:42.396Z] [ERROR]: query: "UPDATE "public"."Music" SET "AlbumName"=, "CategoryID"=null, "MusicName"='',
+            "MusicTitle"='', "MusicPoster"='',"MusicURL"='ghjfkdls.mp3', "MusicDuration"='',
+            "MusicLyrics"='', "MusicTags"='',"MusicArtists"='', "MusicReleaseTime"='',
+            "Modifier"=4, "ModifiTime"='1401-7-4 20:38:42' WHERE "MusicID"=undefined RETURNING *" message: error: syntax error at or near "," 
+[2022-09-27T17:08:42.396Z] [ERROR]: /music/update?id=3: error: syntax error at or near "," 
+[2022-09-27T17:08:42.397Z] [ERROR]: /music/update?id=3 - syntax error at or near "," 
+[2022-09-27T17:09:02.999Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:09:11.407Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:09:13.024Z] [INFO]: /music/update?id=3 PUT 
+[2022-09-27T17:09:13.122Z] [ERROR]: query: "UPDATE "public"."Music" SET "AlbumName"=, "CategoryID"=null, "MusicName"='',
+            "MusicTitle"='', "MusicPoster"='',"MusicURL"='ghjfkdls.mp3', "MusicDuration"='',
+            "MusicLyrics"='', "MusicTags"='',"MusicArtists"='', "MusicReleaseTime"='',
+            "Modifier"=4, "ModifiTime"='1401-7-4 20:39:13' WHERE "MusicID"=3 RETURNING *" message: error: syntax error at or near "," 
+[2022-09-27T17:09:13.123Z] [ERROR]: /music/update?id=3 - syntax error at or near "," 
+[2022-09-27T17:09:13.123Z] [ERROR]: /music/update?id=3: error: syntax error at or near "," 
+[2022-09-27T17:09:23.886Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:09:26.527Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:09:27.900Z] [INFO]: /music/update?id=3 PUT 
+[2022-09-27T17:10:06.743Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:10:08.785Z] [INFO]: /music/update?id=3 PUT 
+[2022-09-27T17:10:28.730Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:10:29.426Z] [INFO]: /music/update?id=3 PUT 
+[2022-09-27T17:11:17.251Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:11:19.756Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:11:24.907Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:11:27.081Z] [INFO]: /music/update?id=3 PUT 
+[2022-09-27T17:11:27.168Z] [ERROR]: /music/update?id=3: SyntaxError: Unexpected string in JSON at position 328 
+[2022-09-27T17:11:27.168Z] [ERROR]: /music/update?id=3 - Unexpected string in JSON at position 328 
+[2022-09-27T17:11:35.950Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:11:59.665Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:12:01.316Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:12:03.462Z] [INFO]: /music/update?id=3 PUT 
+[2022-09-27T17:12:52.696Z] [INFO]: /music/update?id=3 PUT 
+[2022-09-27T17:13:10.215Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:13:36.940Z] [INFO]: /music/delete?id=3 DELETE 
+[2022-09-27T17:13:47.297Z] [INFO]: /music/update?id=3 PUT 
+[2022-09-27T17:13:47.375Z] [ERROR]: /music/update?id=3: TypeError: Cannot read properties of undefined (reading 'MusicID') 
+[2022-09-27T17:13:47.376Z] [ERROR]: /music/update?id=3 - Cannot read properties of undefined (reading 'MusicID') 
+[2022-09-27T17:14:42.928Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:14:46.054Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:14:53.416Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:14:54.575Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:14:58.730Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:15:06.670Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:15:09.279Z] [INFO]: /music/update?id=3 PUT 
+[2022-09-27T17:15:09.365Z] [ERROR]: /music/update?id=3: TypeError: Cannot set properties of undefined (setting 'album') 
+[2022-09-27T17:15:09.366Z] [ERROR]: /music/update?id=3 - Cannot set properties of undefined (setting 'album') 
+[2022-09-27T17:15:48.834Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:15:50.702Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:15:59.800Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:16:03.188Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:16:08.414Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:16:17.483Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:16:19.653Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:16:23.732Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:16:27.606Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:16:30.600Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:16:44.051Z] [INFO]: /music/update?id=3 PUT 
+[2022-09-27T17:32:51.781Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:32:57.980Z] [INFO]: /playlist/playlists GET 
+[2022-09-27T17:33:14.406Z] [INFO]: /playlist/playlists GET 
+[2022-09-27T17:33:52.090Z] [INFO]: /playlist/playlists GET 
+[2022-09-27T17:35:08.954Z] [INFO]: /playlist/musics?id=1 GET 
+[2022-09-27T17:36:39.282Z] [INFO]: /playlist/musics?id=2 GET 
+[2022-09-27T17:37:11.766Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:37:13.868Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:37:15.724Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:37:17.727Z] [INFO]: /playlist/musics?id=2 GET 
+[2022-09-27T17:38:21.524Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:38:24.140Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:38:25.942Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:38:45.443Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:38:46.633Z] [INFO]: /playlist/musics?id=2 GET 
+[2022-09-27T17:38:51.561Z] [INFO]: /playlist/musics?id=1 GET 
+[2022-09-27T17:39:13.800Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:39:22.278Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:39:30.479Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:39:32.996Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:39:35.598Z] [INFO]: /playlist/musics?id=1 GET 
+[2022-09-27T17:39:44.735Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:39:46.446Z] [INFO]: /playlist/musics?id=1 GET 
+[2022-09-27T17:39:49.068Z] [INFO]: /playlist/musics?id=1 GET 
+[2022-09-27T17:39:49.757Z] [INFO]: /playlist/musics?id=1 GET 
+[2022-09-27T17:39:50.102Z] [INFO]: /playlist/musics?id=1 GET 
+[2022-09-27T17:40:01.559Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:42:07.098Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:42:08.015Z] [INFO]: /playlist/add POST 
+[2022-09-27T17:42:08.110Z] [ERROR]: query: "INSERT INTO "public"."Playlist" ( "PlaylistName", "PlaylistImg", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete" ) VALUES ( 'undefined', 'undefined', undefined, 'undefined', undefined, 'undefined', undefined ) RETURNING *" message: error: column "undefined" does not exist 
+[2022-09-27T17:42:08.111Z] [ERROR]: /playlist/add: error: column "undefined" does not exist 
+[2022-09-27T17:42:08.111Z] [ERROR]: /playlist/add - column "undefined" does not exist 
+[2022-09-27T17:42:28.710Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:42:33.338Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:43:31.683Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:43:34.858Z] [INFO]: /playlist/add POST 
+[2022-09-27T17:43:55.769Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:43:58.866Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:44:00.866Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:44:09.094Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:44:13.115Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:44:16.719Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:44:20.729Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:44:22.384Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:44:57.275Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:45:16.898Z] [INFO]: /playlist/update?id=4 PUT 
+[2022-09-27T17:45:16.982Z] [ERROR]: /playlist/update?id=4: TypeError: Cannot set properties of undefined (setting 'PlaylistName') 
+[2022-09-27T17:45:16.983Z] [ERROR]: /playlist/update?id=4 - Cannot set properties of undefined (setting 'PlaylistName') 
+[2022-09-27T17:45:35.685Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:45:53.607Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:45:56.759Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:46:09.710Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:46:11.459Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:46:17.725Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:46:20.670Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:46:35.630Z] [INFO]: /playlist/update?id=4 PUT 
+[2022-09-27T17:46:40.666Z] [INFO]: /playlist/update?id=3 PUT 
+[2022-09-27T17:46:48.203Z] [INFO]: /playlist/update?id=3 PUT 
+[2022-09-27T17:46:49.168Z] [INFO]: /playlist/update?id=3 PUT 
+[2022-09-27T17:47:16.166Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:47:20.246Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:47:21.564Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:47:23.777Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:47:25.216Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:47:27.272Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:47:31.236Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:47:32.587Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:47:33.782Z] [INFO]: /playlist/update?id=3 PUT 
+[2022-09-27T17:47:52.318Z] [INFO]: /playlist/delete?id=3 DELETE 
+[2022-09-27T17:48:50.370Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:48:52.714Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:48:55.826Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:49:02.412Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:50:11.342Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:50:15.233Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:50:45.094Z] [INFO]: /playlist/addmusic POST 
+[2022-09-27T17:51:05.078Z] [INFO]: /playlist/addmusic POST 
+[2022-09-27T17:51:10.067Z] [INFO]: /playlist/addmusic POST 
+[2022-09-27T17:52:41.347Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T17:52:49.232Z] [INFO]: /playlist/deletemusic?id=4 DELETE 
+[2022-09-27T17:53:09.284Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:09:25.413Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:09:26.922Z] [INFO]: /playlist/deletemusic?id=4 DELETE 
+[2022-09-27T18:19:13.706Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:19:15.848Z] [INFO]: /premission/premissions GET 
+[2022-09-27T18:19:15.933Z] [ERROR]: query: "SELECT * FROM "public"."Premission" WHERE "IsDelete"=0" message: error: relation "public.Premission" does not exist 
+[2022-09-27T18:19:15.933Z] [ERROR]: /premission/premissions: error: relation "public.Premission" does not exist 
+[2022-09-27T18:19:15.934Z] [ERROR]: /premission/premissions - relation "public.Premission" does not exist 
+[2022-09-27T18:21:05.436Z] [INFO]: /premission/premissions GET 
+[2022-09-27T18:21:45.935Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:21:49.984Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:21:53.651Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:23:21.888Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:23:24.123Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:24:24.760Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:24:28.426Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:24:35.707Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:24:49.300Z] [INFO]: /premission/add POST 
+[2022-09-27T18:26:06.353Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:26:14.370Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:26:17.638Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:26:25.161Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:26:28.162Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:26:43.398Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:26:44.682Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:26:48.644Z] [INFO]: /premission/update PUT 
+[2022-09-27T18:26:48.648Z] [ERROR]: Invalid parameter id! 
+[2022-09-27T18:26:57.905Z] [INFO]: /premission/update?id=1 PUT 
+[2022-09-27T18:26:58.000Z] [ERROR]: query: "UPDATE "public"."Premission" SET "RoleID"='undefined', "MenuID"='undefined', "Modifier"=4, "ModifiTime"='1401-7-4 21:56:57' WHERE "PremissionID"=undefined RETURNING *" message: error: column "undefined" does not exist 
+[2022-09-27T18:26:58.001Z] [ERROR]: /premission/update?id=1 - column "undefined" does not exist 
+[2022-09-27T18:26:58.001Z] [ERROR]: /premission/update?id=1: error: column "undefined" does not exist 
+[2022-09-27T18:27:17.935Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:27:25.538Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:27:26.949Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:27:31.279Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:27:32.413Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:27:42.882Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:27:44.135Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:27:56.021Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:27:59.627Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:28:00.836Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:28:04.634Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:28:06.336Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:28:22.957Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:28:37.265Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:28:40.927Z] [INFO]: /premission/update?id=1 PUT 
+[2022-09-27T18:34:11.103Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:34:21.856Z] [INFO]: /menu/menus GET 
+[2022-09-27T18:34:45.605Z] [INFO]: /menu/menus GET 
+[2022-09-27T18:35:18.630Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:35:22.362Z] [INFO]: /menu/menus GET 
+[2022-09-27T18:36:52.003Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:36:52.754Z] [INFO]: /menu/menus?id=2 GET 
+[2022-09-27T18:39:06.297Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T18:39:07.175Z] [INFO]: /menu/add POST 
+[2022-09-27T18:39:29.428Z] [INFO]: /menu/add POST 
