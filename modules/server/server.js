@@ -17,7 +17,6 @@ class Server {
       .listen(this.port, this.hostname, () => {
         const logServer = `Server is running at: ${this.hostname}:${this.port}`;
         logger.info(logServer);
-        console.log(logServer);
       });
   }
 }

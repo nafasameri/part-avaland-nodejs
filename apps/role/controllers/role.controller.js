@@ -7,34 +7,15 @@ const statusCode = require('http-status-codes');
 const Role = require('../models/role.model');
 
 class RoleController {
-
-    #print = (roleList) => {
-        const roleData = []
-        roleList.forEach(role => {
-            const roleJson = {
-                "role-id": role.RoleID,
-                "name": role.RoleName,
-                "description": role.RoleDesc,
-                "creator": role.Creator,
-                "create-time": role.CreateTime,
-                "modifier": role.Modifier,
-                "modifi-time": role.ModifiTime,
-                "delete-flag": role.IsDelete
-            }
-            roleData.push(roleJson)
-        });
-        return (roleData.length == 1) ? roleData[0] : roleData;
-    }
-
     getRoles = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const role = await roleRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([role])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, role);
             } else {
                 const roles = await roleRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(roles)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, roles);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -48,13 +29,11 @@ class RoleController {
             if (!body || !body.name || !body.description)
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
-            const newRole = new Role(0, body.name, body.description);
-            const role = await roleRepository.add(newRole, req.UserID);
-
+            const role = await roleRepository.add(body, req.UserID);
             if (!role) {
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             } else {
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([role])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, role);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -70,14 +49,18 @@ class RoleController {
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
         
             const roleOld = await roleRepository.fetchById(id);
-            roleOld.RoleName = body.name ?? roleOld.RoleName;
-            roleOld.RoleDesc = body.description ?? roleOld.RoleDesc;
+            if (roleOld) {
+                roleOld.name = body.name ?? roleOld.name;
+                roleOld.description = body.description ?? roleOld.description;
 
-            const role = await roleRepository.update(roleOld, req.UserID);
-            if (!role)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                const role = await roleRepository.update(roleOld, req.UserID);
+                if (!role)
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                else
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, role);
+            }
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([role])));
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -91,7 +74,7 @@ class RoleController {
             if (!role) {
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             } else {
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([role])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, role);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);

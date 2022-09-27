@@ -1,22 +1,35 @@
 class Role {
-    RoleID;
-    RoleName;
-    RoleDesc;
-    Creator;
-    CreateTime;
-    Modifier;
-    ModifiTime;
-    IsDelete;
+    #ID;
+    #Name;
+    #Desc;
+    #Creator;
+    #CreateTime;
+    #Modifier;
+    #ModifiTime;
+    #IsDelete;
 
-    constructor(RoleID, RoleName, RoleDesc, Creator, CreateTime, Modifier, ModifiTime, IsDelete) {
-        this.RoleID = RoleID;
-        this.RoleName = RoleName;
-        this.RoleDesc = RoleDesc;
-        this.Creator = Creator;
-        this.CreateTime = CreateTime;
-        this.Modifier = Modifier;
-        this.ModifiTime = ModifiTime;
-        this.IsDelete = IsDelete;
+    constructor(role) {
+        this.#ID = role.RoleID;
+        this.#Name = role.RoleName;
+        this.#Desc = role.RoleDesc;
+        this.#Creator = role.Creator;
+        this.#CreateTime = role.CreateTime;
+        this.#Modifier = role.Modifier;
+        this.#ModifiTime = role.ModifiTime;
+        this.#IsDelete = role.IsDelete;
+    }
+
+    get() {
+        return {
+            "role-id": this.#ID,
+            "name": this.#Name,
+            "description": this.#Desc,
+            "creator": this.#Creator,
+            "create-time": this.#CreateTime,
+            "modifier": this.#Modifier,
+            "modifi-time": this.#ModifiTime,
+            "delete?": this.#IsDelete
+        };
     }
 }
 

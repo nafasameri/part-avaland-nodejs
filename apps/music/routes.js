@@ -1,16 +1,17 @@
 const musicController = require("./controllers/music.controller");
 const { fetchQueryStringFromURL, getPostData, getHeaders, authentication, InvalidId } = require('./middlewares');
 
-const routes = [{
+const routes = [
+  {
     url: "musics",
     method: "GET",
     controller: musicController.getMusics,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "",
-    method: "GET",
-    controller: musicController.root,
+    url: "add",
+    method: "POST",
+    controller: musicController.createMusic,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
@@ -18,12 +19,6 @@ const routes = [{
     method: "POST",
     controller: musicController.upload,
     middlewares: [authentication, fetchQueryStringFromURL],
-  },
-  {
-    url: "saveInfo",
-    method: "PUT",
-    controller: musicController.updateMusic,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   },
   {
     url: "update",

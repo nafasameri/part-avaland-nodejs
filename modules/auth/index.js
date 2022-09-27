@@ -1,6 +1,9 @@
 const client = require('../database/redis');
-const sendResponse = require('../handler/response.handler')
+const sendResponse = require('../handler/response.handler');
+const logger = require('../logger');
+
 module.exports = async (req, res, next) => {
+    logger.info(`${req.url} ${req.method}`)
     let setCookie = req.headers['set-cookie'];
     if (setCookie) {
         setCookie = setCookie[0];

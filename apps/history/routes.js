@@ -25,7 +25,20 @@ const routes = [
     method: "DELETE",
     controller: historyController.deleteHistory,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
-  }
+  },
+
+  {
+    url: "music",
+    method: "GET",
+    controller: historyController.getHistoryMusic,
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
+  },
+  {
+    url: "user",
+    method: "GET",
+    controller: historyController.getHistoryUser,
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
+  },
 ];
 
 module.exports = routes;

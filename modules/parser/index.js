@@ -16,7 +16,7 @@ function fetchQueryStringFromURL(req, res, next) {
             });
         }
         req.querystring = result;
-        logger.info('querystring: ' + JSON.stringify(req.querystring));
+        // logger.info('querystring: ' + JSON.stringify(req.querystring));
         return req;
     } catch (e) {
         logger.error(e?.message);
@@ -56,11 +56,11 @@ async function getHeaders(req, res, next) {
         switch (contentType) {
             case 'application/x-www-form-urlencoded':
                 req.params = data;
-                logger.info('params: ' + JSON.stringify(req.params));
+                // logger.info('params: ' + JSON.stringify(req.params));
                 break;
             case 'application/json':
                 req.body = data;
-                logger.info('body: ' + JSON.stringify(req.body));
+                // logger.info('body: ' + JSON.stringify(req.body));
                 break;
         }
         return req;

@@ -4,38 +4,17 @@ const PremissionRepository = require("../repositories/premission.repository");
 const premissionRepository = new PremissionRepository();
 
 const statusCode = require('http-status-codes');
-const Premission = require('../models/premission.model');
 
 class PremissionController {
-
-    #print = (premissionList) => {
-        const premissionData = []
-        premissionList.forEach(premission => {
-            const premissionJson = {
-                "premission-id": premission.PremissionID,
-                "role-id": premission.RoleID,
-                "music-id": premission.MenuID,
-                "creator": premission.Creator,
-                "creator-time": premission.CreateTime,
-                "modifier": premission.Modifier,
-                "modifi-time": premission.ModifiTime,
-                "delete-flag": premission.IsDelete
-            }
-            premissionData.push(premissionJson)
-        });
-        return (premissionData == 1) ? premissionData[0] : premissionData;
-    }
-
-
-    getHistories = async (req, res) => {
+    getPremissions = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const premission = await premissionRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([premission])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, premission);
             } else {
                 const premissions = await premissionRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(premissions)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, premissions);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -46,16 +25,14 @@ class PremissionController {
     createPremission = async (req, res) => {
         try {
             const { body } = req;
-            if (!body || !body["role-id"] || !body["music-id"])
+            if (!body || !body["role-id"] || !body["menu-id"])
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
             
-            const newPremission = new Premission(0, body["role-id"], body["music-id"]);
-            const premission = await premissionRepository.add(newPremission, req.RoleID);
-
+            const premission = await premissionRepository.add(body, req.RoleID);
             if (!premission)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([premission])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, premission);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -70,14 +47,18 @@ class PremissionController {
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const premissionOld = await premissionRepository.fetchById(id);
-            premissionOld.RoleID = body["role-id"] ?? premissionOld.RoleID;
-            premissionOld.MenuID = body["music-id"] ?? premissionOld.MenuID;
+            if (premissionOld) {
+                premissionOld["role-id"] = body["role-id"] ?? premissionOld["role-id"];
+                premissionOld["menu-id"] = body["menu-id"] ?? premissionOld["menu-id"];
 
-            const premission = await premissionRepository.update(premissionOld, req.RoleID);
-            if (!premission)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                const premission = await premissionRepository.update(premissionOld, req.UserID);
+                if (!premission)
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                else
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, premission);
+            }
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([premission])));
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -91,7 +72,7 @@ class PremissionController {
             if (!premission)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([premission])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, premission);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

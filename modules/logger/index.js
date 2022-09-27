@@ -13,14 +13,17 @@ class Logger {
 
     static info(...txt) {
         this.#writeLog(`[INFO]: ${txt}`);
+        console.log(...txt);
     }
 
     static warn(...txt) {
         this.#writeLog(`[Warning]: ${txt}`);
+        console.warn(...txt);
     }
 
     static error(...txt) {
         this.#writeLog(`[ERROR]: ${txt}`);
+        console.error(...txt);
     }
 }
 
