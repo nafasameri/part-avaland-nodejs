@@ -1,7 +1,7 @@
 const Pool = require('pg-pool');
 
 const config = require('../../config').databaseConfig;
-
+const logger = require('../logger');
 
 class DataBase {
     #instance = null;
@@ -16,11 +16,12 @@ class DataBase {
     }
 
     query = async (sql) => {
-        // this.#instance.connect();
-
-        let records = await this.#instance.query(sql);
-        // pool.end();
-        return records;
+        try {
+            return await this.#instance.query(sql);
+        } catch (error) {
+            logger.error(`query: "${sql}" message: ${error}`);
+            throw error;
+        }
     }
 
     selcet(table, columns, conditions, IsDelete = 0) {
@@ -57,16 +58,6 @@ class DataBase {
          WHERE ${conditions} 
          AND "${table1}"."IsDelete"=${IsDelete} AND "${table2}"."IsDelete"=${IsDelete}`;
 
-
-        if (conditions == undefined)
-            sql = `SELECT ${columns} FROM "${this.schema}"."${table}" WHERE "IsDelete"=${IsDelete}`;
-
-        if (IsDelete == 1) {
-            sql = `SELECT ${columns} FROM "${this.schema}"."${table}" WHERE ${conditions}`;
-            if (conditions == undefined)
-                sql = `SELECT ${columns} FROM "${this.schema}"."${table}"`;
-        }
-        console.log(sql);
         return this.query(sql);
     }
 }
