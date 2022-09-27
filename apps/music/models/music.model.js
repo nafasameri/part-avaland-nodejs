@@ -1,42 +1,62 @@
 class Music {
-    MusicID;
-    AlbumName;
-    CategoryID;
-    MusicName;
-    MusicTitle;
-    MusicPoster;
-    MusicURL;
-    MusicDuration;
-    MusicLyrics;
-    MusicTags;
-    MusicMimeType;
-    MusicArtists;
-    MusicReleaseTime;
-    Creator;
-    CreateTime;
-    Modifier;
-    ModifiTime;
-    IsDelete;
+    #ID;
+    #Name;
+    #Title;
+    #Poster;
+    #URL;
+    #Duration;
+    #Lyrics;
+    #Tags;
+    #Artists;
+    #CategoryID;
+    #AlbumName;
+    #ReleaseTime;
+    #Creator;
+    #CreateTime;
+    #Modifier;
+    #ModifiTime;
+    #IsDelete;
 
-    constructor(MusicID, AlbumName, CategoryID, MusicName, MusicTitle, MusicPoster, MusicURL, MusicDuration, MusicLyrics, MusicTags, MusicArtists, MusicReleaseTime, Creator, CreateTime, Modifier, ModifiTime, IsDelete) {
-        this.MusicID = MusicID;
-        this.AlbumName = AlbumName;
-        this.CategoryID = CategoryID;
-        this.MusicName = MusicName;
-        this.MusicTitle = MusicTitle;
-        this.MusicPoster = MusicPoster;
-        this.MusicURL = MusicURL;
-        this.MusicDuration = MusicDuration;
-        this.MusicLyrics = MusicLyrics;
-        this.MusicTags = MusicTags;
-        // this.MusicMimeType = MusicMimeType;
-        this.MusicArtists = MusicArtists;
-        this.MusicReleaseTime = MusicReleaseTime;
-        this.Creator = Creator;
-        this.CreateTime = CreateTime;
-        this.Modifier = Modifier;
-        this.ModifiTime = ModifiTime;
-        this.IsDelete = IsDelete;
+    constructor(music) {
+        this.#ID = music.MusicID;
+        this.#AlbumName = music.AlbumName;
+        this.#CategoryID = music.CategoryID;
+        this.#Name = music.MusicName;
+        this.#Title = music.MusicTitle;
+        this.#Poster = music.MusicPoster;
+        this.#URL = music.MusicURL;
+        this.#Duration = music.MusicDuration;
+        this.#Lyrics = music.MusicLyrics;
+        this.#Tags = music.MusicTags;
+        this.#Artists = music.MusicArtists;
+        this.#ReleaseTime = music.MusicReleaseTime;
+        this.#Creator = music.Creator;
+        this.#CreateTime = music.CreateTime;
+        this.#Modifier = music.Modifier;
+        this.#ModifiTime = music.ModifiTime;
+        this.#IsDelete = music.IsDelete;
+    }
+
+    get() {
+        return {
+            "music-id": this.#ID,
+            "album": this.#AlbumName,
+            "name": this.#Name,
+            "title": this.#Title,
+            "poster": this.#Poster,
+            "url": this.#URL,
+            "duration": this.#Duration,
+            "lyrics": this.#Lyrics,
+            "tags": this.#Tags,
+            "artists": this.#Artists,
+            "category-id": this.#CategoryID,
+            "release-time": this.#ReleaseTime,
+            "creator": this.#Creator,
+            "create-time": this.#CreateTime,
+            "modifier": this.#Modifier,
+            "modifi-time": this.#ModifiTime,
+            "delete?": this.#IsDelete
+        };
     }
 }
 

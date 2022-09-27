@@ -11,42 +11,15 @@ const Music = require('../models/music.model');
 
 
 class MusicController {
-
-    #print = (musicList) => {
-        const musicData = []
-        musicList.forEach(music => {
-            const musicJson = {
-                "music-id": music.MusicID,
-                "album-name": music.AlbumName,
-                "name": music.MusicName,
-                "title": music.MusicTitle,
-                "poster": music.MusicPoster,
-                "url": music.MusicURL,
-                "duration": music.MusicDuration,
-                "lyrics": music.MusicLyrics,
-                "tags": music.MusicTags,
-                "artists": music.MusicArtists,
-                "release-time": music.MusicReleaseTime,
-                "creator": music.Creator,
-                "create-time": music.CreateTime,
-                "modifier": music.Modifier,
-                "modifi-time": music.ModifiTime,
-                "delete-flag": music.IsDelete
-            }
-            musicData.push(musicJson)
-        });
-        return (musicData == 1) ? musicData[0] : musicData;
-    }
-
     getMusics = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const music = await musicRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([music]));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, music);
             } else {
                 const musics = await musicRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print(musics));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, musics);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -54,19 +27,19 @@ class MusicController {
         }
     };
 
-    root = async (req, res) => {
-        const page = `<html><body>
-        <h2>With Node.js <code>"http"</code> module</h2>
-        <form action="/music/upload" enctype="multipart/form-data" method="post">
-        <div>Text field title: <input type="text" name="title" /></div>
-        <div>File: <input type="file" name="multipleFiles" multiple="multiple" /></div>
-        <input type="submit" value="Upload" />
-        </form>
-        </body></html>`;
-        res.writeHead(statusCode.OK, { 'Content-Type': 'text/html' });
-        return res.end(page);
-        // return sendResponse(res, statusCode.OK, { 'Content-Type': 'text/html' }, page);
-    };
+    // root = async (req, res) => {
+    //     const page = `<html><body>
+    //     <h2>With Node.js <code>"http"</code> module</h2>
+    //     <form action="/music/upload" enctype="multipart/form-data" method="post">
+    //     <div>Text field title: <input type="text" name="title" /></div>
+    //     <div>File: <input type="file" name="multipleFiles" multiple="multiple" /></div>
+    //     <input type="submit" value="Upload" />
+    //     </form>
+    //     </body></html>`;
+    //     res.writeHead(statusCode.OK, { 'Content-Type': 'text/html' });
+    //     return res.end(page);
+    //     // return sendResponse(res, statusCode.OK, { 'Content-Type': 'text/html' }, page);
+    // };
 
     upload = async (req, res) => {
         try {
@@ -106,12 +79,11 @@ class MusicController {
             if (!newFilename)
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
      
-            const newMusic = new Music(0, '', null, '', '', '', newFilename);
-            const music = await musicRepository.add(newMusic, req.UserID);
+            const music = await musicRepository.add({ url: newFilename }, req.UserID);
             if (!music)
                 return sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                return sendResponse(res, statusCode.OK, { 'Content-Type': 'application/json' }, this.#print([music]));
+                return sendResponse(res, statusCode.OK, { 'Content-Type': 'application/json' }, music);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -126,22 +98,27 @@ class MusicController {
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const musicOld = await musicRepository.fetchById(id);
-            musicOld.AlbumName = body["album-name"] ?? musicOld.AlbumName;
-            musicOld.MusicName = body.name ?? musicOld.MusicName;
-            musicOld.MusicTitle = body.title ?? musicOld.MusicTitle;
-            musicOld.MusicPoster = body.poster ?? musicOld.MusicPoster;
-            musicOld.MusicURL = body.url ?? musicOld.MusicURL;
-            musicOld.MusicDuration = body.duration ?? musicOld.MusicDuration;
-            musicOld.MusicLyrics = body.lyrics ?? musicOld.MusicLyrics;
-            musicOld.MusicTags = body.tags ?? musicOld.MusicTags;
-            musicOld.MusicArtists = body.artists ?? musicOld.MusicArtists;
-            musicOld.MusicReleaseTime = body["release-time"] ?? musicOld.MusicReleaseTime;
+            if (musicOld) {
+                musicOld.album = body.album ?? musicOld.album;
+                musicOld.name = body.name ?? musicOld.name;
+                musicOld.title = body.title ?? musicOld.title;
+                musicOld.poster = body.poster ?? musicOld.poster;
+                musicOld.url = body.url ?? musicOld.url;
+                musicOld.duration = body.duration ?? musicOld.duration;
+                musicOld.lyrics = body.lyrics ?? musicOld.lyrics;
+                musicOld.tags = body.tags ?? musicOld.tags;
+                musicOld.artists = body.artists ?? musicOld.artists;
+                musicOld["release-time"] = body["release-time"] ?? musicOld["release-time"];
+                musicOld["category-id"] = body["category-id"] ?? musicOld["category-id"];
 
-            const music = await musicRepository.update(musicOld, req.UserID);
-            if (!music)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
-            else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([music]));
+                const music = await musicRepository.update(musicOld, req.UserID);
+                if (!music)
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                else
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, music);
+            }
+            else 
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -158,7 +135,7 @@ class MusicController {
             if (!music)
                 sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([music]));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, music);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
