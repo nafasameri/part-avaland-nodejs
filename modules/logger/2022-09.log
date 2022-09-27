@@ -243,10 +243,10 @@
             const { id } = req.querystring;
             if (id) {
                 const role = await roleRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print([role])));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(role])));
             } else {
                 const roles = await roleRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(this.#print(roles)));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify(roles)));
             }
         } catch (error) {
             logger.error('getAllRoles: ' + error);
@@ -964,3 +964,194 @@
 [2022-09-27T13:10:04.467Z] [INFO]: Server is running at: 127.0.0.1:81 
 [2022-09-27T13:10:05.548Z] [INFO]: querystring: {"id":"2"} 
 [2022-09-27T13:10:05.550Z] [INFO]: body: {"name":"jgfk","img":"ghjfdk"} 
+[2022-09-27T13:19:27.670Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:19:36.856Z] [INFO]: querystring: {"id":"2"} 
+[2022-09-27T13:19:36.857Z] [INFO]: body: {"name":"jgfk","img":"ghjfdk"} 
+[2022-09-27T13:22:59.950Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:22:59.950Z] [INFO]: querystring: {} 
+[2022-09-27T13:23:00.040Z] [ERROR]: query: "SELECT * FROM "public"."Favourite" WHERE "MusicID"=undefined AND "UserID"=undefined" message: error: column "undefined" does not exist 
+[2022-09-27T13:23:00.041Z] [ERROR]: /favourite/add: error: column "undefined" does not exist 
+[2022-09-27T13:23:00.041Z] [ERROR]: /favourite/add - column "undefined" does not exist 
+[2022-09-27T13:24:32.303Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:24:34.170Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:24:35.761Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:24:44.313Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:25:05.158Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:25:09.858Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:25:14.886Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:25:21.440Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:25:22.769Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:25:28.519Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:25:29.463Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:25:35.368Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:25:49.333Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:26:00.764Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:26:03.638Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:26:09.093Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:26:10.178Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:26:16.439Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:26:20.884Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:26:22.446Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:26:24.722Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:26:35.846Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:26:43.987Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:28:53.631Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:28:58.496Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:30:48.742Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:31:29.133Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:31:38.594Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:31:46.051Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:31:47.964Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:33:28.826Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:33:36.602Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:33:38.036Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:39:58.114Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:39:59.782Z] [INFO]: querystring: {} 
+[2022-09-27T13:39:59.784Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:39:59.879Z] [ERROR]: /favourite/add: TypeError: Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:39:59.879Z] [ERROR]: /favourite/add - Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:40:27.251Z] [INFO]: querystring: {} 
+[2022-09-27T13:40:27.251Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:40:27.335Z] [ERROR]: /favourite/add: TypeError: Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:40:27.335Z] [ERROR]: /favourite/add - Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:41:53.300Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:41:54.299Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:41:56.645Z] [INFO]: querystring: {} 
+[2022-09-27T13:41:56.646Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:41:56.736Z] [ERROR]: /favourite/add: TypeError: Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:41:56.736Z] [ERROR]: /favourite/add - Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:43:20.606Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:43:23.221Z] [INFO]: querystring: {} 
+[2022-09-27T13:43:23.223Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:43:23.303Z] [ERROR]: /favourite/add: TypeError: Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:43:23.303Z] [ERROR]: /favourite/add - Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:44:43.324Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:44:44.720Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:44:46.397Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:44:47.601Z] [INFO]: querystring: {} 
+[2022-09-27T13:44:47.603Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:44:47.902Z] [ERROR]: /favourite/add: TypeError: Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:44:47.903Z] [ERROR]: /favourite/add - Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:45:23.975Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:45:38.249Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:45:42.414Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:45:51.769Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:45:56.467Z] [INFO]: querystring: {} 
+[2022-09-27T13:45:56.468Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:45:56.554Z] [ERROR]: /favourite/add: TypeError: Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:45:56.555Z] [ERROR]: /favourite/add - Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:46:10.509Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:46:16.988Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:46:19.350Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:46:19.348Z] [INFO]: querystring: {} 
+[2022-09-27T13:46:19.439Z] [ERROR]: /favourite/add: TypeError: Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:46:19.439Z] [ERROR]: /favourite/add - Cannot read properties of undefined (reading 'FavouriteID') 
+[2022-09-27T13:46:41.654Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:46:46.738Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:46:49.405Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:46:50.659Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:46:55.542Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:46:58.995Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:47:01.110Z] [INFO]: querystring: {} 
+[2022-09-27T13:47:01.112Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:47:01.207Z] [ERROR]: query: "UPDATE "public"."Favourite" SET "UserID"='undefined', "MusicID"='undefined', "LikedTime"='undefined', 
+            "Modifier"=undefined, "ModifiTime"='undefined', "IsDelete" = 0 WHERE "FavouriteID"=undefined RETURNING *" message: error: column "undefined" does not exist 
+[2022-09-27T13:47:01.209Z] [ERROR]: /favourite/add - column "undefined" does not exist 
+[2022-09-27T13:47:01.208Z] [ERROR]: /favourite/add: error: column "undefined" does not exist 
+[2022-09-27T13:47:47.427Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:47:48.422Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:47:52.134Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:47:57.704Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:48:09.958Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:48:24.347Z] [INFO]: querystring: {} 
+[2022-09-27T13:48:24.349Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:48:24.448Z] [ERROR]: query: "UPDATE "public"."Favourite" SET "UserID"='undefined', "MusicID"='undefined', "LikedTime"='undefined', 
+            "Modifier"=undefined, "ModifiTime"='undefined', "IsDelete" = 0 WHERE "FavouriteID"=undefined RETURNING *" message: error: column "undefined" does not exist 
+[2022-09-27T13:48:24.449Z] [ERROR]: /favourite/add: error: column "undefined" does not exist 
+[2022-09-27T13:48:24.449Z] [ERROR]: /favourite/add - column "undefined" does not exist 
+[2022-09-27T13:48:54.065Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:48:56.702Z] [INFO]: querystring: {} 
+[2022-09-27T13:48:56.704Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:48:56.816Z] [ERROR]: query: "INSERT INTO "public"."Favourite" ( "UserID", "MusicID", "LikedTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete" ) VALUES ( 1, 9, '1401-7-4 17:18:56', 4, '1401-7-4 17:18:56', 4, '1401-7-4 17:18:56', 0 ) RETURNING *" message: error: insert or update on table "Favourite" violates foreign key constraint "musicKey" 
+[2022-09-27T13:48:56.817Z] [ERROR]: /favourite/add: error: insert or update on table "Favourite" violates foreign key constraint "musicKey" 
+[2022-09-27T13:48:56.817Z] [ERROR]: /favourite/add - insert or update on table "Favourite" violates foreign key constraint "musicKey" 
+[2022-09-27T13:49:41.105Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:49:43.206Z] [INFO]: querystring: {} 
+[2022-09-27T13:49:43.208Z] [INFO]: body: {"user-id":1,"music-id":9} 
+[2022-09-27T13:49:43.479Z] [ERROR]: query: "UPDATE "public"."Favourite" SET "UserID"='undefined', "MusicID"='undefined', "LikedTime"='undefined', 
+            "Modifier"=undefined, "ModifiTime"='undefined', "IsDelete" = 0 WHERE "FavouriteID"=undefined RETURNING *" message: error: column "undefined" does not exist 
+[2022-09-27T13:49:43.480Z] [ERROR]: /favourite/add - column "undefined" does not exist 
+[2022-09-27T13:49:43.480Z] [ERROR]: /favourite/add: error: column "undefined" does not exist 
+[2022-09-27T13:50:03.925Z] [INFO]: querystring: {} 
+[2022-09-27T13:50:03.926Z] [INFO]: body: {"user-id":1,"music-id":2} 
+[2022-09-27T13:50:04.119Z] [ERROR]: query: "UPDATE "public"."Favourite" SET "UserID"='undefined', "MusicID"='undefined', "LikedTime"='undefined', 
+            "Modifier"=undefined, "ModifiTime"='undefined', "IsDelete" = 0 WHERE "FavouriteID"=undefined RETURNING *" message: error: column "undefined" does not exist 
+[2022-09-27T13:50:04.120Z] [ERROR]: /favourite/add: error: column "undefined" does not exist 
+[2022-09-27T13:50:04.121Z] [ERROR]: /favourite/add - column "undefined" does not exist 
+[2022-09-27T13:52:57.266Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:53:21.004Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:53:23.836Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:53:26.871Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:53:29.397Z] [INFO]: querystring: {} 
+[2022-09-27T13:53:29.399Z] [INFO]: body: {"user-id":1,"music-id":2} 
+[2022-09-27T13:53:29.507Z] [ERROR]: query: "UPDATE "public"."Favourite" SET "UserID"='undefined', "MusicID"='undefined', "LikedTime"='undefined', 
+            "Modifier"=undefined, "ModifiTime"='undefined', "IsDelete" = 0 WHERE "FavouriteID"=undefined RETURNING *" message: error: column "undefined" does not exist 
+[2022-09-27T13:53:29.508Z] [ERROR]: /favourite/add - column "undefined" does not exist 
+[2022-09-27T13:53:29.508Z] [ERROR]: /favourite/add: error: column "undefined" does not exist 
+[2022-09-27T13:53:39.227Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:53:40.272Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:53:41.905Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:53:54.445Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:53:57.574Z] [INFO]: querystring: {} 
+[2022-09-27T13:53:57.576Z] [INFO]: body: {"user-id":1,"music-id":2} 
+[2022-09-27T13:53:57.682Z] [ERROR]: query: "UPDATE "public"."Favourite" SET "UserID"='undefined', "MusicID"='undefined', "LikedTime"='undefined', 
+            "Modifier"=undefined, "ModifiTime"='undefined', "IsDelete" = 0 WHERE "FavouriteID"=undefined RETURNING *" message: error: column "undefined" does not exist 
+[2022-09-27T13:53:57.683Z] [ERROR]: /favourite/add: error: column "undefined" does not exist 
+[2022-09-27T13:53:57.683Z] [ERROR]: /favourite/add - column "undefined" does not exist 
+[2022-09-27T13:54:27.431Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:54:28.538Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:54:43.292Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:54:50.984Z] [ERROR]: query: "UPDATE "public"."Favourite" SET "UserID"='undefined', "MusicID"='undefined', "LikedTime"='undefined', 
+            "Modifier"=undefined, "ModifiTime"='undefined', "IsDelete" = 0 WHERE "FavouriteID"=undefined RETURNING *" message: error: column "undefined" does not exist 
+[2022-09-27T13:54:50.985Z] [ERROR]: /favourite/add - column "undefined" does not exist 
+[2022-09-27T13:54:50.985Z] [ERROR]: /favourite/add: error: column "undefined" does not exist 
+[2022-09-27T13:55:19.273Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:55:22.149Z] [ERROR]: query: "UPDATE "public"."Favourite" SET "UserID"='undefined', "MusicID"='undefined', "LikedTime"='undefined', 
+            "Modifier"=undefined, "ModifiTime"='undefined', "IsDelete" = 0 WHERE "FavouriteID"=undefined RETURNING *" message: error: column "undefined" does not exist 
+[2022-09-27T13:55:22.150Z] [ERROR]: /favourite/add: error: column "undefined" does not exist 
+[2022-09-27T13:55:22.151Z] [ERROR]: /favourite/add - column "undefined" does not exist 
+[2022-09-27T13:55:34.078Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:55:47.428Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:55:55.749Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:55:58.448Z] [ERROR]: query: "INSERT INTO "public"."Favourite" ( "UserID", "MusicID", "LikedTime", "Creator", "CreateTime", "Modifier", "ModifiTime", "IsDelete" ) VALUES ( 1, 2, '1401-7-4 17:25:58', 4, '1401-7-4 17:25:58', 4, '1401-7-4 17:25:58', 0 ) RETURNING *" message: error: insert or update on table "Favourite" violates foreign key constraint "userKey" 
+[2022-09-27T13:55:58.449Z] [ERROR]: /favourite/add: error: insert or update on table "Favourite" violates foreign key constraint "userKey" 
+[2022-09-27T13:55:58.450Z] [ERROR]: /favourite/add - insert or update on table "Favourite" violates foreign key constraint "userKey" 
+[2022-09-27T13:56:06.758Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:57:07.952Z] [ERROR]: query: "UPDATE "public"."Favourite" SET "UserID"='undefined', "MusicID"='undefined', "LikedTime"='undefined', 
+            "Modifier"=undefined, "ModifiTime"='undefined', "IsDelete" = 0 WHERE "FavouriteID"=undefined RETURNING *" message: error: column "undefined" does not exist 
+[2022-09-27T13:57:07.954Z] [ERROR]: /favourite/add - column "undefined" does not exist 
+[2022-09-27T13:57:07.953Z] [ERROR]: /favourite/add: error: column "undefined" does not exist 
+[2022-09-27T13:57:41.368Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:57:45.463Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:57:49.003Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:57:52.237Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:58:43.159Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:58:46.439Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:58:56.997Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:59:02.087Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:59:08.964Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T13:59:49.492Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:00:05.805Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:00:11.520Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:00:23.253Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:05:48.551Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:05:48.931Z] [ERROR]: Invalid parameter id! 
+[2022-09-27T14:08:10.122Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:08:26.391Z] [ERROR]: query: "SELECT * FROM "public"."Favourite" WHERE "MusicID"=3 AND "IsDelete"=0" message: error: database "avaland" does not exist 
+[2022-09-27T14:08:26.393Z] [ERROR]: /favourite/music?id=3 - database "avaland" does not exist 
+[2022-09-27T14:08:26.392Z] [ERROR]: /favourite/music?id=3: error: database "avaland" does not exist 
+[2022-09-27T14:08:46.503Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:10:45.602Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:10:48.465Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:10:52.946Z] [INFO]: Server is running at: 127.0.0.1:81 
+[2022-09-27T14:10:56.369Z] [INFO]: Server is running at: 127.0.0.1:81 

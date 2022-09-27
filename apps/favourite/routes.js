@@ -25,6 +25,19 @@ const routes = [
     method: "DELETE",
     controller: favouriteController.deleteFavourite,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
+  },
+
+  {
+    url: "music",
+    method: "GET",
+    controller: favouriteController.getFavouriteMusic,
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
+  },
+  {
+    url: "user",
+    method: "GET",
+    controller: favouriteController.getFavouriteUser,
+    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   }
 ];
 

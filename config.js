@@ -32,7 +32,7 @@ const databaseConfig = {
   user: 'postgres',
   password: '1997Nafas',
   port: '5432',
-  database: 'avaland',
+  // database: 'avaland',
   schema: 'public'
 };
 

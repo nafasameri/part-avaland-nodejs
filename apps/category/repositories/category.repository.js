@@ -8,8 +8,7 @@ class CategoryRepository {
         const record = await db.selcet('Category', '*');
         const categories = [];
         record.rows.forEach((row) => {
-            const category = new Category(row);
-            categories.push(category.get());
+            categories.push(new Category(row).get());
         });
         return categories;
     }
@@ -37,14 +36,14 @@ class CategoryRepository {
 
     async update(category, userID) {
         const categoryModel = {
-            id: category["category-id"] ?? '',
+            id: category["category-id"] ?? null,
             name: category.name ?? '',
             img: category.img ?? '',
-            Creator: category["creator"],
-            CreateTime: category["create-time"],
+            Creator: category["creator"] ?? null,
+            CreateTime: category["create-time"] ?? '',
             Modifier: userID,
             ModifiTime: datetime(),
-            IsDelete: category["delete?"]
+            IsDelete: category["delete?"] ?? 0
         };
 
         const record = await db.update('Category', `"CategoryName"='${categoryModel.name}', "CategoryImg"='${categoryModel.img}', "Modifier"=${categoryModel.Modifier}, "ModifiTime"='${categoryModel.ModifiTime}'`, `"CategoryID"=${categoryModel.id}`);

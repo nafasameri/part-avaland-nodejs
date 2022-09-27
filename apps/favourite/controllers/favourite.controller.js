@@ -7,34 +7,15 @@ const statusCode = require('http-status-codes');
 const Favourite = require('../models/favourite.model');
 
 class FavouriteController {
-    #print = (favouriteList) => {
-        const favouriteData = []
-        favouriteList.forEach(favourite => {
-            const favouriteJson = {
-                "favourite-id": favourite.FavouriteID,
-                "user-id": favourite.UserID,
-                "music-id": favourite.MusicID,
-                "like-time": favourite.LikedTime,
-                "creator": favourite.Creator,
-                "create-time": favourite.CreateTime,
-                "modifier": favourite.Modifier,
-                "modifi-time": favourite.ModifiTime,
-                "delete-flag": favourite.IsDelete
-            }
-            favouriteData.push(favouriteJson)
-        });
-        return (favouriteData == 1) ? favouriteData[0] : favouriteData;
-    }
-
     getFavourites = async (req, res) => {
         try {
             const { id } = req.querystring;
             if (id) {
                 const favourite = await favouriteRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([favourite]));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
             } else {
                 const favourites = await favouriteRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print(favourites));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourites);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -48,18 +29,17 @@ class FavouriteController {
             if (!body || !body["music-id"] || !body["user-id"])
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
-            const newFav = new Favourite(0, body["user-id"], body["music-id"]);
-            let favourite = await favouriteRepository.fetchByUserMusic(newFav.MusicID, newFav.UserID);
+            let favourite = await favouriteRepository.fetchByUserMusic(body["music-id"], body["user-id"]);
             if (!favourite)
-                favourite = await favouriteRepository.add(newFav, req.UserID);
+                favourite = await favouriteRepository.add(body, req.UserID);
             else {
-                favourite.IsDelete = favourite.IsDelete == 0 ? 1 : 0;
+                favourite["delete?"] = favourite["delete?"] == 0 ? 1 : 0;
                 favourite = await favouriteRepository.update(favourite, req.UserID);
             }
             if (!favourite)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([favourite]));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -74,14 +54,14 @@ class FavouriteController {
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const favouriteOld = await favouriteRepository.fetchById(id);
-            favouriteOld.UserID = body["user-id"] ?? favouriteOld.UserID;
-            favouriteOld.MusicID = body["music-id"] ?? favouriteOld.MusicID;
+            favouriteOld["user-id"] = body["user-id"] ?? favouriteOld["user-id"];
+            favouriteOld["music-id"] = body["music-id"] ?? favouriteOld["music-id"];
 
             const favourite = await favouriteRepository.update(favouriteOld, req.UserID);
             if (!favourite)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([favourite]));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -95,7 +75,37 @@ class FavouriteController {
             if (!favourite)
                 sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, this.#print([favourite]));
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
+        } catch (error) {
+            logger.error(`${req.url}: ${error}`);
+            throw error;
+        }
+    };
+
+    getFavouriteMusic = async (req, res) => {
+        try {
+            const { id } = req.querystring;
+            if (id) {
+                const favourite = await favouriteRepository.fetchByMusic(id);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
+            } else {
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found');
+            }
+        } catch (error) {
+            logger.error(`${req.url}: ${error}`);
+            throw error;
+        }
+    };
+
+    getFavouriteUser = async (req, res) => {
+        try {
+            const { id } = req.querystring;
+            if (id) {
+                const favourite = await favouriteRepository.fetchByUser(id);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
+            } else {
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found');
+            }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
