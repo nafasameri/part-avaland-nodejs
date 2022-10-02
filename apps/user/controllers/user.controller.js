@@ -35,10 +35,10 @@ class UserController {
             const { id } = req.querystring;
             if (id) {
                 const user = await userRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, user);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, user);
             } else {
                 const users = await userRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, users);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, users);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -50,11 +50,11 @@ class UserController {
         try {
             const { body } = req;
             if (!body || !body.username || !body.password)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
 
             const username = await userRepository.fetchByUserName(body.username);
             if (username)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'This username early exist!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'This username early exist!');
 
             const passHash = crypto.createHash(config.algorithm).update(body.password + config.hash).digest(config.encoding);
             const newUser = {
@@ -64,9 +64,9 @@ class UserController {
             };
             const user = await userRepository.add(newUser);
             if (!user)
-                sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Could Not Sign up');
+                sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Sign up');
             else
-                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, user);
+                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, user);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw Error('Could Not Sign up');
@@ -76,19 +76,20 @@ class UserController {
     login = async (req, res) => {
         try {
             const { body } = req;
+            console.log(body);
             if (!body || !body.username || !body.password)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
 
             const username = await userRepository.fetchByUserName(body.username);
             if (!username)
-                return sendResponse(res, statusCode.UNAUTHORIZED, { "Content-Type": "application/json" }, 'This username does not exist!');
+                return sendResponse(res, statusCode.UNAUTHORIZED, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'This username does not exist!');
 
             const passHash = crypto.createHash(config.algorithm).update(body.password + config.hash).digest(config.encoding);
             const user = await userRepository.fetchByUserNamePassword(body.username, passHash);
 
             if (user) {
                 const token = generateToken(body.username, body.password);
-                const time = new Date(Date.now() + 10000);
+                const time = new Date(Date.now() + (5 * 60 * 1000));
                 let setCookieCommand = 'token=' + token + '; Expires=' + time.toUTCString() + '; Path=/' + '; Domain=127.0.0.1';
                 const key = token.split('.')[2];
                 client.set(key, user.UserID);
@@ -111,7 +112,7 @@ class UserController {
             const { id } = req.querystring;
             const { body } = req;
             if (!body || !body.password)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
             
             const passHash = crypto.createHash(config.algorithm).update(body.password + config.hash).digest(config.encoding);
             const userOld = await userRepository.fetchById(id);
@@ -119,12 +120,12 @@ class UserController {
                 userOld.password = passHash ?? userOld.password;
                 const user = await userRepository.updatePassword(userOld, req.UserID);
                 if (!user)
-                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Update!');
                 else
-                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, user);
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, user);
             }
             else
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -136,7 +137,7 @@ class UserController {
             const { id } = req.querystring;
             const { body } = req;
             if (!body)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
 
             const userOld = await userRepository.fetchById(id);
             if (userOld) {
@@ -147,12 +148,12 @@ class UserController {
 
                 const user = await userRepository.update(userOld, req.UserID);
                 if (!user)
-                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Update!');
                 else
-                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, user);
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, user);
             }
             else
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -164,9 +165,9 @@ class UserController {
             const { id } = req.querystring;
             const user = await userRepository.delete(id, req.UserID);
             if (!user)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, user);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, user);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

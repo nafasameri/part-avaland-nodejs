@@ -11,10 +11,10 @@ class PremissionController {
             const { id } = req.querystring;
             if (id) {
                 const premission = await premissionRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, premission);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, premission);
             } else {
                 const premissions = await premissionRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, premissions);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, premissions);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -26,13 +26,13 @@ class PremissionController {
         try {
             const { body } = req;
             if (!body || !body["role-id"] || !body["menu-id"])
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
             
             const premission = await premissionRepository.add(body, req.RoleID);
             if (!premission)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Create');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, premission);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, premission);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -44,7 +44,7 @@ class PremissionController {
             const { id } = req.querystring;
             const { body } = req;
             if (!body)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
 
             const premissionOld = await premissionRepository.fetchById(id);
             if (premissionOld) {
@@ -53,12 +53,12 @@ class PremissionController {
 
                 const premission = await premissionRepository.update(premissionOld, req.UserID);
                 if (!premission)
-                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Update!');
                 else
-                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, premission);
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, premission);
             }
             else
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -70,9 +70,9 @@ class PremissionController {
             const { id } = req.querystring;
             const premission = await premissionRepository.delete(id, req.RoleID);
             if (!premission)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, premission);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, premission);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

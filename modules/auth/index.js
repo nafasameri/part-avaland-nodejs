@@ -10,8 +10,8 @@ module.exports = async (req, res, next) => {
         const key = setCookie.split(/=([^;]+)/g)[1].split('.')[2];
         req.UserID = await client.get(key);
         if (!req.UserID)
-            return sendResponse(res, 401, { "Content-Type": "application/json" }, 'Unauthorized');
+            return sendResponse(res, 401, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Unauthorized');
         return req;
     }
-    return sendResponse(res, 401, { "Content-Type": "application/json" }, 'Unauthorized');
+    return sendResponse(res, 401, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Unauthorized');
 }

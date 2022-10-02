@@ -16,10 +16,10 @@ class MusicController {
             const { id } = req.querystring;
             if (id) {
                 const music = await musicRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, music);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, music);
             } else {
                 const musics = await musicRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, musics);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, musics);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -55,16 +55,16 @@ class MusicController {
                 req.fields = fields;
                 req.files = files;
                 req.body = files;
+                console.log(files);
 
                 if (error) {
                     logger.error(`formidable: ${error}`);
                     return sendResponse(res, error.httpCode || 400, { 'Content-Type': 'text/plain' }, error);
                 }
-                // sendResponse(res, statusCode.OK, { 'Content-Type': 'application/json' }, JSON.stringify({ fields, files }));
-                this.createMusic(req, res);
+                return sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, JSON.stringify({ fields, files }));
+                // this.createMusic(req, res);
             });
-
-            return;
+            return sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could not upload');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -77,13 +77,13 @@ class MusicController {
             const { filepath, newFilename, originalFilename, mimetype } = body['multipleFiles'];
             
             if (!newFilename)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
      
             const music = await musicRepository.add({ url: newFilename }, req.UserID);
             if (!music)
-                return sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
+                return sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Create');
             else
-                return sendResponse(res, statusCode.OK, { 'Content-Type': 'application/json' }, music);
+                return sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, music);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -95,7 +95,7 @@ class MusicController {
             const { id } = req.querystring;
             const { body } = req;
             if (!id || !body)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
 
             const musicOld = await musicRepository.fetchById(id);
             if (musicOld) {
@@ -113,12 +113,12 @@ class MusicController {
 
                 const music = await musicRepository.update(musicOld, req.UserID);
                 if (!music)
-                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Update!');
                 else
-                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, music);
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, music);
             }
             else 
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -129,13 +129,13 @@ class MusicController {
         try {
             const { id } = req.querystring;
             if (!id)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
 
             const music = await musicRepository.delete(id, req.UserID);
             if (!music)
-                sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Could Not Delete!');
+                sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, music);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, music);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

@@ -38,7 +38,7 @@ class Router {
             if (runMiddlewareForRoute) await handler(req, res);
         } catch (e) {
             logger.error(req.url + ' - ' + e?.message);
-            sendResponse(res, res?.status ?? 500, { "Content-Type": "application/json" }, e?.message);
+            sendResponse(res, res?.status ?? 500, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, e?.message);
         }
     }
 
@@ -74,7 +74,7 @@ class Router {
         const url = `${route}_${req.method}`;
         if (this.#routePool.has(url))
             return this.#eventEmitter.emit(url, req, res);
-        return sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, "URL NOT FOUND!");
+        return sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, "URL NOT FOUND!");
     }
 }
 

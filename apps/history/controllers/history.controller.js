@@ -12,10 +12,10 @@ class HistoryController {
             const { id } = req.querystring;
             if (id) {
                 const history = await historyRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, history);
             } else {
                 const historys = await historyRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, historys);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, historys);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -27,13 +27,13 @@ class HistoryController {
         try {
             const { body } = req;
             if (!body || !body["music-id"] || !body["user-id"])
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
 
             const history = await historyRepository.add(body, req.UserID);
             if (!history)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Create');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, history);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -45,7 +45,7 @@ class HistoryController {
             const { id } = req.querystring;
             const { body } = req;
             if (!body || !body["music-id"] || !body["user-id"])
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
 
             const historyOld = await historyRepository.fetchById(id);
             if (historyOld) {
@@ -54,12 +54,12 @@ class HistoryController {
 
                 const history = await historyRepository.update(historyOld, req.UserID);
                 if (!history)
-                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Update!');
                 else
-                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, history);
             }
             else
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -71,9 +71,9 @@ class HistoryController {
             const { id } = req.querystring;
             const history = await historyRepository.delete(id, req.UserID);
             if (!history)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, history);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -86,9 +86,9 @@ class HistoryController {
             if (id) {
                 const history = await historyRepository.fetchByMusic(id);
                 if (history.length > 0)
-                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, history);
                 else
-                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found');
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found');
             } 
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -102,9 +102,9 @@ class HistoryController {
             if (id) {
                 const history = await historyRepository.fetchByUser(id);
                 if (history.length > 0)
-                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, history);
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, history);
                 else
-                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found');
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found');
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);

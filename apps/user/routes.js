@@ -27,7 +27,7 @@ const routes = [
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   },
   {
-    url: "fogetpass",
+    url: "forgetpass",
     method: "PUT",
     controller: userController.updatePassword,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
