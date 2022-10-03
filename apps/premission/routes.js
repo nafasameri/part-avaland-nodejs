@@ -3,9 +3,9 @@ const { fetchQueryStringFromURL, getPostData, getHeaders, authentication, Invali
 
 const routes = [
   {
-    url: "histories",
+    url: "premissions",
     method: "GET",
-    controller: premissionController.getHistories,
+    controller: premissionController.getPremissions,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {

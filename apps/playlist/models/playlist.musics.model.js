@@ -1,24 +1,35 @@
 class PlaylistMusic {
-    PlaylistMusicID;
-    PlaylistID;
-    MusicID;
+    #ID;
+    #PlaylistID;
+    #MusicID;
+    #Creator;
+    #CreateTime;
+    #Modifier;
+    #ModifiTime;
+    #IsDelete;
 
-    Creator;
-    CreateTime;
-    Modifier;
-    ModifiTime;
-    IsDelete;
+    constructor(playlistMusic) {
+        this.#ID = playlistMusic.PlaylistMusicID;
+        this.#PlaylistID = playlistMusic.PlaylistID;
+        this.#MusicID = playlistMusic.MusicID;
+        this.#Creator = playlistMusic.Creator;
+        this.#CreateTime = playlistMusic.CreateTime;
+        this.#Modifier = playlistMusic.Modifier;
+        this.#ModifiTime = playlistMusic.ModifiTime;
+        this.#IsDelete = playlistMusic.IsDelete;
+    }
 
-    constructor(PlaylistMusicID, PlaylistID, MusicID, Creator, CreateTime, Modifier, ModifiTime, IsDelete) {
-        this.PlaylistMusicID = PlaylistMusicID;
-        this.PlaylistID = PlaylistID;
-        this.MusicID = MusicID;
-
-        this.Creator = Creator;
-        this.CreateTime = CreateTime;
-        this.Modifier = Modifier;
-        this.ModifiTime = ModifiTime;
-        this.IsDelete = IsDelete;
+    get() {
+        return {
+            "playlist-music-id": this.#ID,
+            "playlist-id": this.#PlaylistID,
+            "music-id": this.#MusicID,
+            "creator": this.#Creator,
+            "create-time": this.#CreateTime,
+            "modifier": this.#Modifier,
+            "modifi-time": this.#ModifiTime,
+            "delete?": this.#IsDelete
+        };
     }
 }
 

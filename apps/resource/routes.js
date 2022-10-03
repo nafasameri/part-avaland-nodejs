@@ -1,29 +1,29 @@
-const menuController = require("./controllers/menu.controller");
+const resourceController = require("./controllers/resource.controller");
 const { fetchQueryStringFromURL, getPostData, getHeaders, authentication, InvalidId } = require('./middlewares');
 
 const routes = [
   {
-    url: "menus",
+    url: "resources",
     method: "GET",
-    controller: menuController.getMenus,
+    controller: resourceController.getResources,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
     url: "add",
     method: "POST",
-    controller: menuController.createMenu,
+    controller: resourceController.createResource,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
     url: "update",
     method: "PUT",
-    controller: menuController.updateMenu,
+    controller: resourceController.updateResource,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   },
   {
     url: "delete",
     method: "DELETE",
-    controller: menuController.deleteMenu,
+    controller: resourceController.deleteResource,
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
   }
 ];

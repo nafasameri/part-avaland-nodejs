@@ -40,12 +40,6 @@ const routes = [
     middlewares: [authentication, fetchQueryStringFromURL, getHeaders],
   },
   {
-    url: "updatemusic",
-    method: "PUT",
-    controller: playlistMusicsController.updatePlaylistMusics,
-    middlewares: [authentication, fetchQueryStringFromURL, getHeaders, InvalidId],
-  },
-  {
     url: "deletemusic",
     method: "DELETE",
     controller: playlistMusicsController.deletePlaylistMusics,
