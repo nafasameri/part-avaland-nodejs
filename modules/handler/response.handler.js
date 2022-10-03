@@ -2,6 +2,11 @@ const statusCode = require('http-status-codes');
 const { datetime } = require('../utility');
 
 module.exports = (res, status, header, content) => {
+    header['Access-Control-Allow-Origin'] = '*';
+    header['Access-Control-Allow-Credentials'] = '*';
+    header['Access-Control-Allow-Methods'] = '*';
+    header['Access-Control-Allow-Headers'] = '*';
+
     res.writeHead(status, header);
     if (status >= 500)
         res.end(JSON.stringify({

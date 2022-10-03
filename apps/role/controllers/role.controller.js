@@ -12,10 +12,10 @@ class RoleController {
             const { id } = req.querystring;
             if (id) {
                 const role = await roleRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, role);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, role);
             } else {
                 const roles = await roleRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, roles);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, roles);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -27,13 +27,13 @@ class RoleController {
         try {
             const { body } = req;
             if (!body || !body.name || !body.description)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const role = await roleRepository.add(body, req.UserID);
             if (!role) {
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Create');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             } else {
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, role);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, role);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -46,7 +46,7 @@ class RoleController {
             const { id } = req.querystring;
             const { body } = req;
             if (!body)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
         
             const roleOld = await roleRepository.fetchById(id);
             if (roleOld) {
@@ -55,12 +55,12 @@ class RoleController {
 
                 const role = await roleRepository.update(roleOld, req.UserID);
                 if (!role)
-                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Update!');
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
                 else
-                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, role);
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, role);
             }
             else
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -72,9 +72,9 @@ class RoleController {
             const { id } = req.querystring;
             const role = await roleRepository.delete(id, req.UserID);
             if (!role) {
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Delete!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             } else {
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, role);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, role);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);

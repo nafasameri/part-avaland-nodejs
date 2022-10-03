@@ -11,10 +11,10 @@ class CategoryController {
             const { id } = req.querystring;
             if (id) {
                 const category = await categoryRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, category);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, category);
             } else {
                 const categorys = await categoryRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, categorys);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, categorys);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -26,13 +26,13 @@ class CategoryController {
         try {
             const { body } = req;
             if (!body || !body.name)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const category = await categoryRepository.add(body, req.UserID);
             if (!category)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Create');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, category);
+                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, category);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -44,7 +44,7 @@ class CategoryController {
             const { id } = req.querystring;
             const { body } = req;
             if (!body)
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const categoryOld = await categoryRepository.fetchById(id);
             if (categoryOld) {
@@ -53,12 +53,12 @@ class CategoryController {
 
                 const category = await categoryRepository.update(categoryOld, req.UserID);
                 if (!category)
-                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Update!');
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
                 else
-                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, category);
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, category);
             }
             else
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -70,9 +70,9 @@ class CategoryController {
             const { id } = req.querystring;
             const category = await categoryRepository.delete(id, req.UserID);
             if (!category)
-                sendResponse(res, statusCode.GONE, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Delete!');
+                sendResponse(res, statusCode.GONE, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, category);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, category);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

@@ -12,10 +12,10 @@ class FavouriteController {
             const { id } = req.querystring;
             if (id) {
                 const favourite = await favouriteRepository.fetchById(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, favourite);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
             } else {
                 const favourites = await favouriteRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, favourites);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourites);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -27,7 +27,7 @@ class FavouriteController {
         try {
             const { body } = req;
             if (!body || !body["music-id"] || !body["user-id"])
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             let favourite = await favouriteRepository.fetchByUserMusic(body["music-id"], body["user-id"]);
             if (!favourite)
@@ -37,9 +37,9 @@ class FavouriteController {
                 favourite = await favouriteRepository.update(favourite, req.UserID);
             }
             if (!favourite)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Create');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, favourite);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -51,7 +51,7 @@ class FavouriteController {
             const { id } = req.querystring;
             const { body } = req;
             if (!body || !body["music-id"] || !body["user-id"])
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const favouriteOld = await favouriteRepository.fetchById(id);
             if (favouriteOld) {
@@ -60,12 +60,12 @@ class FavouriteController {
 
                 const favourite = await favouriteRepository.update(favouriteOld, req.UserID);
                 if (!favourite)
-                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Update!');
+                    sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Update!');
                 else
-                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, favourite);
+                    sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
             }
             else
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found!');
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -77,9 +77,9 @@ class FavouriteController {
             const { id } = req.querystring;
             const favourite = await favouriteRepository.delete(id, req.UserID);
             if (!favourite)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Delete!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, favourite);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -91,9 +91,9 @@ class FavouriteController {
             const { id } = req.querystring;
             if (id) {
                 const favourite = await favouriteRepository.fetchByMusic(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, favourite);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
             } else {
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found');
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -106,9 +106,9 @@ class FavouriteController {
             const { id } = req.querystring;
             if (id) {
                 const favourite = await favouriteRepository.fetchByUser(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, favourite);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, favourite);
             } else {
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Not Found');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Not Found');
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);

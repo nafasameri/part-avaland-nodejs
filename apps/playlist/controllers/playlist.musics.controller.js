@@ -11,10 +11,10 @@ class PlaylistMusicsController {
             const { id } = req.querystring;
             if (id) {
                 const playlistMusics = await playlistMusicsRepository.fetchByPlaylistId(id);
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, playlistMusics);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, playlistMusics);
             } else {
                 const playlistMusics = await playlistMusicsRepository.fetchAll();
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, playlistMusics);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, playlistMusics);
             }
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
@@ -26,14 +26,14 @@ class PlaylistMusicsController {
         try {
             const { body } = req;
             if (!body || !body["playlist-id"] || !body["music-id"])
-                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
+                return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
 
             const playlistMusics = await playlistMusicsRepository.add(body, req.UserID);
 
             if (!playlistMusics)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Create');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
-                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, playlistMusics);
+                sendResponse(res, statusCode.CREATED, { "Content-Type": "application/json" }, playlistMusics);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;
@@ -45,9 +45,9 @@ class PlaylistMusicsController {
             const { id } = req.querystring;
             const playlistMusics = await playlistMusicsRepository.delete(id, req.UserID);
             if (!playlistMusics)
-                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Could Not Delete!');
+                sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Delete!');
             else
-                sendResponse(res, statusCode.OK, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, playlistMusics);
+                sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, playlistMusics);
         } catch (error) {
             logger.error(`${req.url}: ${error}`);
             throw error;

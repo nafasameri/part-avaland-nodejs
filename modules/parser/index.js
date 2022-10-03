@@ -20,7 +20,7 @@ function fetchQueryStringFromURL(req, res, next) {
         return req;
     } catch (e) {
         logger.error(e?.message);
-        return sendResponse(res, 500, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, e?.message);
+        return sendResponse(res, 500, { "Content-Type": "application/json" }, e?.message);
     }
 }
 
@@ -44,7 +44,7 @@ async function getPostData(req, res, next) {
         });
     } catch (e) {
         logger.error(e?.message);
-        return sendResponse(res, 500, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, e?.message);
+        return sendResponse(res, 500, { "Content-Type": "application/json" }, e?.message);
     }
 }
 
@@ -52,10 +52,9 @@ async function getHeaders(req, res, next) {
     try {
         const contentType = req.headers['content-type'];
         const data = await getPostData(req, res, next);
-
         switch (contentType) {
             case 'application/x-www-form-urlencoded':
-                req.params = data;
+                req.body = data;
                 // logger.info('params: ' + JSON.stringify(req.params));
                 break;
             case 'application/json':
@@ -66,7 +65,7 @@ async function getHeaders(req, res, next) {
         return req;
     } catch (e) {
         logger.error(e?.message);
-        return sendResponse(res, 500, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, e?.message);
+        return sendResponse(res, 500, { "Content-Type": "application/json" }, e?.message);
     }
 }
 
@@ -74,7 +73,7 @@ async function InvalidId(req, res, next) {
     const { id } = req.querystring;
     if (!id) {
         logger.error('Invalid parameter id!');
-        return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json", 'Access-Control-Allow-Origin': '*' }, 'Invalid parameters!');
+        return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
     }
     return req;
 }
