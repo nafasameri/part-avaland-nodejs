@@ -1,10 +1,12 @@
 const client = require('../database/redis');
 const sendResponse = require('../handler/response.handler');
 const logger = require('../logger');
+const db = require('../database');
 
 module.exports = async (req, res, next) => {
     logger.info(`${req.url} ${req.method}`)
     let setCookie = req.headers['set-cookie'];
+
     if (setCookie) {
         setCookie = setCookie[0];
         const key = setCookie.split(/=([^;]+)/g)[1].split('.')[2];
@@ -13,5 +15,6 @@ module.exports = async (req, res, next) => {
             return sendResponse(res, 401, { "Content-Type": "application/json" }, 'Unauthorized');
         return req;
     }
-    return sendResponse(res, 401, { "Content-Type": "application/json" }, 'Unauthorized');
+    // return sendResponse(res, 401, { "Content-Type": "application/json" }, 'Unauthorized');
+    return req;
 }

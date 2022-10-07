@@ -43,25 +43,34 @@ class MusicController {
 
     upload = async (req, res) => {
         try {
+            console.log('upload');
             const form = formidable({
                 uploadDir: `uploads`,
                 keepExtensions: true,
                 filename(name, ext, part, form) {
+                    console.log(name);
                     return date() + ' ' + name + ext;
                 }
             });
 
-            form.parse(req, (error, fields, files) => {
+            form.parse(req, async (error, fields, files) => {
                 req.fields = fields;
                 req.files = files;
                 req.body = files;
-                console.log(files);
+                console.log('fields', fields);
+                console.log('files', files);
 
                 if (error) {
                     logger.error(`formidable: ${error}`);
                     return sendResponse(res, error.httpCode || 400, { 'Content-Type': 'text/plain' }, error);
                 }
-                return sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, JSON.stringify({ fields, files }));
+                const { filepath, newFilename, originalFilename, mimetype } = files['multipleFiles'];
+                const music = await musicRepository.add({ url: newFilename }, req.UserID);
+                if (!music)
+                    return sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
+                else
+                    return sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, music);
+                // return sendResponse(res, statusCode.OK, { "Content-Type": "application/json" }, { fields, files });
                 // this.createMusic(req, res);
             });
             return sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could not upload');
@@ -74,12 +83,10 @@ class MusicController {
     createMusic = async (req, res) => {
         try {
             const { body } = req;
-            const { filepath, newFilename, originalFilename, mimetype } = body['multipleFiles'];
-            
-            if (!newFilename)
+            if (!body)
                 return sendResponse(res, statusCode.BAD_REQUEST, { "Content-Type": "application/json" }, 'Invalid parameters!');
      
-            const music = await musicRepository.add({ url: newFilename }, req.UserID);
+            const music = await musicRepository.add(body, req.UserID);
             if (!music)
                 return sendResponse(res, statusCode.NOT_FOUND, { "Content-Type": "application/json" }, 'Could Not Create');
             else
