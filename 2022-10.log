@@ -164,3 +164,117 @@
 [2022-10-07T19:33:37.527Z] [INFO]: /playlist/playlists GET 
 [2022-10-07T19:33:37.766Z] [INFO]: /user/users?id=4 GET 
 [2022-10-07T19:33:37.772Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T19:56:57.900Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T19:56:58.723Z] [INFO]: /music/musics GET 
+[2022-10-07T19:56:58.730Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T19:57:06.675Z] [INFO]: /music/musics GET 
+[2022-10-07T19:57:06.678Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T19:57:49.070Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T19:57:50.557Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T19:57:59.006Z] [INFO]: /music/musics GET 
+[2022-10-07T19:57:59.014Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T19:58:33.982Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T19:58:36.738Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T19:58:42.816Z] [INFO]: /music/musics GET 
+[2022-10-07T19:58:42.821Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T19:58:43.024Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T19:58:43.030Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:02:03.130Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T20:02:04.968Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T20:02:21.612Z] [INFO]: /music/musics GET 
+[2022-10-07T20:02:21.619Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:02:24.358Z] [INFO]: /music/musics GET 
+[2022-10-07T20:02:24.360Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:02:55.422Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T20:03:03.169Z] [INFO]: /music/musics GET 
+[2022-10-07T20:03:03.175Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:03:16.489Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T20:03:17.574Z] [INFO]: /music/musics GET 
+[2022-10-07T20:03:17.581Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:04:42.448Z] [INFO]: /music/musics GET 
+[2022-10-07T20:04:51.586Z] [INFO]: /music/musics GET 
+[2022-10-07T20:04:51.592Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:04:53.369Z] [INFO]: /music/musics GET 
+[2022-10-07T20:04:53.370Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:04:53.573Z] [INFO]: /music/musics GET 
+[2022-10-07T20:04:53.575Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:04:53.784Z] [INFO]: /music/musics GET 
+[2022-10-07T20:04:53.789Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:04:54.007Z] [INFO]: /music/musics GET 
+[2022-10-07T20:04:54.009Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:04:56.567Z] [INFO]: /music/musics GET 
+[2022-10-07T20:05:04.815Z] [INFO]: /music/musics GET 
+[2022-10-07T20:05:04.817Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:05:06.766Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:05:09.929Z] [INFO]: /music/musics GET 
+[2022-10-07T20:05:09.934Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:05:18.292Z] [INFO]: /music/musics GET 
+[2022-10-07T20:05:18.293Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:12:59.671Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T20:14:44.905Z] [INFO]: /music/musics GET 
+[2022-10-07T20:14:44.912Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:14:45.109Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:14:45.115Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:14:49.882Z] [INFO]: /music/musics GET 
+[2022-10-07T20:15:03.080Z] [INFO]: /music/musics GET 
+[2022-10-07T20:15:03.082Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:15:03.228Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:15:03.234Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:15:05.844Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:15:05.857Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:15:05.864Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:15:13.249Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:15:13.277Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:15:13.289Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:15:18.432Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:15:18.459Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:15:18.470Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:15:25.887Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:15:25.897Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:15:25.901Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:17:50.069Z] [INFO]: /music/musics GET 
+[2022-10-07T20:17:50.074Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:17:50.287Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:17:50.292Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:18:14.582Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:18:14.701Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:18:14.705Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:20:42.081Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T20:20:46.678Z] [INFO]: /music/musics GET 
+[2022-10-07T20:20:46.686Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:20:46.920Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:20:46.926Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:20:58.566Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:20:58.701Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:20:58.709Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:21:03.156Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:21:03.204Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:21:03.208Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:21:46.013Z] [INFO]: /music/musics GET 
+[2022-10-07T20:21:46.016Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:21:48.606Z] [INFO]: /music/musics GET 
+[2022-10-07T20:21:48.608Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:21:51.984Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:22:00.095Z] [INFO]: Server is running at: 127.0.0.1:8000 
+[2022-10-07T20:22:06.416Z] [INFO]: /music/musics GET 
+[2022-10-07T20:22:06.422Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:22:06.587Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:22:06.593Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:22:08.238Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:22:08.282Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:22:08.290Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:22:13.162Z] [INFO]: /music/musics GET 
+[2022-10-07T20:22:14.386Z] [INFO]: /music/musics GET 
+[2022-10-07T20:22:14.393Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:22:14.431Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:22:14.453Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:23:30.758Z] [INFO]: /music/musics GET 
+[2022-10-07T20:23:30.762Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:23:31.911Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:24:27.761Z] [INFO]: /music/musics GET 
+[2022-10-07T20:24:27.764Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:24:27.916Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:24:27.921Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:24:29.878Z] [INFO]: /playlist/playlists GET 
+[2022-10-07T20:24:29.889Z] [INFO]: /user/users?id=4 GET 
+[2022-10-07T20:24:29.893Z] [INFO]: /user/users?id=4 GET 
