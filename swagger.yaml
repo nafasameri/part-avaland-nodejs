@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: AvaLand API
+  version: 1.0.0
+  description: A simple API for testing purposes
+  contact:
+    name: Nafas Ameri
+    email: nafasameri97@gmail.com
+paths:
+  /test:
+    get:
+      summary: Get a friendly test
+      responses:
+        '200':
+          description: A successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+      parameters:
+        - name: name
+          in: query
+          description: Your name
+          required: true
+          schema:
+            type: string
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
